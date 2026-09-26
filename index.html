@@ -15,7 +15,9 @@
   <link rel="canonical" href="https://deepagentlabs.io/">
   <title>DeepAgentLabs — Open AI Operations</title>
   <link rel="stylesheet" href="assets/styles.css?v=6">
+  <link rel="stylesheet" href="assets/architecture.css">
   <script src="assets/site.js" defer></script>
+  <script src="assets/architecture.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -76,7 +78,35 @@
         <p>Every capability each package exposes, and how a request moves from a user through the Control Tower down to the packages doing the work.</p>
       </div>
       <figure class="architecture-figure">
-        <img src="assets/deepagentlabs-ecosystem1.png" loading="lazy" alt="DeepAgentLabs capability map: users go through a Console/CLI/API/MCP entry point to the DeepAgent Control Tower, which sits above the AI Operations Specification; the spec connects to AgenticLens, Agentic Evals, Agentic Sidecar, Agentic Chaos, and the MCP Server, each listing its own capabilities and export formats.">
+        <div class="arch-legend" aria-label="Relationship status legend">
+          <span><i class="arch-swatch arch-sw-warn" aria-hidden="true"></i>Current integration</span>
+          <span><i class="arch-swatch arch-sw-plan" aria-hidden="true"></i>Planned integration</span>
+          <span><i class="arch-swatch arch-sw-context" aria-hidden="true"></i>Architecture context</span>
+        </div>
+        <div class="arch-toolbar" aria-label="Architecture controls">
+          <button id="arch-trace" type="button" aria-pressed="false"><span aria-hidden="true">▶</span> Trace request</button>
+          <button id="arch-reset" type="button"><span aria-hidden="true">↺</span> Reset</button>
+        </div>
+        <div id="arch-infographic" class="arch-infographic" role="group" aria-labelledby="arch-title arch-description">
+          <h3 class="sr-only" id="arch-title">DeepAgentLabs interactive architecture infographic</h3>
+          <p class="sr-only" id="arch-description">Explore the full ecosystem infographic. Select components, capabilities, frameworks, or outputs for details. Use arrow keys to move among major components, then Enter or Space to select.</p>
+          <div id="arch-artwork" class="arch-artwork"></div>
+          <aside class="arch-panel" aria-label="Architecture details" aria-live="polite" aria-atomic="true">
+            <div id="arch-panel-empty">
+              <p class="arch-panel-eyebrow">Component details</p>
+              <p class="arch-panel-empty">Select a component, capability, framework, or export to inspect its role and integration status.</p>
+            </div>
+            <div id="arch-panel-detail" hidden>
+              <p class="arch-panel-eyebrow" id="arch-pd-kind"></p>
+              <h3 id="arch-pd-name"></h3>
+              <span class="arch-ver" id="arch-pd-version"></span>
+              <p class="arch-desc" id="arch-pd-desc"></p>
+              <h4 class="arch-edges-title">Connected components</h4>
+              <div id="arch-pd-edges"></div>
+            </div>
+            <div id="arch-trace-status" class="arch-trace-status" aria-live="polite" hidden></div>
+          </aside>
+        </div>
       </figure>
     </section>
 
