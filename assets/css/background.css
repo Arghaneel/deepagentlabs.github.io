@@ -1,0 +1,5 @@
+/* Background animation layer (created by bg-flow.js). Behind everything, never clickable. */
+.bg-flow{position:fixed;inset:0;pointer-events:none;z-index:0}
+/* keep page content above the layer */
+main,body>footer{position:relative;z-index:1}
+@media(prefers-reduced-motion:reduce){.bg-flow{display:none}}

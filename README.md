@@ -1,25 +1,33 @@
-﻿# DeepAgentLabs organization website
+# DeepAgentLabs organization website
 
-Static source for [deepagentlabs.github.io](https://deepagentlabs.github.io/).
+Static source for [deepagentlabs.io](https://deepagentlabs.io/), served by GitHub Pages
+from this repository. Plain HTML, CSS and JavaScript: no build step, no dependencies.
 
-## Publish
+## Structure
 
-1. Create a public repository in the DeepAgentLabs organization named `deepagentlabs.github.io`.
-2. Push this directory to its `main` branch.
-3. Open **Settings → Pages**.
-4. Under **Build and deployment**, choose **Deploy from a branch**.
-5. Select `main`, choose `/(root)`, and save.
+```
+index.html        Homepage
+roadmap.html      Roadmap page
+assets/css/       Stylesheets
+assets/js/        Scripts
+assets/img/       Images
+docs/             Architecture notes, changelog, ecosystem engineering docs
+```
 
-GitHub will publish `index.html` at the organization URL. No build step or package installation is required.
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for what every file does, and
+[docs/CHANGELOG.md](docs/CHANGELOG.md) for what has changed.
 
 ## Local preview
 
-Open `index.html` directly, or serve this directory with any static file server.
+Serve this folder with any static file server, for example the VS Code
+**Live Server** extension, then open `index.html`.
 
-## `ecosystem-docs/`
+## Publish
 
-Internal architecture and audit documentation for the DeepAgentLabs repos —
-not part of the built site, not linked from `index.html`, and not written in
-the site's marketing voice. It's kept in this repo only because it has
-nowhere else to live; treat it as engineering reference material, not
-public copy.
+Push to `main`. GitHub Pages deploys the repository root (**Settings → Pages →
+Deploy from a branch → `main` / root**). `CNAME` points the site at `deepagentlabs.io`.
+
+## `docs/ecosystem/`
+
+Internal architecture and audit notes about the DeepAgentLabs repositories. They are
+not part of the website, not linked from it, and not written as public copy.

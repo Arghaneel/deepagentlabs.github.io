@@ -1,0 +1,13 @@
+/* Install commands with a copy button on the right */
+.has-copy{display:flex!important;align-items:center;justify-content:space-between;gap:12px;white-space:nowrap}
+.has-copy .copy-text{overflow-x:auto;scrollbar-width:none;min-width:0}
+.has-copy .copy-text::-webkit-scrollbar{display:none}
+.tl-foot code.tl-pip.has-copy{flex:1 1 auto;max-width:520px;padding-right:6px}
+.copy-btn{position:relative;flex:0 0 auto;display:inline-grid;place-items:center;width:30px;height:30px;padding:0;border:1px solid #2b3a33;background:transparent;color:#cfd8d3;cursor:pointer;transition:background .18s,color .18s,border-color .18s}
+.copy-btn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.copy-btn:hover{background:var(--acid);border-color:var(--acid);color:var(--ink)}
+.copy-btn:focus-visible{outline:2px solid var(--acid);outline-offset:2px}
+.copy-btn.is-copied{background:var(--acid);border-color:var(--acid);color:var(--ink)}
+.copy-tip{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translate(-50%,4px);padding:3px 7px;background:var(--acid);color:var(--ink);font:500 10px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s}
+.copy-btn:hover .copy-tip,.copy-btn:focus-visible .copy-tip,.copy-btn.is-copied .copy-tip{opacity:1;transform:translate(-50%,0)}
+@media(max-width:680px){.tl-foot code.tl-pip.has-copy{max-width:none;width:100%}}

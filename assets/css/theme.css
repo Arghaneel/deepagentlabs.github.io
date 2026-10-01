@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap');
+
+/* ---------- Typography: display + body + accent ---------- */
+:root{--font-display:'Bricolage Grotesque',Manrope,Arial,sans-serif;--font-body:Inter,Manrope,Arial,sans-serif;--font-accent:'Instrument Serif',Georgia,serif}
+body{font-family:var(--font-body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-feature-settings:"ss01","cv11"}
+h1,h2,h3,h4,.brand,.rp-title,.rp-h2,
+.loop-step strong,.rm-track .phase strong,.mega-text strong,.mega-side strong,.dash-head strong,.faq-question,.trust-stat strong:not([class]),.rp-seal strong{font-family:var(--font-display)}
+h1,.rp-title{font-weight:800;letter-spacing:-.045em;font-variation-settings:"opsz" 96}
+h2,.rp-h2{font-weight:750;letter-spacing:-.04em;font-variation-settings:"opsz" 72}
+h3{font-weight:700;letter-spacing:-.025em}
+.section-heading h2,.cta h2,.standard h2{letter-spacing:-.04em}
+.button,.nav-trigger,#site-nav>a,.nav-toggle{font-family:var(--font-body)}
+input,button,textarea,select{font-family:inherit}
+
+/* accent words: italic serif inside the lime marker */
+.hl,.hero h1 em,.rp-mark{font-family:var(--font-accent);font-style:italic;font-weight:400;letter-spacing:-.02em}
+h1 .hl,.hero h1 em,.rp-title .rp-mark{font-size:1.08em}
+
+/* Site-wide theme layer — brings the roadmap page's look to every page:
+   lime marker highlights on headings, kicker labels with a lime underline,
+   a dark band for the operating loop, and contrasting "Why us" tiles. */
+
+/* ---------- Lime marker highlight on key phrases ---------- */
+.hl,.hero h1 em{
+  background-image:linear-gradient(transparent 62%,var(--acid) 0);
+  background-repeat:no-repeat;background-size:100% 100%;
+  padding:0 .06em;-webkit-box-decoration-break:clone;box-decoration-break:clone;
+  transition:background-size 1s cubic-bezier(.2,.72,.25,1) .25s
+}
+/* sweep in when the heading is revealed by the scroll animation */
+html.js .rv:not(.in) .hl{background-size:0 100%}
+.hero h1 em{color:inherit;background-size:0 100%;animation:theme-mark 1s cubic-bezier(.2,.72,.25,1) 1.4s forwards}
+html.agent-loader-enabled .hero h1 em{animation:none}
+@keyframes theme-mark{to{background-size:100% 100%}}
+
+/* ---------- Kicker labels with a lime underline ---------- */
+.section-label{position:relative;display:inline-block;padding-bottom:12px;letter-spacing:.14em;color:var(--ink)}
+.section-label::after{content:"";position:absolute;left:0;bottom:0;width:48px;height:3px;background:var(--acid);transform-origin:left;transition:transform .7s cubic-bezier(.2,.72,.25,1) .15s}
+html.js .rv:not(.in) .section-label::after{transform:scaleX(0)}
+.cta .section-label::after{background:var(--ink)}
+.section-label:empty{display:none}
+
+/* ---------- Section headings: tighter, bolder, roadmap-style ---------- */
+.section-heading h2{letter-spacing:-.04em}
+.section-heading>p{font-size:17px;line-height:1.6}
+
+/* ---------- Operating loop as a dark band ---------- */
+.loop{position:relative;background:var(--ink);color:#fff;box-shadow:0 0 0 100vmax var(--ink);clip-path:inset(0 -100vmax);padding-top:96px;padding-bottom:96px;margin-top:0;margin-bottom:70px}
+.loop .section-label{color:var(--acid)}
+.loop .section-heading h2{color:#fff}
+.loop .hl{color:var(--acid);background-image:linear-gradient(transparent 92%,var(--acid) 0)}
+.loop .section-heading>p{color:#aeb9b3}
+.loop-track{border-color:#2b3a33;gap:0}
+.loop-step{border-color:#2b3a33;padding:22px 20px 24px;min-height:190px;transition:background-color .28s ease,color .28s ease,transform .3s cubic-bezier(.2,.72,.25,1)}
+.loop-step strong{font-size:19px;margin-top:26px;color:#fff}
+.loop-index{font-size:12px}
+.loop-pkg{color:#8e9b95}
+.loop-step p{color:#aeb9b3;font-size:13px;line-height:1.5}
+.loop-step:hover{transform:translateY(-4px)}
+.loop-step.is-lit strong,.loop-step.is-lit p{color:var(--ink)}
+.loop-track{border-top:1px solid #2b3a33;border-left:1px solid #2b3a33}
+
+/* ---------- "Why us" tiles with contrasting colours ---------- */
+.diff-grid{gap:16px;border:0}
+.diff-card{position:relative;overflow:hidden;min-height:240px;padding:30px 28px 28px;border:1px solid var(--ink);background:#fff;transition:transform .35s cubic-bezier(.2,.72,.25,1),box-shadow .35s,background .25s}
+.diff-card:nth-child(2){background:var(--mint)}
+.diff-card h3{margin-top:auto;padding-top:46px;font-size:23px;letter-spacing:-.035em}
+.diff-card p{font-size:14.5px;line-height:1.6}
+.diff-card::before{position:absolute;left:28px;top:26px;font:500 11px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.12em;padding:4px 8px;border:1px solid currentColor;content:"Them"}
+.diff-card.diff-us{background:var(--ink);color:#fff;border-color:var(--ink)}
+.diff-card.diff-us::before{content:"Us";color:var(--acid)}
+.diff-card.diff-us h3{color:var(--acid)}
+.diff-card.diff-us p{color:#c7d0ca}
+.diff-card:hover{transform:translate(-4px,-4px);box-shadow:8px 8px 0 var(--ink)}
+.diff-card:not(.diff-us):hover{background:#fff}
+.diff-card:nth-child(2):hover{background:var(--mint)}
+.diff-card.diff-us:hover{box-shadow:8px 8px 0 var(--acid)}
+
+/* ---------- Newsletter & roadmap tweaks ---------- */
+.newsletter-copy h2 .hl{padding:0 .04em}
+
+@media(max-width:900px){
+  .loop{padding-top:70px;padding-bottom:70px}
+  .loop-step{min-height:0}
+}
+@media(max-width:680px){
+  .loop{margin-bottom:40px}
+  .diff-card{min-height:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .hl,.hero h1 em{transition:none;animation:none!important;background-size:100% 100%!important}
+  .section-label::after{transition:none;transform:none!important}
+  .loop-step,.diff-card{transition:none}
+}
+
+/* ---------- Package ticker: lime strip so it separates the hero from the dark loop band ---------- */
+.ticker{background:var(--acid);color:var(--ink);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.ticker-sequence{font-weight:500;letter-spacing:.02em}
+.ticker-sequence span::after{background:var(--ink);width:6px;height:6px;border-radius:0;transform:rotate(45deg)}

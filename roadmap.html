@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The AI Operations Specification roadmap: eight milestones from shared core concepts to a stable, vendor-neutral v1.0 standard — where each phase stands today and what gates the next one.">
+  <meta name="theme-color" content="#07110e">
+  <meta property="og:title" content="Roadmap — AI Operations Specification · DeepAgentLabs">
+  <meta property="og:description" content="Eight milestones from a shared vocabulary to a stable standard anyone can implement.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://deepagentlabs.io/roadmap.html">
+  <meta property="og:image" content="https://deepagentlabs.io/assets/img/ecosystem.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://deepagentlabs.io/roadmap.html">
+  <title>Roadmap — DeepAgentLabs</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/enhance.css">
+  <link rel="stylesheet" href="assets/css/roadmap.css">
+  <link rel="stylesheet" href="assets/css/nav.css">
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/background.css">
+  <link rel="stylesheet" href="assets/css/copy.css">
+  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/roadmap.js" defer></script>
+  <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/background.js" defer></script>
+  <script src="assets/js/copy.js" defer></script>
+</head>
+<body class="rm-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="DeepAgentLabs home">
+      <span class="brand-logo" aria-hidden="true"></span>
+      <span>DeepAgentLabs</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" aria-label="Primary navigation">
+      <div class="nav-item has-mega">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="mega-products">Products</button>
+        <div class="mega" id="mega-products">
+          <div class="mega-main">
+            <p class="mega-label">Products</p>
+            <ul class="mega-grid">
+              <li><a class="mega-link" href="/agenticlens"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/><circle cx="11" cy="11" r="2"/></svg></span><span class="mega-text"><strong>AgenticLens <i aria-hidden="true">→</i></strong><small>Observe — OTLP traces, cost and latency on live traffic.</small></span></a></li>
+              <li><a class="mega-link" href="/agentic-chaos"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 5 13h6l-1 9 8-11h-6l1-9z"/></svg></span><span class="mega-text"><strong>Agentic Chaos <i aria-hidden="true">→</i></strong><small>Stress — fault injection and drift testing across frameworks.</small></span></a></li>
+              <li><a class="mega-link" href="/agentic-sidecar"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6l-8-3z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="mega-text"><strong>Agentic Sidecar <i aria-hidden="true">→</i></strong><small>Govern — allow, warn or block actions against intent and policy.</small></span></a></li>
+              <li><a class="mega-link" href="/agentic-evals"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg></span><span class="mega-text"><strong>Agentic Evals <i aria-hidden="true">→</i></strong><small>Evaluate — deterministic and LLM-judge scoring behind a CI gate.</small></span></a></li>
+              <li><a class="mega-link" href="/mcp"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7V3M15 7V3M7 7h10v4a5 5 0 0 1-10 0V7zM12 16v5"/></svg></span><span class="mega-text"><strong>MCP Server <i aria-hidden="true">→</i></strong><small>Connect — every tool exposed through one MCP interface.</small></span></a></li>
+              <li><a class="mega-link" href="/control-tower"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span><span class="mega-text"><strong>Control Tower <i aria-hidden="true">→</i></strong><small>Operate — registry and console for every stage.</small></span></a></li>
+            </ul>
+          </div>
+          <a class="mega-side" href="https://github.com/DeepAgentLabs/ai-operations-spec">
+            <span class="mega-label">The shared contract</span>
+            <strong>AI Operations Specification</strong>
+            <span class="mega-side-copy">One vendor-neutral spec every product implements — so runs, steps and evaluations mean the same thing everywhere.</span>
+            <span class="mega-side-cta">Read the spec <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </div>
+      </div>
+      <div class="nav-item has-mega">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="mega-docs">Docs</button>
+        <div class="mega" id="mega-docs">
+          <div class="mega-main">
+            <p class="mega-label">Documentation</p>
+            <ul class="mega-grid">
+              <li><a class="mega-link" href="/agenticlens/docs"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><span class="mega-text"><strong>AgenticLens docs <i aria-hidden="true">→</i></strong><small><code>pip install agenticlens</code></small></span></a></li>
+              <li><a class="mega-link" href="/agentic-chaos/docs"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><span class="mega-text"><strong>Agentic Chaos docs <i aria-hidden="true">→</i></strong><small><code>pip install agentic-chaos</code></small></span></a></li>
+              <li><a class="mega-link" href="/agentic-sidecar/docs"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><span class="mega-text"><strong>Agentic Sidecar docs <i aria-hidden="true">→</i></strong><small><code>pip install agentic-sidecar</code></small></span></a></li>
+              <li><a class="mega-link" href="/agentic-evals/docs"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><span class="mega-text"><strong>Agentic Evals docs <i aria-hidden="true">→</i></strong><small><code>pip install agentic-evals</code></small></span></a></li>
+              <li><a class="mega-link" href="/mcp/docs"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><span class="mega-text"><strong>MCP Server docs <i aria-hidden="true">→</i></strong><small>Tools, resources and client setup.</small></span></a></li>
+              <li><a class="mega-link" href="/control-tower/docs"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><span class="mega-text"><strong>Control Tower docs <i aria-hidden="true">→</i></strong><small><code>pip install agenticops-control-tower</code></small></span></a></li>
+            </ul>
+          </div>
+          <div class="mega-side mega-side-static">
+            <span class="mega-label">Start here</span>
+            <strong>Up and running in a minute.</strong>
+            <code class="mega-code">pip install agenticlens</code>
+            <span class="mega-side-copy">Instrument one agent, see its first trace, then add evals and chaos when you're ready.</span>
+            <span class="mega-label mega-pypi-label">On PyPI</span>
+            <div class="mega-pypi"><a href="https://pypi.org/project/agenticlens/" target="_blank" rel="noopener noreferrer">AgenticLens <span aria-hidden="true">↗</span></a><a href="https://pypi.org/project/agentic-chaos/" target="_blank" rel="noopener noreferrer">Chaos <span aria-hidden="true">↗</span></a><a href="https://pypi.org/project/agentic-evals/" target="_blank" rel="noopener noreferrer">Evals <span aria-hidden="true">↗</span></a><a href="https://pypi.org/project/agentic-sidecar/" target="_blank" rel="noopener noreferrer">Sidecar <span aria-hidden="true">↗</span></a><a href="https://pypi.org/project/deep-agentic-core-mcp/" target="_blank" rel="noopener noreferrer">MCP <span aria-hidden="true">↗</span></a><a href="https://pypi.org/project/agenticops-control-tower/" target="_blank" rel="noopener noreferrer">Control Tower <span aria-hidden="true">↗</span></a></div>
+            <a class="mega-side-cta" href="/agenticlens/docs">AgenticLens quickstart <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item has-mega">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="mega-platform">Platform</button>
+        <div class="mega mega-compact mega-narrow" id="mega-platform">
+          <div class="mega-main">
+            <p class="mega-label">On this site</p>
+            <ul class="mega-grid">
+              <li><a class="mega-link mega-link-plain" href="index.html#loop"><span class="mega-text"><strong>The operating loop <i aria-hidden="true">→</i></strong><small>Define, observe, stress, evaluate, improve.</small></span></a></li>
+              <li><a class="mega-link mega-link-plain" href="index.html#dashboards"><span class="mega-text"><strong>Dashboards <i aria-hidden="true">→</i></strong><small>What each product shows you.</small></span></a></li>
+              <li><a class="mega-link mega-link-plain" href="index.html#why"><span class="mega-text"><strong>Why DeepAgentLabs <i aria-hidden="true">→</i></strong><small>How we differ from dashboards and SDK evals.</small></span></a></li>
+            </ul>
+          </div>
+          <a class="mega-side" href="roadmap.html">
+            <span class="mega-label">Roadmap</span>
+            <strong>Step 1 of 8: v0.1 in review.</strong>
+            <span class="mega-side-copy">See where the specification is headed, phase by phase.</span>
+            <span class="mega-side-cta">View roadmap <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </div>
+      </div>
+      <a href="index.html#architecture">Architecture</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="https://github.com/DeepAgentLabs/ai-operations-spec">Specification</a>
+      <a href="roadmap.html" aria-current="page">Roadmap</a>
+      <a class="nav-cta" href="https://github.com/DeepAgentLabs">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="rp-hero section-shell">
+      <a class="rp-back" href="index.html#roadmap"><span aria-hidden="true">←</span> Back to home</a>
+      <p class="eyebrow"><span class="status-dot"></span> AI Operations Specification · Roadmap</p>
+      <h1 class="rp-title">The road to a <span class="rp-mark">stable standard</span> for AI operations.</h1>
+      <p class="rp-lede">Eight milestones, built one layer at a time and reviewed in the open, ending in a spec that anyone can implement without our packages.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#milestones">Explore the milestones</a>
+        <a class="button button-secondary" href="https://github.com/DeepAgentLabs/ai-operations-spec/blob/main/ROADMAP.md">ROADMAP.md on GitHub ↗</a>
+      </div>
+      <div class="rp-meter" data-rm-animate>
+        <div class="rp-meter-bar" aria-hidden="true"><span></span></div>
+        <p><strong>Step 1 of 8</strong> · v0.1 in review · v0.2–v0.4 drafted · updated Oct 2026</p>
+      </div>
+    </section>
+
+    <!-- ============ TICKER ============ -->
+    <div class="rp-ticker" aria-hidden="true">
+      <div class="rp-ticker-track">
+        <span><b>v0.1</b> Core concepts</span><span><b>v0.2</b> Relationships</span><span><b>v0.3</b> Semantics</span><span><b>v0.4</b> JSON Schemas</span><span><b>v0.5</b> Versioning</span><span><b>v0.6</b> Extensions</span><span><b>v0.6.x</b> Provenance</span><span><b>v1.0</b> Stable standard</span>
+        <span><b>v0.1</b> Core concepts</span><span><b>v0.2</b> Relationships</span><span><b>v0.3</b> Semantics</span><span><b>v0.4</b> JSON Schemas</span><span><b>v0.5</b> Versioning</span><span><b>v0.6</b> Extensions</span><span><b>v0.6.x</b> Provenance</span><span><b>v1.0</b> Stable standard</span>
+      </div>
+    </div>
+
+    <!-- ============ WHY ============ -->
+    <section class="rp-why section-shell">
+      <div class="rp-why-head">
+        <h2 class="rp-h2">One contract for how AI systems <span class="rp-mark">run, cost and fail.</span></h2>
+        <p class="rp-sub">Every milestone moves the spec closer to four promises.</p>
+      </div>
+      <div class="rp-why-grid">
+        <article class="rp-why-card rp-c-acid" data-rv><span class="rp-num" aria-hidden="true">01</span>
+          <span class="rp-chip"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/></svg>Shared vocabulary</span>
+          <h3>Every tool means the same thing by “run”</h3>
+          <p>Workflows, runs, steps, tool calls, evaluations and incidents get one definition, so producers and consumers stop writing adapters for each other.</p>
+          <small>v0.1 – v0.3</small>
+        </article>
+        <article class="rp-why-card rp-c-ink" data-rv><span class="rp-num" aria-hidden="true">02</span>
+          <span class="rp-chip"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="8" r="2.5"/><circle cx="10" cy="18" r="2.5"/><path d="M8.3 7.2 15.6 7.7M7 8.3l2 7.3M16.5 10l-4.8 6"/></svg>Graph-native</span>
+          <h3>Agent runs as graphs, not flat logs</h3>
+          <p>Retries, branches, parallel steps and handoffs are explicit edges. Timestamps alone are never allowed to prove causation.</p>
+          <small>v0.2</small>
+        </article>
+        <article class="rp-why-card rp-c-paper" data-rv><span class="rp-num" aria-hidden="true">03</span>
+          <span class="rp-chip"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6l-8-3z"/><path d="m9 12 2 2 4-4"/></svg>Verifiable</span>
+          <h3>Artifacts you can validate yourself</h3>
+          <p>JSON Schemas plus semantic checks, with a conformance suite you can run without installing a DeepAgentLabs package.</p>
+          <small>v0.4 · v0.6.x</small>
+        </article>
+        <article class="rp-why-card rp-c-mint" data-rv><span class="rp-num" aria-hidden="true">04</span>
+          <span class="rp-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>Vendor-neutral</span>
+          <h3>Built to outlive any single vendor</h3>
+          <p>Independent review gates every release, and clear versioning and extension rules mean anyone can build on it safely.</p>
+          <small>v0.5 – v1.0</small>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ MILESTONES (dark) ============ -->
+    <section class="rp-dark" id="milestones">
+      <div class="section-shell">
+        <p class="rp-kicker">The milestones</p>
+        <h2 class="rp-h2 rp-h2-dark">Eight steps from a draft to a stable standard.</h2>
+
+        <!-- v0.1 -->
+        <article class="rp-block" id="v0-1" data-status="review">
+          <div class="rp-copy" data-rv>
+            <p class="rp-label">v0.1 · Core concepts <span class="rp-pill is-review">In review</span></p>
+            <h3>Define what exists inside a running AI system.</h3>
+            <p>The foundation: a shared meaning for every runtime occurrence, with clear boundaries between them.</p>
+            <ul class="rp-bullets">
+              <li>A Workflow is a definition; a Run is one execution of it.</li>
+              <li>Model calls, tool calls, retrieval and memory stay distinct occurrences.</li>
+              <li>A reliability event is evidence. It doesn't automatically become an Incident.</li>
+            </ul>
+            <p class="rp-done"><span>Done when</span> two independent teams classify the same runtime events the same way.</p>
+          </div>
+          <div class="rp-visual" data-rv>
+            <div class="rp-window">
+              <div class="rp-window-bar"><i></i><i></i><i></i><span>core-concepts</span></div>
+              <div class="rp-concepts">
+                <span>Workflow</span><span>Run</span><span>Request</span><span>Step</span><span>Agent</span><span>Model interaction</span><span>Prompt</span><span>Tool invocation</span><span>RAG retrieval</span><span>Memory operation</span><span>Evaluation</span><span>Safety signal</span><span>Reliability event</span><span>Incident</span>
+              </div>
+              <p class="rp-window-foot">14 concepts · internal decisions resolved · awaiting independent review</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- v0.2 -->
+        <article class="rp-block" id="v0-2" data-status="draft">
+          <div class="rp-copy" data-rv>
+            <p class="rp-label">v0.2 · Relationships <span class="rp-pill">Exploratory draft</span></p>
+            <h3>Show how the pieces connect into execution graphs.</h3>
+            <p>Real agent runs branch, retry, loop and hand off. v0.2 makes every one of those relationships explicit.</p>
+            <ul class="rp-bullets">
+              <li>Workflow → Run → Request hierarchy and parent–child Runs.</li>
+              <li>Sequential, parallel, branch/join, retry and loop semantics.</li>
+              <li>Agent participation and handoff patterns.</li>
+            </ul>
+            <p class="rp-done"><span>Done when</span> two tools draw the same execution graph.</p>
+          </div>
+          <div class="rp-visual" data-rv>
+            <div class="rp-window">
+              <div class="rp-window-bar"><i></i><i></i><i></i><span>run graph</span></div>
+              <svg class="rp-graph" viewBox="0 0 420 220" role="img" aria-label="Example execution graph: intake, plan, then retrieve and tool call in parallel, joined in synthesize, which is evaluated">
+                <g class="rp-edges">
+                  <path d="M70 110 H130"/><path d="M190 110 C215 110 215 60 240 60"/><path d="M190 110 C215 110 215 160 240 160"/><path d="M300 60 C325 60 325 110 345 110"/><path d="M300 160 C325 160 325 110 345 110"/>
+                </g>
+                <g class="rp-nodes">
+                  <rect x="10" y="94" width="60" height="32" rx="4"/><text x="40" y="114">intake</text>
+                  <rect x="130" y="94" width="60" height="32" rx="4"/><text x="160" y="114">plan</text>
+                  <rect x="240" y="44" width="60" height="32" rx="4"/><text x="270" y="64">retrieve</text>
+                  <rect x="240" y="144" width="60" height="32" rx="4"/><text x="270" y="164">tool call</text>
+                  <rect class="rp-node-hot" x="345" y="94" width="68" height="32" rx="4"/><text x="379" y="114">synthesize</text>
+                </g>
+                <g class="rp-edge-labels"><text x="100" y="102">follows</text><text x="200" y="74">caused</text><text x="200" y="152">caused</text><text x="318" y="78">depends-on</text></g>
+              </svg>
+              <p class="rp-window-foot">Explicit edges: containment, ordering, causation, dependency, handoff</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- v0.3 -->
+        <article class="rp-block" id="v0-3" data-status="draft">
+          <div class="rp-copy" data-rv>
+            <p class="rp-label">v0.3 · Semantics <span class="rp-pill">Exploratory draft</span></p>
+            <h3>Give every event one name and one meaning.</h3>
+            <p>Canonical, transport-neutral events with clear lifecycles across runs, agents, models, tools, memory, evaluation, safety and incidents.</p>
+            <ul class="rp-bullets">
+              <li>Canonical event names and naming rules.</li>
+              <li>Lifecycle meanings: what started, finished or failed.</li>
+              <li>The minimum attributes needed to interpret each event.</li>
+            </ul>
+            <p class="rp-done"><span>Done when</span> producers and consumers agree on what each event means.</p>
+          </div>
+          <div class="rp-visual" data-rv>
+            <div class="rp-window">
+              <div class="rp-window-bar"><i></i><i></i><i></i><span>event stream · illustrative</span></div>
+              <ol class="rp-log">
+                <li><time>00.000</time><b>run</b> started</li>
+                <li><time>00.012</time><b>step</b> started · plan</li>
+                <li><time>00.418</time><b>model</b> interaction completed</li>
+                <li><time>00.431</time><b>tool</b> invocation started</li>
+                <li><time>01.207</time><b>tool</b> invocation failed · timeout</li>
+                <li><time>01.209</time><b>reliability</b> event recorded</li>
+                <li><time>02.880</time><b>evaluation</b> recorded · pass</li>
+              </ol>
+              <p class="rp-window-foot">Same meaning on any transport: OTLP, files or queues</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- v0.4 -->
+        <article class="rp-block" id="v0-4" data-status="draft">
+          <div class="rp-copy" data-rv>
+            <p class="rp-label">v0.4 · JSON Schemas <span class="rp-pill">Exploratory draft</span></p>
+            <h3>Turn the spec into artifacts that machines can check.</h3>
+            <p>Workflow and Run schemas, plus validation fixtures, all derived from v0.1–v0.3. Two conformance artifacts already pass.</p>
+            <ul class="rp-bullets">
+              <li>Structural validation: is the artifact the right shape?</li>
+              <li>Semantic validation: do references resolve, and is every graph acyclic?</li>
+              <li>Passing today: AgenticLens and Agentic Chaos sample runs.</li>
+            </ul>
+            <p class="rp-done"><span>Done when</span> artifacts validate without any DeepAgentLabs package.</p>
+          </div>
+          <div class="rp-visual" data-rv>
+            <div class="rp-window">
+              <div class="rp-window-bar"><i></i><i></i><i></i><span>run artifact · illustrative</span></div>
+<pre class="rp-code">{
+  <span class="k">"artifact_type"</span>: <span class="s">"run"</span>,
+  <span class="k">"steps"</span>: [ <span class="c">…</span> ],
+  <span class="k">"relationships"</span>: [ <span class="c">…</span> ],
+  <span class="k">"events"</span>: [ <span class="c">…</span> ]
+}</pre>
+              <div class="rp-checks"><span>✓ Schema valid</span><span>✓ References resolve</span><span>✓ Graph acyclic</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- v0.5 -->
+        <article class="rp-block" id="v0-5" data-status="planned">
+          <div class="rp-copy" data-rv>
+            <p class="rp-label">v0.5 · Versioning <span class="rp-pill">Planned</span></p>
+            <h3>Know whether an artifact is safe to consume.</h3>
+            <p>Version markers and change rules so the spec can evolve without breaking the tools that read it.</p>
+            <ul class="rp-bullets">
+              <li>Artifact version markers.</li>
+              <li>Additive vs. breaking change rules, and a deprecation policy.</li>
+              <li>Expected behaviour when a consumer meets a newer version.</li>
+            </ul>
+            <p class="rp-done"><span>Done when</span> anyone can tell if an artifact is safe to consume.</p>
+          </div>
+          <div class="rp-visual" data-rv>
+            <div class="rp-window">
+              <div class="rp-window-bar"><i></i><i></i><i></i><span>compatibility check · illustrative</span></div>
+              <ul class="rp-compat">
+                <li><span>New optional field</span><em class="ok">additive · safe</em></li>
+                <li><span>Field marked deprecated</span><em class="warn">warn · still works</em></li>
+                <li><span>Required field renamed</span><em class="bad">breaking · new major</em></li>
+                <li><span>Unknown extension namespace</span><em class="ok">preserve · safe</em></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- v0.6 -->
+        <article class="rp-block" id="v0-6" data-status="planned">
+          <div class="rp-copy" data-rv>
+            <p class="rp-label">v0.6 · Examples &amp; extensions <span class="rp-pill">Planned</span></p>
+            <h3>Let anyone extend the spec without forking it.</h3>
+            <p>Canonical example artifacts, from minimal to advanced, plus clear rules for third-party extensions.</p>
+            <ul class="rp-bullets">
+              <li>Minimal and advanced canonical artifacts.</li>
+              <li>Reverse-domain namespaces for vendor data.</li>
+              <li>The spec owns conformance; tools only make it convenient.</li>
+            </ul>
+            <p class="rp-done"><span>Done when</span> third parties can extend the spec without forking it.</p>
+          </div>
+          <div class="rp-visual" data-rv>
+            <div class="rp-window">
+              <div class="rp-window-bar"><i></i><i></i><i></i><span>attributes</span></div>
+<pre class="rp-code"><span class="k">"attributes"</span>: {
+  <span class="k">"io.deepagentlabs.agenticlens.cost_usd"</span>: <span class="s">0.0042</span>,
+  <span class="k">"com.yourcompany.team"</span>: <span class="s">"support"</span>
+}</pre>
+              <p class="rp-window-foot">Unknown namespaces are preserved, never rejected</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- v0.6.x -->
+        <article class="rp-block" id="v0-6x" data-status="planned">
+          <div class="rp-copy" data-rv>
+            <p class="rp-label">v0.6.x · Provenance &amp; evidence <span class="rp-pill">Planned</span></p>
+            <h3>Show where every finding came from.</h3>
+            <p>Attach source references and lineage to findings, and give producers a conformance suite they can run on their own.</p>
+            <ul class="rp-bullets">
+              <li>Provenance concepts: sources, lineage, derived findings.</li>
+              <li>An independent conformance test suite and fixtures.</li>
+              <li>Next: OpenTelemetry GenAI binding, audit and verification schemas, hosted docs.</li>
+            </ul>
+            <p class="rp-done"><span>Done when</span> producers can run conformance checks on their own.</p>
+          </div>
+          <div class="rp-visual" data-rv>
+            <div class="rp-window">
+              <div class="rp-window-bar"><i></i><i></i><i></i><span>lineage · illustrative</span></div>
+              <ol class="rp-chain">
+                <li><b>Finding</b><span>Refund agent skipped policy check</span></li>
+                <li><b>Evaluation</b><span>policy-adherence · fail</span></li>
+                <li><b>Step</b><span>tool call · refunds.create</span></li>
+                <li><b>Source</b><span>trace 7f3a… · AgenticLens</span></li>
+              </ol>
+            </div>
+          </div>
+        </article>
+
+        <!-- v1.0 -->
+        <article class="rp-block rp-block-final" id="v1-0" data-status="north">
+          <div class="rp-copy" data-rv>
+            <p class="rp-label">v1.0 · Stable standard <span class="rp-pill is-north">North star</span></p>
+            <h3>Freeze it so anyone can build on it.</h3>
+            <p>The reviewed core model, relationships, conventions, schemas, versioning, examples and extension model, all locked into one stable release.</p>
+            <p class="rp-done"><span>Done when</span> third parties implement the standard without importing our packages.</p>
+          </div>
+          <div class="rp-visual" data-rv>
+            <div class="rp-seal">
+              <span class="rp-seal-ring" aria-hidden="true"></span>
+              <strong>AIOS 1.0</strong>
+              <span>Stable · vendor-neutral</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ GATES ============ -->
+    <section class="rp-gates section-shell">
+      <h2 class="rp-h2">What unlocks <span class="rp-mark">the next step.</span></h2>
+      <div class="rp-gate-grid">
+        <div class="rp-gate" data-rv><span>01</span><h3>Independent review</h3><p>People outside DeepAgentLabs review v0.1–v0.4. The invite packet is ready.</p></div>
+        <div class="rp-gate" data-rv><span>02</span><h3>Outside implementation</h3><p>A producer or consumer we didn't build proves the v0.4 format works.</p></div>
+        <div class="rp-gate" data-rv><span>03</span><h3>Compatibility policy</h3><p>Written change rules come before anything is called stable.</p></div>
+      </div>
+    </section>
+
+    <section class="cta section-shell">
+      <p class="section-label">Shape what comes next</p>
+      <h2>Review the spec before it's frozen.</h2>
+      <p>v0.1 is waiting on independent reviewers. If you build agent frameworks, evals or reliability tooling, your review moves the roadmap forward.</p>
+      <div class="hero-actions">
+        <a class="button button-light" href="https://github.com/DeepAgentLabs/ai-operations-spec">Review the specification</a>
+        <a class="button button-ghost" href="index.html">Back to home</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="index.html"><span class="brand-logo" aria-hidden="true"></span><span>DeepAgentLabs</span></a>
+    <p>Open infrastructure for observable, efficient, and resilient AI. <a class="social-link" href="https://www.linkedin.com/company/133447532/" target="_blank" rel="noopener noreferrer" aria-label="DeepAgentLabs on LinkedIn">LinkedIn <span aria-hidden="true">↗</span></a></p>
+    <p>© <span id="year">2026</span> DeepAgentLabs</p>
+  </footer>
+</body>
+</html>

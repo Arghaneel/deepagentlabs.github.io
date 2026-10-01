@@ -1,0 +1,87 @@
+/* ==========================================================================
+   Bold editorial style layer (loaded after the colour theme).
+   Huge headlines, numbered sections with heavy rules, full-width colour
+   blocks, and flat minimal cards (no offset shadows).
+   ========================================================================== */
+
+/* ---------- Typography ---------- */
+h1,.rp-title{font-size:clamp(52px,6.6vw,104px);line-height:.9;letter-spacing:-.055em;text-transform:uppercase}
+h1 em,.hero h1 em,.rp-title .rp-mark{text-transform:none;letter-spacing:-.03em}
+.hero-lede,.rp-lede{font-size:clamp(18px,1.6vw,22px);max-width:620px}
+.section-heading h2,.cta h2,.rp-h2,.newsletter-copy h2{font-size:clamp(46px,7vw,108px);line-height:.92;letter-spacing:-.05em;text-transform:uppercase;max-width:none}
+.section-heading h2 .hl,.cta h2 .hl,.rp-h2 .rp-mark,.newsletter-copy h2 .hl{text-transform:none;letter-spacing:-.025em}
+.section-heading>p{font-size:18px;line-height:1.55;max-width:380px}
+
+/* ---------- Numbered sections with a heavy rule ---------- */
+main{counter-reset:sec}
+.section-heading{counter-increment:sec;position:relative;border-top:3px solid var(--ink);padding-top:22px;align-items:flex-end}
+.section-heading .section-label{display:flex;align-items:baseline;gap:14px;padding-bottom:0;margin-bottom:34px;font-size:12px;letter-spacing:.16em}
+.section-heading .section-label::after{display:none}
+.section-heading .section-label::before{content:counter(sec,decimal-leading-zero);font:500 12px 'DM Mono',monospace;padding:4px 8px;background:var(--ink);color:var(--paper);letter-spacing:.06em}
+.section-heading::after{content:counter(sec,decimal-leading-zero);position:absolute;right:0;top:14px;font-family:var(--font-display,'Bricolage Grotesque',sans-serif);font-weight:800;font-size:clamp(64px,9vw,140px);line-height:1;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.5px var(--ink);opacity:.22;pointer-events:none}
+.loop .section-heading::after,.faq .section-heading::after{-webkit-text-stroke-color:#fff;opacity:.3}
+.section-heading>p{position:relative;z-index:1}
+
+/* ---------- Flat, minimal cards: no offset shadows ---------- */
+.system-card,.architecture-figure,.tl,.rm-track .phase,.diff-card,.rp-window,.rp-why-card,.arch-package,.arch-flow-node,.arch-spec,.arch-tower,.mega{box-shadow:none!important}
+.rm-track .phase:hover,.diff-card:hover,.rp-why-card:hover,.arch-package:hover,.arch-package.arch-selected,.loop-step:hover{transform:none!important}
+.rm-track .phase:hover,.diff-card:hover,.rp-why-card:hover{outline:3px solid var(--acid);outline-offset:-3px}
+.button{border-radius:0}
+.button-primary:hover{box-shadow:none;background:var(--acid);border-color:var(--acid);color:#fff}
+
+/* ---------- Full-width colour blocks ---------- */
+/* Hero: Ghost; big black ticker strip under it */
+.ticker{background:var(--ink)!important;color:#fff!important;border-color:var(--ink)}
+.ticker-sequence{padding-top:20px;padding-bottom:20px;font-size:15px}
+.ticker-sequence span::after{background:#a99cff!important}
+
+/* Operating loop: solid Persian block */
+.loop{background:#27187e;box-shadow:0 0 0 100vmax #27187e}
+.loop-track,.loop-step{border-color:rgba(255,255,255,.22)!important}
+.loop-step p,.loop-pkg,.loop .section-heading>p{color:rgba(255,255,255,.75)}
+.loop .section-heading{border-top-color:#fff;color:#fff}
+.loop .section-label{color:#fff}
+.loop .section-heading .section-label::before{background:#fff;color:#27187e}
+.loop .hl{color:#fff;background-image:linear-gradient(transparent 90%,#fff 0)!important}
+.loop-step.is-lit{background:#fff}
+.loop-step.is-lit strong,.loop-step.is-lit p,.loop-step.is-lit .loop-index,.loop-step.is-lit .loop-pkg{color:#27187e}
+
+/* FAQ: solid black block */
+.faq{position:relative;background:var(--ink);color:#fff;box-shadow:0 0 0 100vmax var(--ink);clip-path:inset(0 -100vmax);padding-top:110px;padding-bottom:110px}
+.faq .section-heading{border-top-color:#fff;color:#fff}
+.faq .section-heading h2,.faq-trigger{color:#fff}
+.faq .section-label{color:#fff}
+.faq .section-heading .section-label::before{background:#fff;color:var(--ink)}
+.faq .section-heading>p{color:rgba(255,255,255,.7)}
+.faq .hl{color:#a99cff;background-image:linear-gradient(transparent 90%,#a99cff 0)!important}
+.faq-list{border-bottom-color:rgba(255,255,255,.2)}
+.faq-item{border-top-color:rgba(255,255,255,.2)}
+.faq-item.is-open{background:rgba(255,255,255,.05)}
+.faq-number{color:#a99cff}
+.faq-indicator{border-color:rgba(255,255,255,.35);color:#fff}
+.faq-trigger[aria-expanded="true"] .faq-indicator{background:#a99cff;border-color:#a99cff;color:var(--ink)}
+.faq-trigger:hover{background:rgba(169,156,255,.1)}
+.faq-answer-inner p{color:rgba(255,255,255,.78)}
+.faq-tags li{background:transparent;border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.85)}
+
+/* CTA: Persian block with giant type */
+.cta{padding-top:130px;padding-bottom:130px}
+.cta h2{font-size:clamp(52px,8vw,128px)}
+
+/* ---------- Roadmap page ---------- */
+.rp-hero .eyebrow{margin-bottom:10px}
+.rp-why-head{border-top:3px solid var(--ink);padding-top:22px}
+.rp-dark .rp-h2-dark{font-size:clamp(46px,6.4vw,96px)}
+.rp-copy h3{font-size:clamp(30px,3.4vw,48px);text-transform:uppercase;letter-spacing:-.04em}
+.rp-gates .rp-h2{border-top:3px solid var(--ink);padding-top:22px}
+
+@media(max-width:900px){
+  .section-heading::after{font-size:72px;top:16px}
+}
+@media(max-width:680px){
+  h1,.rp-title{font-size:52px}
+  .section-heading h2,.cta h2,.rp-h2,.newsletter-copy h2{font-size:44px}
+  .section-heading::after{display:none}
+  .section-heading .section-label{margin-bottom:22px}
+  .faq,.cta{padding-top:76px;padding-bottom:76px}
+}

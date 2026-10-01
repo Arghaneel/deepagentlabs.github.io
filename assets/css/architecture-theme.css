@@ -1,0 +1,147 @@
+/* Capability map — site theme (paper / white / ink / lime) + compact view.
+   Loads after architecture.css and only overrides it.
+   Design rules: white cards with hairline ink borders, ink for the hub (Control Tower)
+   and the details panel, lime used sparingly (Specification + active states). */
+
+/* ---------- frame ---------- */
+.architecture{padding-bottom:90px}
+.architecture-figure{background:#fff;border:1px solid var(--ink);padding:0;box-shadow:14px 14px 0 var(--acid);color:var(--ink)}
+.architecture-figure{position:relative}
+.arch-legend{display:flex;flex-wrap:wrap;align-items:center;gap:8px 22px;margin:0;min-height:62px;padding:12px 360px 12px 20px;font:500 10.5px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.arch-legend .arch-sw-warn{border-color:#3d7a12}
+.arch-legend .arch-sw-plan{border-color:#9aa39e}
+.arch-legend .arch-sw-context{border-color:var(--ink)}
+.arch-toolbar{position:absolute;top:12px;right:16px;margin:0;gap:6px;z-index:2}
+.arch-toolbar button{border-radius:0;background:#fff;border:1px solid var(--ink);color:var(--ink);padding:9px 13px;font-size:10.5px;letter-spacing:.06em;transition:background .18s,color .18s}
+.arch-toolbar #arch-trace{background:var(--ink);color:#fff}
+.arch-toolbar button:hover,.arch-toolbar button[aria-pressed=true]{background:var(--acid);border-color:var(--ink);color:var(--ink)}
+.arch-hint{display:flex;align-items:center;gap:9px;margin:0;padding:10px 20px;border-top:1px solid var(--line);background:#fff;color:var(--muted);font-size:12.5px;line-height:1.4}
+.arch-hint strong{color:var(--ink);font-weight:700}
+.arch-hint-dot{flex:0 0 8px;width:8px;height:8px;border-radius:50%;background:var(--acid);box-shadow:0 0 0 3px rgba(183,243,67,.3)}
+.arch-infographic{background:var(--paper);border:0;border-top:1px solid var(--ink)}
+.arch-artwork{background:var(--paper);background-image:radial-gradient(rgba(7,17,14,.08) 1px,transparent 1px);background-size:20px 20px;padding:24px 22px 18px}
+.arch-layer-heading{color:var(--muted);border-bottom-color:var(--line);letter-spacing:.1em}
+.arch-source-note{color:var(--muted)}
+
+/* ---------- connection lines ---------- */
+.arch-connection{stroke:#3d7a12;opacity:.85}
+.arch-connection-overlay #arch-arrow-current path{fill:#3d7a12}
+.arch-connection.arch-planned{stroke:#9aa39e}
+.arch-connection-overlay #arch-arrow-planned path{fill:#9aa39e}
+.arch-connection.arch-context{stroke:var(--ink);opacity:.55}
+.arch-connection-overlay #arch-arrow-context path{fill:var(--ink)}
+
+/* ---------- shared card look ---------- */
+.arch-flow-node,.arch-entry,.arch-frameworks,.arch-package{border:1px solid var(--ink);border-radius:0;background:#fff;color:var(--ink);transition:box-shadow .2s,border-color .2s}
+.arch-flow-node{min-height:56px;margin-bottom:16px}
+.arch-flow-node strong,.arch-framework-title strong{font-family:var(--font-display,inherit);letter-spacing:-.01em}
+.arch-flow-icon,.arch-framework-title svg{color:var(--ink)}
+.arch-flow-node small{color:var(--muted)}
+.arch-flow-node:hover,.arch-flow-node.arch-selected,.arch-frameworks:hover,.arch-frameworks.arch-selected{border-width:1px;box-shadow:inset 0 -3px 0 var(--acid)}
+
+/* ---------- Control Tower: the ink hub ---------- */
+.arch-tower{border:1px solid var(--ink);border-radius:0;background:var(--ink);color:#fff;margin-bottom:16px;padding:14px 12px 12px}
+.arch-tower-glyph,.arch-tower-icon{color:var(--acid)}
+.arch-tower-title{color:#fff}
+.arch-tower-title strong{font-family:var(--font-display,inherit);letter-spacing:-.03em}
+.arch-tower-title small{color:#9aa59f}
+.arch-tower-title:hover strong{text-decoration-color:var(--acid)}
+.arch-tower-capabilities{gap:1px;background:#22302a;border:1px solid #22302a}
+.arch-tower-cap{min-height:62px;background:#0f1a15;border:0;color:#cfd8d3;transition:background .18s,color .18s}
+.arch-tower-cap:hover,.arch-tower-cap.arch-selected,.arch-tower-cap.arch-group-highlight,.arch-tower-cap:focus-visible{background:#18271f;color:#fff;box-shadow:inset 0 -2px 0 var(--acid)}
+.arch-tower.arch-selected{box-shadow:inset 0 -3px 0 var(--acid)}
+
+/* ---------- Specification: the one lime block ---------- */
+.arch-spec{border:1px solid var(--ink);border-radius:0;background:var(--acid);color:var(--ink);min-height:62px}
+.arch-spec-glyph,.arch-spec>b{color:var(--ink)}
+.arch-spec strong{font-family:var(--font-display,inherit);letter-spacing:-.02em}
+.arch-spec:hover,.arch-spec.arch-selected{box-shadow:inset 0 -3px 0 var(--ink)}
+
+/* ---------- frameworks ---------- */
+.arch-framework-title{color:var(--ink)}
+.arch-framework-chip{border:1px solid var(--line);border-radius:0;background:var(--paper);color:var(--ink)}
+.arch-framework-chip:hover,.arch-framework-chip:focus-visible,.arch-frameworks.arch-selected .arch-framework-chip{border-color:var(--ink);background:var(--acid)}
+.arch-instrument{border-top-color:var(--line);color:var(--ink)}
+.arch-rel-mark{color:#3d7a12}
+
+/* ---------- packages ---------- */
+.arch-package-layer{margin-top:26px}
+.arch-color-lens,.arch-color-evals,.arch-color-sidecar,.arch-color-chaos,.arch-color-mcp{--package-edge:var(--ink);--package-ink:var(--ink);--package-bg:#fff}
+.arch-package{border-top:1px solid var(--ink)}
+.arch-package-head{min-height:0;align-items:center;gap:10px;padding:12px 10px;background:#fff;border-bottom:1px solid var(--line);color:var(--ink)}
+.arch-package-glyph{display:grid;place-items:center;width:34px;height:34px;flex:0 0 34px;margin-top:0;padding:7px;background:var(--ink);color:var(--acid)}
+.arch-category{color:var(--muted);font-size:9px;letter-spacing:.12em}
+.arch-package-heading>strong{font-family:var(--font-display,inherit);letter-spacing:-.02em;color:var(--ink);font-size:15.5px}
+.arch-package-name{color:var(--muted)}
+.arch-package-version{color:var(--muted);margin-top:3px}
+.arch-capabilities{padding:8px 8px 10px}
+.arch-capability{color:#26302b}
+.arch-cap-icon{color:var(--ink);opacity:.55}
+.arch-capability:hover,.arch-capability:focus-visible,.arch-capability.arch-selected{border-color:transparent;background:var(--paper);color:var(--ink)}
+.arch-capability:hover .arch-cap-icon{opacity:1}
+.arch-package:hover,.arch-package.arch-selected{box-shadow:inset 0 4px 0 var(--acid)}
+.arch-package.arch-selected{border-width:1px}
+.arch-package.arch-selected .arch-package-head{background:var(--paper)}
+.arch-package-footer{border-top-color:var(--line);padding:8px 10px 10px;text-align:left}
+.arch-package-footer strong{color:var(--ink);font-size:11px;letter-spacing:.06em}
+.arch-package-footer span{color:var(--muted)}
+
+/* ---------- outputs ---------- */
+.arch-exports{border:1px dashed var(--ink);border-radius:0;background:#fff}
+.arch-export-title{color:var(--ink)}
+.arch-output-group{border-left-color:var(--ink)}
+.arch-output-group h5{color:var(--ink)}
+.arch-output{border:1px solid var(--line);border-radius:0;background:#fff;color:var(--ink)}
+.arch-output-icon{color:var(--ink)}
+.arch-output:hover,.arch-output:focus-visible,.arch-output.arch-selected{border-color:var(--ink);background:var(--paper);box-shadow:inset 0 -2px 0 var(--acid)}
+
+/* ---------- details panel: ink, lime top edge ---------- */
+.arch-panel{background:var(--ink);border-top:3px solid var(--acid)!important;scroll-margin-bottom:24px}
+.arch-panel-empty{display:flex;align-items:center;gap:10px;color:#dfe6e1!important}
+.arch-panel-point{display:inline-grid;place-items:center;width:24px;height:24px;flex:0 0 24px;background:var(--acid);color:var(--ink);font-weight:700}
+.arch-panel-flash{animation:arch-flash .7s ease}
+@keyframes arch-flash{0%{background:#1a2a12}100%{background:var(--ink)}}
+.arch-dot-current{background:var(--acid)}
+
+/* ---------- focus + trace ---------- */
+.arch-major-node:focus-visible,.arch-tower-cap:focus-visible,.arch-framework-chip:focus-visible,.arch-instrument:focus-visible,.arch-capability:focus-visible,.arch-output:focus-visible{outline:2px solid #3d7a12;outline-offset:2px}
+.arch-flow-node.arch-trace-active,.arch-tower.arch-trace-active,.arch-spec.arch-trace-active,.arch-frameworks.arch-trace-active,.arch-package.arch-trace-active,.arch-output.arch-trace-active{box-shadow:0 0 0 3px var(--acid)}
+
+/* ---------- "click for details" hint on hover ---------- */
+.arch-major-node,.arch-tower-cap,.arch-framework-chip,.arch-capability,.arch-output,.arch-instrument,.arch-package-head{cursor:pointer}
+.arch-flow-node,.arch-tower,.arch-frameworks,.arch-package,.arch-spec,.arch-package-head,.arch-tower-title,.arch-framework-title{position:relative}
+.arch-flow-node::after,.arch-package-head::after,.arch-spec::after,.arch-tower-title::after,.arch-framework-title::after{
+  content:"Details ↓";position:absolute;top:7px;right:7px;padding:3px 6px;background:var(--ink);color:var(--acid);
+  font:500 9px 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;opacity:0;transform:translateY(-3px);
+  transition:opacity .18s,transform .18s;pointer-events:none;z-index:3}
+.arch-tower-title::after{background:var(--acid);color:var(--ink);top:-4px;right:-8px}
+.arch-framework-title::after{top:-22px;right:-4px}
+.arch-flow-node:hover::after,.arch-package-head:hover::after,.arch-spec:hover::after,.arch-tower-title:hover::after,.arch-framework-title:hover::after,
+.arch-flow-node:focus-visible::after,.arch-package-head:focus-visible::after,.arch-spec:focus-visible::after{opacity:1;transform:none}
+
+/* ---------- compact view (default) ---------- */
+.arch-principles{display:none}
+.architecture-figure:not(.arch-is-expanded) .arch-exports{display:none}
+.architecture-figure:not(.arch-is-expanded) .arch-package:not(.arch-selected) .arch-capability:nth-child(n+5){display:none}
+.arch-more{display:block;padding:5px 2px 0;font:500 9.5px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.architecture-figure.arch-is-expanded .arch-more,.arch-package.arch-selected .arch-more{display:none}
+
+@media(max-width:760px){
+  .architecture-figure{box-shadow:8px 8px 0 var(--acid)}
+  .arch-toolbar{position:static;margin:0;padding:0 14px 12px;flex-wrap:wrap}
+  .arch-legend{min-height:0;padding:14px 14px 10px}
+  .arch-hint{padding:10px 14px}
+}
+@media(max-width:480px){
+  .architecture-figure{box-shadow:6px 6px 0 var(--acid)}
+  .arch-toolbar button{white-space:nowrap;padding:9px 6px;font-size:9.5px;gap:5px}
+  .arch-hint{display:block}
+  .arch-hint-dot{display:inline-block;vertical-align:middle;margin-right:6px}
+}
+@media(prefers-reduced-motion:reduce){
+  .arch-flow-node,.arch-package,.arch-panel-flash{transition:none;animation:none!important}
+}
+
+/* Package-to-package links ran straight through neighbouring cards, so they are not drawn on the
+   map; those relationships are still listed in the details panel ("Connected components"). */
+.arch-connection:is([data-from=lens],[data-from=evals],[data-from=sidecar],[data-from=chaos],[data-from=mcp]):is([data-to=lens],[data-to=evals],[data-to=sidecar],[data-to=chaos],[data-to=mcp]){display:none}
