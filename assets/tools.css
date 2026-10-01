@@ -1,0 +1,74 @@
+/* "What each tool actually does": compact tabbed showcase */
+.dashboards{padding-bottom:110px}
+.tl{display:grid;grid-template-columns:300px minmax(0,1fr);border:1px solid var(--ink);background:var(--ink);box-shadow:14px 14px 0 var(--acid)}
+
+/* tab list */
+.tl-tabs{display:flex;flex-direction:column;background:var(--paper);border-right:1px solid var(--ink)}
+.tl-tab{position:relative;display:flex;flex-direction:column;gap:3px;padding:15px 22px;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--ink);text-align:left;cursor:pointer;font:inherit;transition:background .2s,padding .25s cubic-bezier(.2,.72,.25,1)}
+.tl-tab:last-child{border-bottom:0}
+.tl-tab:hover{background:var(--mint)}
+.tl-tab[aria-selected=true]:hover{background:var(--ink)}
+.tl-tab strong{transition:transform .25s cubic-bezier(.2,.72,.25,1)}
+.tl-tab:hover strong{transform:translateX(4px)}
+.tl-tab:focus-visible{outline:3px solid #4c7b13;outline-offset:-3px}
+.tl-verb{font:500 10.5px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.tl-tab strong{font-family:var(--font-display,inherit);font-size:17px;letter-spacing:-.02em}
+.tl-tab[aria-selected=true]{background:var(--ink);color:#fff;padding-left:30px}
+.tl-tab[aria-selected=true] .tl-verb{color:var(--acid)}
+.tl-tab[aria-selected=true]::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--acid)}
+.tl-progress{position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--acid);transform:scaleX(0);transform-origin:left}
+.tl.is-auto .tl-tab[aria-selected=true] .tl-progress{animation:tl-progress var(--tl-ms,6000ms) linear forwards}
+@keyframes tl-progress{to{transform:scaleX(1)}}
+
+/* stage */
+.tl-stage{position:relative;min-width:0}
+.tl-panel.dash-card{min-height:0;height:100%;padding:30px 34px 28px;display:flex;flex-direction:column;animation:tl-in .45s cubic-bezier(.2,.72,.25,1)}
+.tl-panel[hidden]{display:none}
+@keyframes tl-in{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+.tl-panel .dash-head strong{font-family:var(--font-display,inherit);font-size:26px;letter-spacing:-.03em}
+.tl-panel .dash-desc{font-size:15px;max-width:620px;margin-bottom:22px}
+.tl-visual{padding:20px 22px;border:1px solid #223028;background:#0d1914;margin-bottom:20px}
+.tl-visual>*:last-child,.tl-visual .dash-legend{margin-bottom:0}
+.tl-visual .dash-stats{margin-bottom:14px}
+.tl-visual .dash-spark{margin-bottom:0}
+.tl-visual .dash-bar{margin-bottom:14px}
+.tl-visual .dash-check,.tl-visual .dash-gate{margin:0}
+.tl-panel .dash-spark span{animation:enhance-grow-y .65s cubic-bezier(.2,.75,.25,1) calc(var(--bar-i,0)*90ms) both}
+.tl-panel .dash-bar .seg{animation:enhance-grow-x .7s cubic-bezier(.2,.75,.25,1) calc(var(--bar-i,0)*100ms) both}
+.tl-caps{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:0;list-style:none}
+.tl-caps li{padding:6px 11px;border:1px solid #2b3a33;color:#dfe6e1;font-size:12.5px}
+.tl-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:auto}
+.tl-pip{font:12.5px 'DM Mono',monospace;color:var(--acid);background:#101d18;border:1px solid #223028;padding:8px 12px}
+.tl-foot .text-link{margin-top:0;color:var(--acid);border-bottom-color:var(--acid);font-size:13.5px}
+
+@media(max-width:900px){
+  .tl{grid-template-columns:1fr;box-shadow:8px 8px 0 var(--acid)}
+  .tl-tabs{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--ink);scrollbar-width:none}
+  .tl-tabs::-webkit-scrollbar{display:none}
+  .tl-tab{flex:0 0 auto;border-bottom:0;border-right:1px solid var(--line);padding:12px 16px}
+  .tl-tab[aria-selected=true]{padding-left:16px}
+  .tl-tab[aria-selected=true]::before{left:0;right:0;top:auto;bottom:0;width:auto;height:3px}
+  .tl-tab strong{font-size:15px;white-space:nowrap}
+}
+@media(max-width:680px){
+  .tl-panel.dash-card{padding:22px 18px}
+  .tl-panel .dash-head strong{font-size:21px}
+  .tl-visual{padding:16px}
+  .tl-foot{flex-direction:column;align-items:flex-start}
+  .tl-pip{max-width:100%;overflow-x:auto;white-space:nowrap}
+}
+@media(prefers-reduced-motion:reduce){
+  .tl-panel.dash-card,.tl-panel .dash-spark span,.tl-panel .dash-bar .seg{animation:none}
+  .tl.is-auto .tl-tab[aria-selected=true] .tl-progress{animation:none}
+}
+
+/* full card details inside the panel */
+.tl-panel .dash-caption{flex:0 0 auto;margin-bottom:22px}
+.tl-panel .dash-caps{grid-template-columns:repeat(2,minmax(0,1fr))}
+.tl-panel .dash-check,.tl-panel .dash-gate{margin-bottom:18px}
+.tl-panel .dash-desc{max-width:none}
+@media(max-width:680px){.tl-panel .dash-caps{grid-template-columns:1fr}}
+
+/* PyPI + GitHub links side by side */
+.tl-links{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+@media(max-width:680px){.tl-links{gap:14px}}
