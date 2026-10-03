@@ -1,0 +1,1100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Agentic Evals — A standalone, framework-agnostic evaluation and scoring engine for LLM and agent outputs.">
+  <meta name="theme-color" content="#07110e">
+  <meta property="og:title" content="Agentic Evals — Framework-agnostic evaluation for AI agents">
+  <meta property="og:description" content="Deterministic checks, LLM-as-judge scorers, and custom evaluators. Built for any trace-shaped data.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://deepagentlabs.io/agentic-evals.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Agentic Evals — AI Agent Evaluation Engine</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #07110e;
+      --bg-secondary: #0f1a17;
+      --bg-tertiary: #1a2825;
+      --text-primary: #e8eae7;
+      --text-secondary: #a8ada9;
+      --accent-primary: #4ade80;
+      --accent-secondary: #0ea5e9;
+      --accent-tertiary: #f97316;
+      --border-color: #2a3a36;
+      --success: #4ade80;
+      --warning: #facc15;
+      --critical: #ef4444;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--accent-secondary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--accent-primary);
+    }
+
+    code {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-family: "SF Mono", "Monaco", "Inconsolata", monospace;
+      font-size: 0.9em;
+    }
+
+    pre {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      color: #4ade80;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 60px;
+      position: sticky;
+      top: 0;
+      background: rgba(7, 17, 14, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 20px;
+      color: var(--text-primary);
+    }
+
+    nav {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--accent-primary);
+    }
+
+    .github-btn {
+      background: var(--accent-primary);
+      color: var(--bg-primary);
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .github-btn:hover {
+      background: #22c55e;
+      transform: translateY(-2px);
+    }
+
+    section {
+      margin-bottom: 120px;
+    }
+
+    .hero {
+      margin-bottom: 100px;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #4ade80 0%, #0ea5e9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: var(--text-primary);
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 32px;
+      line-height: 1.8;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      margin: 32px 0;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: var(--accent-primary);
+      color: var(--bg-primary);
+    }
+
+    .btn-primary:hover {
+      background: #22c55e;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent-primary);
+      background: var(--border-color);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 40px;
+      margin: 40px 0;
+    }
+
+    .feature-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 32px;
+      transition: all 0.3s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--accent-primary);
+      background: var(--bg-tertiary);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin: 40px 0;
+    }
+
+    .stat-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .code-example {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 24px 0;
+      overflow-x: auto;
+    }
+
+    .example-title {
+      color: var(--accent-primary);
+      font-weight: 600;
+      margin-bottom: 16px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .comparison-table th {
+      background: var(--bg-tertiary);
+      padding: 16px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .comparison-table td {
+      padding: 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .check {
+      color: var(--success);
+    }
+
+    .cross {
+      color: var(--critical);
+    }
+
+    .feature-list {
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .feature-list li {
+      padding: 12px 0;
+      padding-left: 32px;
+      position: relative;
+      color: var(--text-secondary);
+    }
+
+    .feature-list li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent-primary);
+      font-weight: bold;
+    }
+
+    .highlight {
+      color: var(--accent-primary);
+      font-weight: 500;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 48px 0;
+      margin-top: 100px;
+      color: var(--text-secondary);
+    }
+
+    footer p {
+      margin-bottom: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .section-label {
+      color: var(--accent-primary);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin: 40px 0;
+    }
+
+    .quick-link-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      transition: all 0.3s;
+    }
+
+    .quick-link-card:hover {
+      border-color: var(--accent-secondary);
+      transform: translateY(-4px);
+    }
+
+    .quick-link-card h4 {
+      color: var(--accent-secondary);
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+
+    .quick-link-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        gap: 16px;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      color: var(--accent-primary);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+
+    .status-live {
+      background: rgba(74, 222, 128, 0.1);
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--border-color);
+      margin: 32px 0 0 0;
+    }
+
+    .tab {
+      padding: 16px 24px;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .tab:hover {
+      color: var(--text-primary);
+    }
+
+    .tab.active {
+      color: var(--accent-primary);
+      border-bottom-color: var(--accent-primary);
+    }
+
+    .tab-content {
+      display: none;
+      padding: 24px 0;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .code-copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+
+    .code-copy-btn:hover {
+      background: var(--border-color);
+      color: var(--accent-primary);
+    }
+
+    .code-copy-btn.copied {
+      background: var(--accent-primary);
+      color: var(--bg-primary);
+      border-color: var(--accent-primary);
+    }
+
+    .code-example {
+      position: relative;
+    }
+
+    pre {
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">agentic-evals</div>
+      <nav>
+        <a href="#quickstart">Quick Start</a>
+        <a href="#features">Features</a>
+        <a href="#examples">Examples</a>
+        <a href="#install">Install</a>
+        <a href="agentic-evals-docs.html">Docs</a>
+        <a href="https://github.com/DeepAgentLabs/agentic-evals" class="github-btn">★ GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="section-label">Framework-agnostic evaluation</div>
+        <h1>Score any LLM or agent output</h1>
+        <p class="subtitle">
+          Standalone evaluation engine for deterministic checks, LLM-as-judge scorers, and custom evaluators.
+          Works with any trace-shaped data—no AgenticLens dependency required.
+        </p>
+        <div class="cta-buttons">
+          <a href="#quickstart" class="btn btn-primary">Get Started in 60 seconds</a>
+          <a href="https://github.com/DeepAgentLabs/agentic-evals#readme" class="btn btn-secondary">Read the Docs</a>
+        </div>
+        <div>
+          <span class="badge status-live">✓ Published on PyPI</span>
+          <span class="badge status-live">✓ Production Ready</span>
+          <span class="badge">v0.5.0</span>
+        </div>
+      </section>
+
+      <!-- Quick Start Section -->
+      <section id="quickstart">
+        <div class="section-label">60-second quickstart</div>
+        <h2>Three lines to your first eval</h2>
+
+        <div class="tabs">
+          <button class="tab active" onclick="switchTab(event, 'simple')">Simple API</button>
+          <button class="tab" onclick="switchTab(event, 'structured')">Structured Suite</button>
+          <button class="tab" onclick="switchTab(event, 'custom')">Custom Evaluators</button>
+        </div>
+
+        <!-- Simple API -->
+        <div id="simple" class="tab-content active">
+          <p style="color: var(--text-secondary); margin: 24px 0;">The fastest way to write an eval — just data, a task, and scorers.</p>
+          <div class="code-example">
+            <div class="example-title">capitals_eval.py</div>
+            <pre><code>from agentic_evals import Eval, equals
+
+Eval(
+    "capitals",
+    data=[
+        {"input": "France", "expected": "Paris"},
+        {"input": "Japan", "expected": "Tokyo"},
+    ],
+    task=lambda x: my_agent(x["input"]),
+    scores=[equals],
+)</code></pre>
+          </div>
+          <div class="code-example" style="background: var(--bg-secondary); border-color: var(--accent-primary);">
+            <div class="example-title" style="color: var(--accent-secondary);">$ python capitals_eval.py</div>
+            <pre><code>agentic-evals :: capitals
+--------------------------
+  [PASS] France   equals=1.00
+  [PASS] Japan    equals=1.00
+
+  equals              avg 1.000
+
+  2/2 passed  (100.0%)  in 2ms</code></pre>
+          </div>
+          <p style="color: var(--text-secondary);">Or run all eval files in your repo:</p>
+          <div class="code-example">
+            <pre><code>pip install agentic-evals
+agentic-evals run                 # auto-discovers *_eval.py files</code></pre>
+          </div>
+        </div>
+
+        <!-- Structured Suite -->
+        <div id="structured" class="tab-content">
+          <p style="color: var(--text-secondary); margin: 24px 0;">For complex expectations: trace-aware assertions, tool calls, latency, cost.</p>
+          <div class="code-example">
+            <div class="example-title">support_suite.py</div>
+            <pre><code>from agentic_evals import (
+    EvalTrace, EvalSpan, EvaluationSample, TestCase, TestSuite,
+    evaluate_suite
+)
+
+suite = TestSuite(
+    name="support-answers",
+    version="1",
+    cases=[
+        TestCase(
+            id="refund-1",
+            name="Answer contains total",
+            expected_contains=["42"],
+            required_tools=["calculator"],
+            max_latency_ms=2000,
+        )
+    ],
+)
+
+sample = EvaluationSample(
+    case_id="refund-1",
+    output="The total is 42.",
+    trace=EvalTrace(
+        trace_id="trace-1",
+        total_latency_ms=350,
+        spans=[EvalSpan(tool_name="calculator")],
+    ),
+)
+
+report = evaluate_suite(suite, [sample])
+print(f"Pass rate: {report.summary.pass_rate}")  # 1.0</code></pre>
+          </div>
+        </div>
+
+        <!-- Custom Evaluators -->
+        <div id="custom" class="tab-content">
+          <p style="color: var(--text-secondary); margin: 24px 0;">Bring your own LLM judge or business logic.</p>
+          <div class="code-example">
+            <div class="example-title">custom_eval.py</div>
+            <pre><code>from agentic_evals import (
+    LLMJudgeEvaluator, EvaluationContext, Score, EvaluatorRegistry
+)
+
+def my_judge(context: EvaluationContext) -> Score:
+    # Your LLM call here
+    correct = expected_fact in context.sample.output
+    return Score(
+        name="factuality",
+        value=1.0 if correct else 0.0,
+        passed=correct,
+        explanation="Fact verified" if correct else "Hallucinated"
+    )
+
+registry = EvaluatorRegistry()
+registry.register(LLMJudgeEvaluator("fact_check", my_judge))
+
+# Use in your suite
+report = evaluate_suite(suite, samples, registry=registry)</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section id="features">
+        <div class="section-label">Built for production</div>
+        <h2>Everything you need to evaluate AI systems</h2>
+
+        <div class="grid-2">
+          <div class="feature-card">
+            <div class="feature-icon">✓</div>
+            <h3>Deterministic Checks</h3>
+            <p>Exact match, substring, JSON Schema, regex, field presence, required tool calls, and custom business rules — no LLM needed.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🤖</div>
+            <h3>LLM-as-Judge</h3>
+            <p>Provider-neutral rubric scoring. 10 built-in templates: factuality, translation, security, SQL correctness, PII leakage, and more.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3>Trace-Aware Scoring</h3>
+            <p>Evaluate tool usage, call precision/recall, latency, cost, and turn counts alongside output correctness.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🚪</div>
+            <h3>Release Gates</h3>
+            <p>CI-ready pass/fail gates on pass rate, cost, latency, and custom thresholds. Exit 0 if everything passes, 1 if not.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔌</div>
+            <h3>Live Targets</h3>
+            <p>Point suites at real running systems (trusted Python callables or HTTP endpoints) instead of pre-recorded samples.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📦</div>
+            <h3>Eval Packs</h3>
+            <p>Shareable YAML/JSON bundles pairing a TestSuite with the scorers it needs. 3 built-in packs ship with the package.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scorers Section -->
+      <section id="scorers">
+        <div class="section-label">Pre-built Scorers</div>
+        <h2>Ready-made evaluation functions</h2>
+
+        <h3 style="margin-top: 40px;">Text Scorers (Deterministic)</h3>
+        <ul class="feature-list">
+          <li><code>exact_match</code>, <code>contains_all</code>, <code>contains_any</code></li>
+          <li><code>levenshtein_similarity</code>, <code>embedding_similarity</code> (provider-neutral)</li>
+          <li><code>valid_json</code>, <code>json_diff</code>, <code>numeric_diff</code></li>
+          <li><code>regex_match</code>, <code>starts_with</code>, <code>ends_with</code>, <code>numeric_range</code></li>
+        </ul>
+
+        <h3>Rubric Scorers (LLM-Graded)</h3>
+        <ul class="feature-list">
+          <li><code>FACTUALITY</code> — Checks if output matches facts</li>
+          <li><code>CLOSED_QA</code> — Evaluates QA correctness</li>
+          <li><code>SUMMARY_QUALITY</code> — Rates summary quality</li>
+          <li><code>BATTLE</code> — Pairwise A/B comparison</li>
+          <li><code>MODERATION</code>, <code>TRANSLATION</code>, <code>SECURITY</code>, <code>SQL_CORRECTNESS</code>, <code>PII_LEAKAGE</code>, <code>POSSIBLE</code></li>
+        </ul>
+
+        <h3>Trajectory Scorers (Trace-Aware)</h3>
+        <ul class="feature-list">
+          <li><code>tool_call_precision</code> — Correct tools selected</li>
+          <li><code>tool_call_recall</code> — All needed tools called</li>
+          <li><code>no_redundant_tool_calls</code> — No duplicate work</li>
+          <li><code>trajectory_efficiency</code> — Optimal path taken</li>
+        </ul>
+      </section>
+
+      <!-- Real Examples Section -->
+      <section id="examples">
+        <div class="section-label">Real-world examples</div>
+        <h2>How to evaluate different systems</h2>
+
+        <h3 style="margin-top: 40px; color: var(--accent-secondary);">Fact-Checking QA Agent</h3>
+        <div class="code-example">
+          <pre><code>from agentic_evals import TestSuite, TestCase, evaluate_suite, default_registry
+
+suite = TestSuite(
+    name="factual_qa",
+    version="1",
+    cases=[
+        TestCase(
+            id="shakespeare",
+            name="Romeo and Juliet author",
+            expected_output="William Shakespeare",
+            evaluators=[EvaluatorConfig(name="levenshtein_similarity", threshold=0.9)],
+        ),
+        TestCase(
+            id="titanic",
+            name="Titanic sinking year",
+            expected_contains=["1912"],
+            max_latency_ms=500,
+        ),
+    ]
+)
+
+report = evaluate_suite(suite, samples, registry=default_registry())
+print(f"Factual accuracy: {report.summary.pass_rate * 100:.1f}%")</code></pre>
+        </div>
+
+        <h3 style="margin-top: 40px; color: var(--accent-secondary);">Customer Support Agent</h3>
+        <div class="code-example">
+          <pre><code>from agentic_evals import TestSuite, TestCase, EvaluatorConfig
+
+suite = TestSuite(
+    name="support",
+    version="1",
+    cases=[
+        TestCase(
+            id="order-lookup",
+            name="Find order status",
+            required_tools=["get_order"],
+            required_output_fields=["order_id", "status", "date"],
+            max_latency_ms=1000,
+            max_cost_usd=0.05,
+        ),
+        TestCase(
+            id="refund-process",
+            name="Process refund",
+            required_tools=["lookup_refund", "process_payment"],
+            expected_contains=["confirmed", "24 hours"],
+        ),
+    ]
+)
+
+report = evaluate_suite(suite, samples)
+print(f"Support quality: {report.summary.pass_rate * 100:.1f}%")</code></pre>
+        </div>
+
+        <h3 style="margin-top: 40px; color: var(--accent-secondary);">Release Gate in CI</h3>
+        <div class="code-example">
+          <pre><code>from agentic_evals import evaluate_suite, evaluate_gate, GateConfig
+
+# Run your evals
+report = evaluate_suite(suite, samples, registry=registry)
+
+# CI gate on pass rate, cost, latency
+decision = evaluate_gate(
+    report,
+    GateConfig(
+        min_pass_rate=0.95,
+        max_average_latency_ms=1500,
+        max_total_cost_usd=0.25
+    )
+)
+
+if not decision.passed:
+    raise SystemExit(f"Release gate failed: {decision.reasons}")
+
+# Exit 0 if gate passes, 1 if it fails</code></pre>
+        </div>
+      </section>
+
+      <!-- Installation Section -->
+      <section id="install">
+        <div class="section-label">Get started</div>
+        <h2>Install agentic-evals</h2>
+
+        <div class="code-example">
+          <div class="example-title">Step 1: Install</div>
+          <pre><code>pip install agentic-evals</code></pre>
+        </div>
+
+        <div class="code-example">
+          <div class="example-title">Step 2: Write an eval</div>
+          <pre><code># my_first_eval.py
+from agentic_evals import Eval, equals
+
+Eval(
+    "my_first_eval",
+    data=[
+        {"input": "test1", "expected": "result1"},
+        {"input": "test2", "expected": "result2"},
+    ],
+    task=lambda x: my_function(x["input"]),
+    scores=[equals],
+)</code></pre>
+        </div>
+
+        <div class="code-example">
+          <div class="example-title">Step 3: Run</div>
+          <pre><code>python my_first_eval.py
+
+# Or run all evals in the repo
+agentic-evals run</code></pre>
+        </div>
+
+        <h3 style="margin-top: 40px;">Optional: With voice agent extras</h3>
+        <div class="code-example">
+          <pre><code>pip install "agentic-evals[voice]"  # Includes fastapi, uvicorn for the voice demo</code></pre>
+        </div>
+      </section>
+
+      <!-- Why Agentic Evals Section -->
+      <section>
+        <div class="section-label">Why agentic-evals</div>
+        <h2>When to use it</h2>
+
+        <div class="grid-2">
+          <div>
+            <h3 style="color: var(--accent-primary); margin-bottom: 16px;">✓ Use agentic-evals if...</h3>
+            <ul class="feature-list">
+              <li>You need to score LLM/agent outputs programmatically</li>
+              <li>You want deterministic checks <strong>and</strong> LLM-as-judge</li>
+              <li>You need to evaluate tool usage, not just output text</li>
+              <li>You want a CI gate for agent quality</li>
+              <li>You work with multiple agent frameworks</li>
+              <li>You need custom evaluation logic</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 style="color: var(--text-secondary); margin-bottom: 16px;">🔄 Use AgenticLens if...</h3>
+            <ul class="feature-list" style="color: var(--text-secondary);">
+              <li>You need live dashboards and visualizations</li>
+              <li>You want dataset versioning and splitting</li>
+              <li>You need judge calibration tools</li>
+              <li>You want HTML evaluation reports</li>
+              <li>You need production monitoring at scale</li>
+            </ul>
+          </div>
+        </div>
+
+        <p style="margin-top: 40px; color: var(--text-secondary);">
+          <strong>Note:</strong> agentic-evals and AgenticLens work together. AgenticLens can ingest agentic-evals traces, and you can use agentic-evals standalone without AgenticLens.
+        </p>
+      </section>
+
+      <!-- Quick Links -->
+      <section>
+        <div class="section-label">Resources</div>
+        <h2>Learn more</h2>
+
+        <div class="quick-links">
+          <div class="quick-link-card">
+            <h4>📖 Documentation</h4>
+            <p><a href="agentic-evals-docs.html">Full API reference</a>, concepts, guides, and code examples</p>
+          </div>
+
+          <div class="quick-link-card">
+            <h4>🎯 17 Methodology Skills</h4>
+            <p>SKILL.md playbooks covering the full eval lifecycle: Frame, Build data, Score, Run, Experiment, Investigate, Operate</p>
+          </div>
+
+          <div class="quick-link-card">
+            <h4>🔊 Voice Agent Example</h4>
+            <p>Complete evaluation workflow for a simulated voice customer-support agent with dashboard</p>
+          </div>
+
+          <div class="quick-link-card">
+            <h4>💬 GitHub Issues</h4>
+            <p>Report bugs, request features, or discuss architecture on GitHub</p>
+          </div>
+
+          <div class="quick-link-card">
+            <h4>🚀 Release Notes</h4>
+            <p>CHANGELOG with features added in each release (latest: v0.5.0)</p>
+          </div>
+
+          <div class="quick-link-card">
+            <h4>📦 PyPI Package</h4>
+            <p>Install from pip, view release history and version info</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Comparison -->
+      <section>
+        <div class="section-label">Feature comparison</div>
+        <h2>agentic-evals vs alternatives</h2>
+
+        <div style="overflow-x: auto;">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>agentic-evals</th>
+                <th>AgenticLens</th>
+                <th>Framework SDKs</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Deterministic scoring</strong></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td><strong>LLM-as-judge</strong></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">—</span></td>
+              </tr>
+              <tr>
+                <td><strong>Trace-aware scoring</strong></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">—</span></td>
+              </tr>
+              <tr>
+                <td><strong>CI release gates</strong></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">—</span></td>
+              </tr>
+              <tr>
+                <td><strong>Framework-agnostic</strong></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✗</span></td>
+              </tr>
+              <tr>
+                <td><strong>No SDK dependency</strong></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">—</span></td>
+                <td><span class="cross">✗</span></td>
+              </tr>
+              <tr>
+                <td><strong>Live dashboards</strong></td>
+                <td><span class="cross">—</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">—</span></td>
+              </tr>
+              <tr>
+                <td><strong>Production monitoring</strong></td>
+                <td><span class="cross">—</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">—</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section style="text-align: center; margin-bottom: 80px;">
+        <h2>Ready to evaluate AI systems?</h2>
+        <p class="subtitle" style="max-width: 100%;">
+          Start with agentic-evals. Free, open source, framework-agnostic evaluation for any agent output.
+        </p>
+        <div class="cta-buttons" style="justify-content: center;">
+          <a href="https://github.com/DeepAgentLabs/agentic-evals" class="btn btn-primary">View on GitHub</a>
+          <a href="https://pypi.org/project/agentic-evals/" class="btn btn-secondary">PyPI Package</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p><strong>agentic-evals</strong> — A standalone evaluation engine for LLM and agent outputs</p>
+      <div class="footer-links">
+        <a href="https://github.com/DeepAgentLabs/agentic-evals">GitHub Repository</a>
+        <a href="https://pypi.org/project/agentic-evals/">PyPI Package</a>
+        <a href="https://github.com/DeepAgentLabs">DeepAgentLabs</a>
+        <a href="https://deepagentlabs.io/">DeepAgentLabs.io</a>
+      </div>
+      <p>Part of the <a href="https://deepagentlabs.io/">DeepAgentLabs ecosystem</a> — specification-first tools for observable, efficient, and resilient AI systems.</p>
+      <p style="margin-top: 24px; color: var(--text-secondary);">© 2026 DeepAgentLabs · MIT License</p>
+    </footer>
+  </div>
+
+  <script>
+    function switchTab(event, tabId) {
+      // Hide all tabs
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => tab.classList.remove('active'));
+
+      // Remove active class from all buttons
+      const buttons = document.querySelectorAll('.tab');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      // Show selected tab
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // Add copy-to-clipboard for code blocks
+    function initializeCodeCopy() {
+      const codeExamples = document.querySelectorAll('.code-example');
+
+      codeExamples.forEach((example, index) => {
+        const pre = example.querySelector('pre');
+        if (pre) {
+          // Create copy button
+          const copyBtn = document.createElement('button');
+          copyBtn.className = 'code-copy-btn';
+          copyBtn.textContent = 'Copy';
+          copyBtn.type = 'button';
+
+          // Insert button into the code example
+          example.style.position = 'relative';
+          pre.parentNode.insertBefore(copyBtn, pre.nextSibling);
+          copyBtn.style.marginTop = '-40px';
+          copyBtn.style.marginRight = '8px';
+          copyBtn.style.float = 'right';
+
+          // Add click handler
+          copyBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const code = pre.textContent;
+
+            try {
+              await navigator.clipboard.writeText(code);
+
+              // Show success state
+              const originalText = copyBtn.textContent;
+              copyBtn.textContent = '✓ Copied!';
+              copyBtn.classList.add('copied');
+
+              setTimeout(() => {
+                copyBtn.textContent = originalText;
+                copyBtn.classList.remove('copied');
+              }, 2000);
+            } catch (err) {
+              copyBtn.textContent = 'Failed to copy';
+              setTimeout(() => {
+                copyBtn.textContent = 'Copy';
+              }, 2000);
+            }
+          });
+        }
+      });
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', initializeCodeCopy);
+  </script>
+</body>
+</html>
