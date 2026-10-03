@@ -1,0 +1,86 @@
+/* ==========================================================================
+   Trial colour theme: Princess Blue (#015AA0) + American Silver (#D1D1D1) + black.
+   Loaded last. To go back to the lime theme, remove the <link> to this file
+   from index.html and roadmap.html — nothing else needs to change.
+   ========================================================================== */
+
+:root{
+  --ink:#0a0a0a;
+  --paper:#d1d1d1;            /* American Silver */
+  --acid:#015aa0;             /* Princess Blue — the accent everywhere */
+  --mint:#e3ecf5;             /* pale blue tint for soft surfaces */
+  --line:rgba(0,0,0,.2);
+  --muted:#3d4442;
+  --blue-light:#6cb4ee;       /* brighter blue for use on black surfaces */
+  --flow-rgb:1,90,160;        /* background signal colour (bg-flow.js) */
+}
+body{background:var(--paper)}
+
+/* On black surfaces the accent switches to a brighter blue so it stays readable */
+.loop,.system-card,.tl,.dash-card,.arch-tower,.arch-panel,.mega-side,.rp-dark,.rp-c-ink,
+.diff-card.diff-us,.rm-track .phase.rm-north,.agent-loader{--acid:var(--blue-light)}
+
+/* Accent-coloured backgrounds on light surfaces get white text */
+.ticker,.rp-ticker,.rm-track .phase.active,.rp-c-acid,.arch-spec,.phase.active,
+.arch-package.arch-selected .arch-package-head,.arch-toolbar button:hover,.arch-toolbar button[aria-pressed=true],
+.arch-framework-chip:hover,.arch-framework-chip:focus-visible,.arch-frameworks.arch-selected .arch-framework-chip,
+.skip-link{color:#fff}
+.ticker-sequence span::after,.rp-ticker span::after{background:#fff}
+.rp-ticker b{background:#fff;color:var(--acid)}
+.rm-track .phase.active p,.rm-track .phase.active .rm-status,.rp-c-acid p,.rp-c-acid small{color:#fff}
+.rm-track .phase.active .rm-status i{background:#fff;border-color:#fff}
+.rp-c-acid .rp-chip svg{background:#fff;stroke:var(--acid)}
+.arch-spec-glyph,.arch-spec>b,.arch-spec small{color:#fff}
+.arch-spec::after{background:#fff;color:var(--acid)}
+.arch-package.arch-selected .arch-package-head *{color:#fff}
+
+/* Highlighted words: blue text with a solid blue underline instead of a marker */
+.hl,.hero h1 em,.rp-mark{
+  color:var(--acid);
+  background-image:linear-gradient(transparent 88%,var(--acid) 0)!important;
+}
+.loop .hl{color:var(--blue-light);background-image:linear-gradient(transparent 90%,var(--blue-light) 0)!important}
+
+/* CTA band in Princess Blue */
+.cta{background:var(--acid);color:#fff}
+.cta h2,.cta>p:not(.section-label){color:#fff}
+.cta .section-label{color:#fff}
+.cta .section-label::after{background:#fff}
+.cta .button-light{background:#fff;color:var(--ink);border-color:#fff}
+.cta .button-ghost{color:#fff;border-color:#fff}
+
+/* nav */
+.nav-glider{background:var(--acid)}
+@media(min-width:821px){
+  #site-nav>a:not(.nav-cta):hover,.nav-trigger:hover,.nav-item.is-open .nav-trigger{color:#fff}
+}
+.mega-link:hover .mega-icon{background:var(--acid)}
+.mega-link:hover .mega-icon svg{stroke:#fff}
+nav .mega-link:hover{background:var(--mint)}
+
+/* buttons */
+.button-primary:hover{box-shadow:5px 5px 0 var(--acid)}
+
+/* small fixed greens → blue */
+.status-dot{box-shadow:0 0 0 5px rgba(1,90,160,.2)}
+.hero-proof span:before{color:var(--acid)}
+.faq-trigger:hover{background:rgba(1,90,160,.08)}
+.faq-trigger:focus-visible,.tl-tab:focus-visible,.mega-link:focus-visible{outline-color:var(--acid)}
+.arch-connection{stroke:var(--acid)}
+.arch-connection-overlay #arch-arrow-current path{fill:var(--acid)}
+.arch-legend .arch-sw-warn{border-color:var(--acid)}
+.arch-category,.arch-cap-icon,.arch-output-icon,.arch-rel-mark{color:var(--acid)}
+.arch-hint-dot{background:var(--acid)}
+.arch-package{border-top-color:var(--acid)}
+.arch-tower{border-top-color:var(--blue-light)}
+.rm-track .phase.rm-north .rm-ver{color:var(--blue-light)}
+.diff-card.diff-us h3{color:var(--blue-light)}
+.rp-code .k{color:#015aa0}
+.dot-good,.seg-good{background:#2f8a3e}
+
+/* re-tint the pulse rings */
+@keyframes rm-ping{0%{box-shadow:0 0 0 0 rgba(1,90,160,.6)}80%,100%{box-shadow:0 0 0 10px rgba(1,90,160,0)}}
+@keyframes rm-ring{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+@keyframes arch-invite{0%,100%{box-shadow:0 0 0 0 rgba(1,90,160,0)}50%{box-shadow:0 0 0 4px rgba(1,90,160,.35)}}
+@keyframes arch-flash{0%{background:#0d2d4a}100%{background:var(--ink)}}
+.system-card{box-shadow:18px 18px 0 #015aa0}

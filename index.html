@@ -9,15 +9,119 @@
   <meta property="og:description" content="A specification-first ecosystem for observable, efficient, and resilient AI systems.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://deepagentlabs.io/">
-  <meta property="og:image" content="https://deepagentlabs.io/assets/deepagentlabs-ecosystem.png">
+  <meta property="og:image" content="https://deepagentlabs.io/assets/img/ecosystem.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://deepagentlabs.io/assets/deepagentlabs-ecosystem.png">
+  <meta name="twitter:image" content="https://deepagentlabs.io/assets/img/ecosystem.png">
   <link rel="canonical" href="https://deepagentlabs.io/">
   <title>DeepAgentLabs — Open AI Operations</title>
-  <link rel="stylesheet" href="assets/styles.css?v=6">
-  <script src="assets/site.js" defer></script>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/architecture.css">
+  <link rel="stylesheet" href="assets/css/enhance.css">
+  <link rel="stylesheet" href="assets/css/adoption.css">
+  <link rel="stylesheet" href="assets/css/roadmap.css">
+  <link rel="stylesheet" href="assets/css/nav.css">
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/background.css">
+  <link rel="stylesheet" href="assets/css/copy.css">
+  <link rel="stylesheet" href="assets/css/tools.css">
+  <link rel="stylesheet" href="assets/css/architecture-theme.css">
+  <link rel="stylesheet" href="assets/css/adoption-card.css">
+  <script>
+    let showAgentBoot = true;
+    try {
+      showAgentBoot = sessionStorage.getItem("deepagentlabs-agent-boot-seen") !== "1";
+      if (showAgentBoot) sessionStorage.setItem("deepagentlabs-agent-boot-seen", "1");
+    } catch {}
+    if (showAgentBoot) {
+      document.documentElement.classList.add("agent-loader-enabled");
+      window.__agentLoaderFailsafe = window.setTimeout(() => {
+        document.documentElement.classList.remove("agent-loader-enabled");
+        document.querySelector("#agent-loader")?.remove();
+      }, 6000);
+    }
+  </script>
+  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/architecture.js" defer></script>
+  <script src="assets/js/enhance.js" defer></script>
+  <script src="assets/js/adoption.js" defer></script>
+  <script src="assets/js/roadmap.js" defer></script>
+  <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/background.js" defer></script>
+  <script src="assets/js/copy.js" defer></script>
+  <script src="assets/js/tools.js" defer></script>
+  <script src="assets/js/architecture-compact.js" defer></script>
 </head>
 <body>
+  <div class="agent-loader" id="agent-loader" data-stage="1" role="region" aria-label="DeepAgentLabs agent initialization">
+    <header class="agent-loader-header">
+      <div class="agent-loader-brand" aria-label="DeepAgentLabs">
+        <span class="brand-logo" aria-hidden="true"></span>
+        <span><strong>DEEPAGENTLABS</strong><small>AGENT OPERATING LAYER</small></span>
+      </div>
+      <div class="agent-loader-system"><span>SYSTEM / 01</span><span>BOOT SEQUENCE</span></div>
+    </header>
+
+    <main class="agent-loader-main">
+      <p class="agent-loader-overline"><span>AGENT RUNTIME INITIALIZATION</span><span>PROTOCOL / AI-OPS</span></p>
+      <svg class="agent-loader-map" viewBox="0 0 1000 500" role="img" aria-labelledby="agent-map-title">
+        <title id="agent-map-title">Agent runtime network progressively connecting observation, evaluation, governance, resilience, and ecosystem services</title>
+        <defs>
+          <radialGradient id="agent-core-glow"><stop stop-color="#b7f343" stop-opacity=".24"/><stop offset="1" stop-color="#b7f343" stop-opacity="0"/></radialGradient>
+        </defs>
+        <circle class="agent-loader-halo" cx="500" cy="250" r="160" fill="url(#agent-core-glow)" />
+        <g class="agent-loader-network agent-layer-runtime" fill="none">
+          <path id="agent-link-runtime-a" d="M500 250 500 80"/><path id="agent-link-runtime-b" d="M500 250 345 160"/><path id="agent-link-runtime-c" d="M500 250 655 160"/>
+        </g>
+        <g class="agent-loader-network agent-layer-observe" fill="none">
+          <path id="agent-link-observe-a" d="M345 160 205 95 115 210 270 300 500 250"/><path id="agent-link-observe-b" d="M205 95 500 80"/><path id="agent-link-observe-c" d="M115 210 270 300"/>
+        </g>
+        <g class="agent-loader-network agent-layer-evaluate" fill="none">
+          <path id="agent-link-evaluate-a" d="M655 160 795 95 885 210 730 300 500 250"/><path id="agent-link-evaluate-b" d="M795 95 500 80"/><path id="agent-link-evaluate-c" d="M885 210 730 300"/>
+        </g>
+        <g class="agent-loader-network agent-layer-govern" fill="none">
+          <path id="agent-link-govern-a" d="M270 300 345 390 500 420 655 390 730 300"/><path id="agent-link-govern-b" d="M345 390 500 250 655 390"/><path id="agent-link-govern-c" d="M500 250 500 420"/>
+        </g>
+        <g class="agent-loader-network agent-layer-connect" fill="none">
+          <path id="agent-link-connect-a" d="M115 210 115 365 270 420 345 390"/><path id="agent-link-connect-b" d="M885 210 885 365 730 420 655 390"/><path id="agent-link-connect-c" d="M270 420 500 420 730 420"/>
+        </g>
+        <g class="agent-loader-particles" aria-hidden="true">
+          <circle r="4"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#agent-link-runtime-a"/></animateMotion></circle>
+          <circle r="3"><animateMotion dur="3.1s" begin="-.9s" repeatCount="indefinite"><mpath href="#agent-link-observe-a"/></animateMotion></circle>
+          <circle r="3"><animateMotion dur="2.8s" begin="-1.6s" repeatCount="indefinite"><mpath href="#agent-link-evaluate-a"/></animateMotion></circle>
+          <circle r="3"><animateMotion dur="3.5s" begin="-2s" repeatCount="indefinite"><mpath href="#agent-link-connect-b"/></animateMotion></circle>
+        </g>
+        <g class="agent-loader-nodes">
+          <circle class="agent-loader-node agent-node-core" data-node="runtime" cx="500" cy="250" r="17" />
+          <circle class="agent-loader-node agent-node-runtime" data-node="runtime" cx="500" cy="80" r="9" />
+          <circle class="agent-loader-node agent-node-observe" data-node="observation" cx="345" cy="160" r="9" /><circle class="agent-loader-node agent-node-observe" data-node="observation" cx="205" cy="95" r="7" /><circle class="agent-loader-node agent-node-observe" data-node="observation" cx="115" cy="210" r="8" />
+          <circle class="agent-loader-node agent-node-evaluate" data-node="evaluation" cx="655" cy="160" r="9" /><circle class="agent-loader-node agent-node-evaluate" data-node="evaluation" cx="795" cy="95" r="7" /><circle class="agent-loader-node agent-node-evaluate" data-node="evaluation" cx="885" cy="210" r="8" />
+          <circle class="agent-loader-node agent-node-govern" data-node="governance" cx="270" cy="300" r="8" /><circle class="agent-loader-node agent-node-govern" data-node="governance" cx="730" cy="300" r="8" /><circle class="agent-loader-node agent-node-govern" data-node="governance" cx="500" cy="420" r="8" />
+          <circle class="agent-loader-node agent-node-connect" data-node="connection" cx="115" cy="365" r="7" /><circle class="agent-loader-node agent-node-connect" data-node="connection" cx="270" cy="420" r="7" /><circle class="agent-loader-node agent-node-connect" data-node="connection" cx="345" cy="390" r="7" /><circle class="agent-loader-node agent-node-connect" data-node="connection" cx="655" cy="390" r="7" /><circle class="agent-loader-node agent-node-connect" data-node="connection" cx="730" cy="420" r="7" /><circle class="agent-loader-node agent-node-connect" data-node="connection" cx="885" cy="365" r="7" />
+        </g>
+        <g class="agent-loader-map-labels"><text x="500" y="48">AGENT RUNTIME</text><text x="95" y="250">OBSERVE</text><text x="905" y="250">EVALUATE</text><text x="500" y="468">GOVERN / CONNECT</text></g>
+      </svg>
+      <p class="agent-loader-core-label">AGENT CORE <span id="agent-loader-stage-number">STAGE 01 / 06</span></p>
+      <h1 class="agent-loader-stage" id="agent-loader-stage">INITIALIZING AGENT RUNTIME</h1>
+      <p class="agent-loader-status" id="agent-loader-status" aria-live="polite" aria-atomic="true">Bringing runtime online...</p>
+    </main>
+
+    <section class="agent-loader-status-area" aria-label="Initialization components">
+      <p class="agent-loader-status-title">SYSTEM STATUS <span>AGENT-CORE</span></p>
+      <ul class="agent-loader-components">
+        <li data-component="runtime" data-state="processing"><span class="agent-loader-check" aria-hidden="true">◌</span><span>Runtime</span><span class="sr-only agent-loader-state-text">, processing</span></li>
+        <li data-component="observation" data-state="pending"><span class="agent-loader-check" aria-hidden="true">○</span><span>Observation</span><span class="sr-only agent-loader-state-text">, pending</span></li>
+        <li data-component="evaluation" data-state="pending"><span class="agent-loader-check" aria-hidden="true">○</span><span>Evaluation</span><span class="sr-only agent-loader-state-text">, pending</span></li>
+        <li data-component="governance" data-state="pending"><span class="agent-loader-check" aria-hidden="true">○</span><span>Governance</span><span class="sr-only agent-loader-state-text">, pending</span></li>
+        <li data-component="connection" data-state="pending"><span class="agent-loader-check" aria-hidden="true">○</span><span>Connection</span><span class="sr-only agent-loader-state-text">, pending</span></li>
+      </ul>
+    </section>
+
+    <footer class="agent-loader-footer">
+      <div class="agent-loader-progress-copy"><span>INITIALIZATION</span><strong class="agent-loader-percent">00%</strong></div>
+      <div class="agent-loader-progress" role="progressbar" aria-label="Agent initialization progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div>
+      <p>DEEPAGENTLABS <span>/</span> AGENT RUNTIME <span>/</span> <b id="agent-loader-footer-state">INITIALIZING</b></p>
+    </footer>
+  </div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="DeepAgentLabs home">
@@ -26,7 +130,72 @@
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" aria-label="Primary navigation">
-      <a href="#loop">Loop</a>
+      <div class="nav-item has-mega">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="mega-products">Products</button>
+        <div class="mega" id="mega-products">
+          <div class="mega-main">
+            <p class="mega-label">Products</p>
+            <ul class="mega-grid">
+              <li><a class="mega-link" href="/agenticlens"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/><circle cx="11" cy="11" r="2"/></svg></span><span class="mega-text"><strong>AgenticLens <i aria-hidden="true">→</i></strong><small>Observe — OTLP traces, cost and latency on live traffic.</small></span></a></li>
+              <li><a class="mega-link" href="/agentic-chaos"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 5 13h6l-1 9 8-11h-6l1-9z"/></svg></span><span class="mega-text"><strong>Agentic Chaos <i aria-hidden="true">→</i></strong><small>Stress — fault injection and drift testing across frameworks.</small></span></a></li>
+              <li><a class="mega-link" href="/agentic-sidecar"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6l-8-3z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="mega-text"><strong>Agentic Sidecar <i aria-hidden="true">→</i></strong><small>Govern — allow, warn or block actions against intent and policy.</small></span></a></li>
+              <li><a class="mega-link" href="/agentic-evals"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg></span><span class="mega-text"><strong>Agentic Evals <i aria-hidden="true">→</i></strong><small>Evaluate — deterministic and LLM-judge scoring behind a CI gate.</small></span></a></li>
+              <li><a class="mega-link" href="/mcp"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7V3M15 7V3M7 7h10v4a5 5 0 0 1-10 0V7zM12 16v5"/></svg></span><span class="mega-text"><strong>MCP Server <i aria-hidden="true">→</i></strong><small>Connect — every tool exposed through one MCP interface.</small></span></a></li>
+              <li><a class="mega-link" href="/control-tower"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span><span class="mega-text"><strong>Control Tower <i aria-hidden="true">→</i></strong><small>Operate — registry and console for every stage.</small></span></a></li>
+            </ul>
+          </div>
+          <a class="mega-side" href="https://github.com/DeepAgentLabs/ai-operations-spec">
+            <span class="mega-label">The shared contract</span>
+            <strong>AI Operations Specification</strong>
+            <span class="mega-side-copy">One vendor-neutral spec every product implements — so runs, steps and evaluations mean the same thing everywhere.</span>
+            <span class="mega-side-cta">Read the spec <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </div>
+      </div>
+      <div class="nav-item has-mega">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="mega-docs">Docs</button>
+        <div class="mega" id="mega-docs">
+          <div class="mega-main">
+            <p class="mega-label">Documentation</p>
+            <ul class="mega-grid">
+              <li><a class="mega-link" href="/agenticlens/docs"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><span class="mega-text"><strong>AgenticLens docs <i aria-hidden="true">→</i></strong><small><code>pip install agenticlens</code></small></span></a></li>
+              <li><a class="mega-link" href="/agentic-chaos/docs"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><span class="mega-text"><strong>Agentic Chaos docs <i aria-hidden="true">→</i></strong><small><code>pip install agentic-chaos</code></small></span></a></li>
+              <li><a class="mega-link" href="/agentic-sidecar/docs"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><span class="mega-text"><strong>Agentic Sidecar docs <i aria-hidden="true">→</i></strong><small><code>pip install agentic-sidecar</code></small></span></a></li>
+              <li><a class="mega-link" href="/agentic-evals/docs"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><span class="mega-text"><strong>Agentic Evals docs <i aria-hidden="true">→</i></strong><small><code>pip install agentic-evals</code></small></span></a></li>
+              <li><a class="mega-link" href="/mcp/docs"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><span class="mega-text"><strong>MCP Server docs <i aria-hidden="true">→</i></strong><small>Tools, resources and client setup.</small></span></a></li>
+              <li><a class="mega-link" href="/control-tower/docs"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><span class="mega-text"><strong>Control Tower docs <i aria-hidden="true">→</i></strong><small><code>pip install agenticops-control-tower</code></small></span></a></li>
+            </ul>
+          </div>
+          <div class="mega-side mega-side-static">
+            <span class="mega-label">Start here</span>
+            <strong>Up and running in a minute.</strong>
+            <code class="mega-code">pip install agenticlens</code>
+            <span class="mega-side-copy">Instrument one agent, see its first trace, then add evals and chaos when you're ready.</span>
+            <span class="mega-label mega-pypi-label">On PyPI</span>
+            <div class="mega-pypi"><a href="https://pypi.org/project/agenticlens/" target="_blank" rel="noopener noreferrer">AgenticLens <span aria-hidden="true">↗</span></a><a href="https://pypi.org/project/agentic-chaos/" target="_blank" rel="noopener noreferrer">Chaos <span aria-hidden="true">↗</span></a><a href="https://pypi.org/project/agentic-evals/" target="_blank" rel="noopener noreferrer">Evals <span aria-hidden="true">↗</span></a><a href="https://pypi.org/project/agentic-sidecar/" target="_blank" rel="noopener noreferrer">Sidecar <span aria-hidden="true">↗</span></a><a href="https://pypi.org/project/deep-agentic-core-mcp/" target="_blank" rel="noopener noreferrer">MCP <span aria-hidden="true">↗</span></a><a href="https://pypi.org/project/agenticops-control-tower/" target="_blank" rel="noopener noreferrer">Control Tower <span aria-hidden="true">↗</span></a></div>
+            <a class="mega-side-cta" href="/agenticlens/docs">AgenticLens quickstart <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item has-mega">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="mega-platform">Platform</button>
+        <div class="mega mega-compact mega-narrow" id="mega-platform">
+          <div class="mega-main">
+            <p class="mega-label">On this site</p>
+            <ul class="mega-grid">
+              <li><a class="mega-link mega-link-plain" href="#loop"><span class="mega-text"><strong>The operating loop <i aria-hidden="true">→</i></strong><small>Define, observe, stress, evaluate, improve.</small></span></a></li>
+              <li><a class="mega-link mega-link-plain" href="#dashboards"><span class="mega-text"><strong>Dashboards <i aria-hidden="true">→</i></strong><small>What each product shows you.</small></span></a></li>
+              <li><a class="mega-link mega-link-plain" href="#why"><span class="mega-text"><strong>Why DeepAgentLabs <i aria-hidden="true">→</i></strong><small>How we differ from dashboards and SDK evals.</small></span></a></li>
+            </ul>
+          </div>
+          <a class="mega-side" href="roadmap.html">
+            <span class="mega-label">Roadmap</span>
+            <strong>Step 1 of 8: v0.1 in review.</strong>
+            <span class="mega-side-copy">See where the specification is headed, phase by phase.</span>
+            <span class="mega-side-cta">View roadmap <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </div>
+      </div>
       <a href="#architecture">Architecture</a>
       <a href="#dashboards">Dashboards</a>
       <a href="#why">Why us</a>
@@ -54,13 +223,15 @@
 
       <div class="system-card" aria-label="DeepAgentLabs ecosystem model">
         <div class="system-card-top"><span>ECOSYSTEM / 01</span><span class="pulse">LIVE</span></div>
-        <img class="hero-diagram" src="assets/deepagentlabs-ecosystem.png" alt="DeepAgentLabs reference architecture: ai-operations-spec as the shared contract connecting AgenticLens, Agentic Evals, Agentic Chaos, Agentic Sidecar, AgenticOps Control Tower, and the MCP server.">
+        <img class="hero-diagram" src="assets/img/ecosystem.png" alt="DeepAgentLabs reference architecture: ai-operations-spec as the shared contract connecting AgenticLens, Agentic Evals, Agentic Chaos, Agentic Sidecar, AgenticOps Control Tower, and the MCP server.">
         <div class="system-footer"><span>One model</span><span>Multiple implementations</span></div>
       </div>
     </section>
 
     <section class="loop section-shell" id="loop">
       <div class="section-heading">
+        <div><p class="section-label">The operating loop</p><h2>One loop,<br><span class="hl">five stages.</span></h2></div>
+        <p>Define the contract once, then observe, stress-test, evaluate, and improve every agent against it.</p>
       </div>
       <ol class="loop-track">
         <li class="loop-step"><span class="loop-index">01</span><strong>Define</strong><span class="loop-pkg">ai-operations-spec</span><p>The vendor-neutral contract for runs, steps, and evaluations every tool here implements.</p></li>
@@ -73,23 +244,60 @@
 
     <section class="architecture section-shell" id="architecture">
       <div class="section-heading">
-        <div><p class="section-label"></p><h2>The full capability map.</h2></div>
+        <div><p class="section-label">Architecture</p><h2>The full <span class="hl">capability map.</span></h2></div>
         <p>Every capability each package exposes, and how a request moves from a user through the Control Tower down to the packages doing the work.</p>
       </div>
       <figure class="architecture-figure">
-        <img src="assets/deepagentlabs-ecosystem1.png" loading="lazy" alt="DeepAgentLabs capability map: users go through a Console/CLI/API/MCP entry point to the DeepAgent Control Tower, which sits above the AI Operations Specification; the spec connects to AgenticLens, Agentic Evals, Agentic Sidecar, Agentic Chaos, and the MCP Server, each listing its own capabilities and export formats.">
+        <div class="arch-legend" aria-label="Relationship status legend">
+          <span><i class="arch-swatch arch-sw-warn" aria-hidden="true"></i>Current integration</span>
+          <span><i class="arch-swatch arch-sw-plan" aria-hidden="true"></i>Planned integration</span>
+          <span><i class="arch-swatch arch-sw-context" aria-hidden="true"></i>Architecture context</span>
+        </div>
+        <div class="arch-toolbar" aria-label="Architecture controls">
+          <button id="arch-trace" type="button" aria-pressed="false"><span aria-hidden="true">▶</span> Trace request</button>
+          <button id="arch-reset" type="button"><span aria-hidden="true">↺</span> Reset</button>
+        </div>
+        <div id="arch-infographic" class="arch-infographic" role="group" aria-labelledby="arch-title arch-description">
+          <h3 class="sr-only" id="arch-title">DeepAgentLabs interactive architecture infographic</h3>
+          <p class="sr-only" id="arch-description">Explore the full ecosystem infographic. Select components, capabilities, frameworks, or outputs for details. Use arrow keys to move among major components, then Enter or Space to select.</p>
+          <div id="arch-artwork" class="arch-artwork"></div>
+          <aside class="arch-panel" aria-label="Architecture details" aria-live="polite" aria-atomic="true">
+            <div id="arch-panel-empty">
+              <p class="arch-panel-eyebrow">Component details</p>
+              <p class="arch-panel-empty">Select a component, capability, framework, or export to inspect its role and integration status.</p>
+            </div>
+            <div id="arch-panel-detail" hidden>
+              <p class="arch-panel-eyebrow" id="arch-pd-kind"></p>
+              <h3 id="arch-pd-name"></h3>
+              <span class="arch-ver" id="arch-pd-version"></span>
+              <p class="arch-desc" id="arch-pd-desc"></p>
+              <h4 class="arch-edges-title">Connected components</h4>
+              <div id="arch-pd-edges"></div>
+            </div>
+            <div id="arch-trace-status" class="arch-trace-status" aria-live="polite" hidden></div>
+          </aside>
+        </div>
       </figure>
     </section>
 
     <section class="dashboards section-shell" id="dashboards">
       <div class="section-heading">
-        <div><p class="section-label">See it in action</p><h2>What each tool<br>actually does.</h2></div>
-        <p>Illustrative sample output from each project's own CLI/API — not live telemetry from this site.</p>
+        <div><p class="section-label">See it in action</p><h2>What each framework<br><span class="hl">actually does.</span></h2></div>
+        <p>Seven frameworks, one contract. Pick one to see what it does and its sample output. These are illustrative examples, not live telemetry.</p>
       </div>
 
-      <div class="dash-panels">
-
-        <article class="dash-card dash-panel">
+      <div class="tl" data-tl>
+        <div class="tl-tabs" role="tablist" aria-label="DeepAgentLabs frameworks">
+          <button class="tl-tab" type="button" role="tab" id="tl-tab-spec" aria-controls="tl-panel-spec" aria-selected="true" tabindex="0"><span class="tl-verb">01 · Define</span><strong>AI Operations Spec</strong><i class="tl-progress" aria-hidden="true"></i></button>
+          <button class="tl-tab" type="button" role="tab" id="tl-tab-lens" aria-controls="tl-panel-lens" aria-selected="false" tabindex="-1"><span class="tl-verb">02 · Observe</span><strong>AgenticLens</strong><i class="tl-progress" aria-hidden="true"></i></button>
+          <button class="tl-tab" type="button" role="tab" id="tl-tab-evals" aria-controls="tl-panel-evals" aria-selected="false" tabindex="-1"><span class="tl-verb">03 · Evaluate</span><strong>Agentic Evals</strong><i class="tl-progress" aria-hidden="true"></i></button>
+          <button class="tl-tab" type="button" role="tab" id="tl-tab-chaos" aria-controls="tl-panel-chaos" aria-selected="false" tabindex="-1"><span class="tl-verb">04 · Stress</span><strong>Agentic Chaos</strong><i class="tl-progress" aria-hidden="true"></i></button>
+          <button class="tl-tab" type="button" role="tab" id="tl-tab-sidecar" aria-controls="tl-panel-sidecar" aria-selected="false" tabindex="-1"><span class="tl-verb">05 · Govern</span><strong>Agentic Sidecar</strong><i class="tl-progress" aria-hidden="true"></i></button>
+          <button class="tl-tab" type="button" role="tab" id="tl-tab-tower" aria-controls="tl-panel-tower" aria-selected="false" tabindex="-1"><span class="tl-verb">06 · Operate</span><strong>Control Tower</strong><i class="tl-progress" aria-hidden="true"></i></button>
+          <button class="tl-tab" type="button" role="tab" id="tl-tab-mcp" aria-controls="tl-panel-mcp" aria-selected="false" tabindex="-1"><span class="tl-verb">07 · Connect</span><strong>DeepAgent MCP</strong><i class="tl-progress" aria-hidden="true"></i></button>
+        </div>
+        <div class="tl-stage">
+          <article class="dash-card tl-panel" role="tabpanel" id="tl-panel-spec" aria-labelledby="tl-tab-spec">
           <div class="dash-head"><strong>AI Operations Specification</strong><span class="dash-tag">v0.4 draft</span></div>
           <p class="dash-desc">The vendor-neutral contract for runs, steps, model/tool calls, evaluations, and incidents — the shared vocabulary every tool on this page implements, not an SDK or a runtime itself.</p>
           <p class="dash-caps-title">What it defines</p>
@@ -105,11 +313,10 @@
             <li><span class="dot dot-good"></span>aligned: true</li>
           </ul>
           <p class="sr-only">Conformance check example: schema valid, semantic valid, aligned true.</p>
-          <p class="dash-caption">One shared contract every tool below can validate against.</p>
-          <a class="text-link" href="https://github.com/DeepAgentLabs/ai-operations-spec">Read the standard <span aria-hidden="true">↗</span></a>
-        </article>
-
-        <article class="dash-card dash-panel">
+          <p class="dash-caption">One shared contract every framework below can validate against.</p>
+<div class="tl-foot"><span></span><a class="text-link" href="https://github.com/DeepAgentLabs/ai-operations-spec">Read the standard <span aria-hidden="true">↗</span></a></div>
+          </article>
+          <article class="dash-card tl-panel" role="tabpanel" id="tl-panel-lens" aria-labelledby="tl-tab-lens" hidden>
           <div class="dash-head"><strong>AgenticLens</strong><span class="dash-tag">workflow profile</span></div>
           <p class="dash-desc">OpenTelemetry-native observability for production AI: ingest OTLP traces, track cost and latency per run, and surface evidence-backed findings for where to cut waste.</p>
           <p class="dash-caps-title">Capabilities</p>
@@ -131,11 +338,9 @@
           </div>
           <p class="sr-only">Cost per run trending down across five recent runs, from $0.087 to $0.041, alongside six optimization findings.</p>
           <p class="dash-caption">Cost trending down over five runs after acting on its own findings.</p>
-          <p class="dash-quickstart">pip install agenticlens</p>
-          <a class="text-link" href="https://github.com/DeepAgentLabs/agenticlens">View AgenticLens <span aria-hidden="true">↗</span></a>
-        </article>
-
-        <article class="dash-card dash-panel">
+          <div class="tl-foot"><code class="tl-pip">pip install agenticlens</code><span class="tl-links"><a class="text-link tl-pypi" href="https://pypi.org/project/agenticlens/" target="_blank" rel="noopener noreferrer">PyPI <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/DeepAgentLabs/agenticlens">View AgenticLens <span aria-hidden="true">↗</span></a></span></div>
+          </article>
+          <article class="dash-card tl-panel" role="tabpanel" id="tl-panel-evals" aria-labelledby="tl-tab-evals" hidden>
           <div class="dash-head"><strong>Agentic Evals</strong><span class="dash-tag">release gate</span></div>
           <p class="dash-desc">Framework-agnostic scoring for any trace-shaped run — deterministic checks, rubric scorers, and LLM-as-judge evaluators, wired into a pass/fail gate you drop into CI.</p>
           <p class="dash-caps-title">Capabilities</p>
@@ -154,11 +359,9 @@
           </ul>
           <p class="sr-only">Release gate: trajectory quality 0.91 passes an 0.85 threshold, cost per run $0.031 passes a $0.05 cap, hallucination rate 1.8% sits inside a 2% warning band.</p>
           <p class="dash-caption">Three thresholds, one CI gate — the merge blocks until every run clears them.</p>
-          <p class="dash-quickstart">pip install agentic-evals</p>
-          <a class="text-link" href="https://github.com/DeepAgentLabs/agentic-evals">View Agentic Evals <span aria-hidden="true">↗</span></a>
-        </article>
-
-        <article class="dash-card dash-panel">
+          <div class="tl-foot"><code class="tl-pip">pip install agentic-evals</code><span class="tl-links"><a class="text-link tl-pypi" href="https://pypi.org/project/agentic-evals/" target="_blank" rel="noopener noreferrer">PyPI <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/DeepAgentLabs/agentic-evals">View Agentic Evals <span aria-hidden="true">↗</span></a></span></div>
+          </article>
+          <article class="dash-card tl-panel" role="tabpanel" id="tl-panel-chaos" aria-labelledby="tl-tab-chaos" hidden>
           <div class="dash-head"><strong>Agentic Chaos</strong><span class="dash-tag">120 injected faults</span></div>
           <p class="dash-desc">Fault injection and topology-aware drift testing across agent frameworks — provider failures, corrupted outputs, and tool errors, forced before production does it for you.</p>
           <p class="dash-caps-title">Capabilities</p>
@@ -180,11 +383,9 @@
           </ul>
           <p class="sr-only">Outcome of 120 injected faults: 68% recovered, 22% degraded, 10% failed.</p>
           <p class="dash-caption">One in ten injected faults broke the agent outright — before a user hit it.</p>
-          <p class="dash-quickstart">pip install agentic-chaos</p>
-          <a class="text-link" href="https://github.com/DeepAgentLabs/agentic-chaos">View Agentic Chaos <span aria-hidden="true">↗</span></a>
-        </article>
-
-        <article class="dash-card dash-panel">
+          <div class="tl-foot"><code class="tl-pip">pip install agentic-chaos</code><span class="tl-links"><a class="text-link tl-pypi" href="https://pypi.org/project/agentic-chaos/" target="_blank" rel="noopener noreferrer">PyPI <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/DeepAgentLabs/agentic-chaos">View Agentic Chaos <span aria-hidden="true">↗</span></a></span></div>
+          </article>
+          <article class="dash-card tl-panel" role="tabpanel" id="tl-panel-sidecar" aria-labelledby="tl-tab-sidecar" hidden>
           <div class="dash-head"><strong>Agentic Sidecar</strong><span class="dash-tag">500 decisions</span></div>
           <p class="dash-desc">A real-time Decision Gate that watches an agent's next action against its declared intent — catching moves that are technically permitted but contextually wrong, not just disallowed content.</p>
           <p class="dash-caps-title">Capabilities</p>
@@ -206,11 +407,9 @@
           </ul>
           <p class="sr-only">Decision Gate outcomes across 500 actions: 462 allowed, 29 warned, 9 blocked as out of scope.</p>
           <p class="dash-caption">Escalating intervention, not a failure rate — a block is the Sidecar working.</p>
-          <p class="dash-quickstart">pip install agentic-sidecar</p>
-          <a class="text-link" href="https://github.com/DeepAgentLabs/agentic-sidecar">View Agentic Sidecar <span aria-hidden="true">↗</span></a>
-        </article>
-
-        <article class="dash-card dash-panel">
+          <div class="tl-foot"><code class="tl-pip">pip install agentic-sidecar</code><span class="tl-links"><a class="text-link tl-pypi" href="https://pypi.org/project/agentic-sidecar/" target="_blank" rel="noopener noreferrer">PyPI <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/DeepAgentLabs/agentic-sidecar">View Agentic Sidecar <span aria-hidden="true">↗</span></a></span></div>
+          </article>
+          <article class="dash-card tl-panel" role="tabpanel" id="tl-panel-tower" aria-labelledby="tl-tab-tower" hidden>
           <div class="dash-head"><strong>AgenticOps Control Tower</strong><span class="dash-tag">48 agents</span></div>
           <p class="dash-desc">The fleet-wide registry and control plane: which agents exist, what's installed, which framework they run on, and what needs attention right now.</p>
           <p class="dash-caps-title">Capabilities today</p>
@@ -230,11 +429,9 @@
           </ul>
           <p class="sr-only">Fleet status across 48 registered agents: 41 healthy, 5 degraded, 2 unhealthy.</p>
           <p class="dash-caption">One registry for every agent's runtime, framework, and capability versions.</p>
-          <p class="dash-quickstart">pip install agenticops-control-tower</p>
-          <a class="text-link" href="https://github.com/DeepAgentLabs/agenticops-control-tower">View Control Tower <span aria-hidden="true">↗</span></a>
-        </article>
-
-        <article class="dash-card dash-panel dash-panel-wide">
+          <div class="tl-foot"><code class="tl-pip">pip install agenticops-control-tower</code><span class="tl-links"><a class="text-link tl-pypi" href="https://pypi.org/project/agenticops-control-tower/" target="_blank" rel="noopener noreferrer">PyPI <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/DeepAgentLabs/agenticops-control-tower">View Control Tower <span aria-hidden="true">↗</span></a></span></div>
+          </article>
+          <article class="dash-card tl-panel" role="tabpanel" id="tl-panel-mcp" aria-labelledby="tl-tab-mcp" hidden>
           <div class="dash-head"><strong>DeepAgent MCP</strong><span class="dash-tag">live surface</span></div>
           <p class="dash-desc">A unified MCP interface over the shared model — exposing AgenticLens, Agentic Chaos, Agentic Sidecar, and Spec validation as one set of tools any MCP client can call.</p>
           <p class="dash-caps-title">Capabilities</p>
@@ -252,17 +449,164 @@
             <div><strong>4/5</strong><span>adapters connected</span></div>
           </div>
           <p class="sr-only">14 tools exposed, 1,284 calls routed today, 4 of 5 sibling adapters connected.</p>
-          <p class="dash-caption">One MCP-native surface over every tool above, degrading honestly when one's missing.</p>
-          <p class="dash-quickstart">pip install deep-agentic-core-mcp</p>
-          <a class="text-link" href="https://github.com/DeepAgentLabs/mcp-server">View the MCP server <span aria-hidden="true">↗</span></a>
+          <p class="dash-caption">One MCP-native surface over every framework above, degrading honestly when one's missing.</p>
+          <div class="tl-foot"><code class="tl-pip">pip install deep-agentic-core-mcp</code><span class="tl-links"><a class="text-link tl-pypi" href="https://pypi.org/project/deep-agentic-core-mcp/" target="_blank" rel="noopener noreferrer">PyPI <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/DeepAgentLabs/mcp-server">View the MCP server <span aria-hidden="true">↗</span></a></span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="adoption section-shell" id="adoption" aria-labelledby="adoption-title">
+      <div class="section-heading adoption-heading">
+        <div>
+          <p class="section-label">Ecosystem adoption</p>
+          <h2 id="adoption-title">The ecosystem <span class="hl">is moving.</span></h2>
+          <h3>See it in the numbers.</h3>
+        </div>
+        <p>Live PyPI download statistics across the DeepAgentLabs ecosystem.</p>
+      </div>
+
+      <div class="adp-card" data-adp>
+        <p class="adp-kicker"><span class="adp-live" aria-hidden="true"></span><span id="adoption-data-status" role="status" aria-live="polite">Loading PyPI statistics…</span></p>
+        <div class="adp-total">
+          <strong id="adp-total" aria-live="off">0</strong>
+          <span>downloads across the DeepAgentLabs ecosystem</span>
+        </div>
+        <ol class="adp-grid" id="adp-grid" aria-label="PyPI downloads per package"></ol>
+        <div class="adp-foot">
+          <p>PyPI totals can include automated and CI downloads. Pepy badge totals may be cached up to 12 hours.</p>
+          <a class="button button-primary" href="#dashboards">Explore the ecosystem <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="roadmap section-shell" id="roadmap">
+      <div class="section-heading compact">
+        <div><p class="section-label">Roadmap</p><h2>Where the specification<br><span class="hl">is headed.</span></h2></div>
+        <a class="text-link" href="roadmap.html">See the full roadmap <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="rm-rail" data-rm-animate aria-hidden="true"><span class="rm-rail-fill"></span></div>
+      <div class="roadmap-track rm-track">
+        <a class="phase active" href="roadmap.html#v0-1" data-status="review"><span class="rm-top"><span class="rm-ver">v0.1</span><span class="rm-status"><i></i>In review</span></span><strong>Core concepts</strong><p>Shared meaning for runs, steps, agents and tools.</p><b class="rm-arrow" aria-hidden="true">→</b></a>
+        <a class="phase" href="roadmap.html#v0-2" data-status="draft"><span class="rm-top"><span class="rm-ver">v0.2</span><span class="rm-status"><i></i>Exploratory</span></span><strong>Relationships</strong><p>How the pieces connect into execution graphs.</p><b class="rm-arrow" aria-hidden="true">→</b></a>
+        <a class="phase" href="roadmap.html#v0-3" data-status="draft"><span class="rm-top"><span class="rm-ver">v0.3</span><span class="rm-status"><i></i>Exploratory</span></span><strong>Semantics</strong><p>Standard event names and lifecycles.</p><b class="rm-arrow" aria-hidden="true">→</b></a>
+        <a class="phase" href="roadmap.html#v0-4" data-status="draft"><span class="rm-top"><span class="rm-ver">v0.4</span><span class="rm-status"><i></i>Exploratory</span></span><strong>JSON Schemas</strong><p>Artifacts anyone can validate.</p><b class="rm-arrow" aria-hidden="true">→</b></a>
+        <a class="phase" href="roadmap.html#v0-5" data-status="planned"><span class="rm-top"><span class="rm-ver">v0.5</span><span class="rm-status"><i></i>Planned</span></span><strong>Versioning</strong><p>Rules for safe, compatible changes.</p><b class="rm-arrow" aria-hidden="true">→</b></a>
+        <a class="phase" href="roadmap.html#v0-6" data-status="planned"><span class="rm-top"><span class="rm-ver">v0.6</span><span class="rm-status"><i></i>Planned</span></span><strong>Extensions</strong><p>Canonical examples and third-party extensions.</p><b class="rm-arrow" aria-hidden="true">→</b></a>
+        <a class="phase" href="roadmap.html#v0-6x" data-status="planned"><span class="rm-top"><span class="rm-ver">v0.6.x</span><span class="rm-status"><i></i>Planned</span></span><strong>Provenance</strong><p>Evidence, lineage and conformance tests.</p><b class="rm-arrow" aria-hidden="true">→</b></a>
+        <a class="phase rm-north" href="roadmap.html#v1-0" data-status="north"><span class="rm-top"><span class="rm-ver">v1.0</span><span class="rm-status"><i></i>North star</span></span><strong>Stable standard</strong><p>A frozen spec anyone can implement.</p><b class="rm-arrow" aria-hidden="true">→</b></a>
+      </div>
+    </section>
+
+    <section class="faq section-shell" id="faq">
+      <div class="section-heading">
+        <div><p class="section-label">FAQ / Agentic systems</p><h2>Questions get harder when agents become <span class="hl">autonomous.</span></h2></div>
+        <p>Explore how DeepAgentLabs helps teams observe, evaluate, govern, and test agentic systems.</p>
+      </div>
+
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3 class="faq-heading">
+            <button class="faq-trigger" id="faq-trigger-01" type="button" aria-expanded="false" aria-controls="faq-answer-01">
+            <span class="faq-number" aria-hidden="true">01</span>
+            <span class="faq-question">What happens when AI agents move from demos to production?</span>
+            <span class="faq-indicator" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-answer-01" role="region" aria-labelledby="faq-trigger-01" aria-hidden="true">
+            <div class="faq-answer-inner">
+              <p>Production agents need more than model access. They need observability, evaluation, governance, resilience testing, secure access to tools and data, and mechanisms for human intervention. DeepAgentLabs brings these capabilities together through a modular, framework- and runtime-agnostic ecosystem.</p>
+              <ul class="faq-tags" aria-label="Related capabilities"><li>AgenticOps</li><li>AgenticLens</li><li>Evals</li><li>Sidecar</li><li>Chaos</li><li>MCP</li></ul>
+            </div>
+          </div>
         </article>
 
+        <article class="faq-item">
+          <h3 class="faq-heading">
+            <button class="faq-trigger" id="faq-trigger-02" type="button" aria-expanded="false" aria-controls="faq-answer-02">
+            <span class="faq-number" aria-hidden="true">02</span>
+            <span class="faq-question">How do you observe what an AI agent is actually doing?</span>
+            <span class="faq-indicator" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-answer-02" role="region" aria-labelledby="faq-trigger-02" aria-hidden="true">
+            <div class="faq-answer-inner">
+              <p>AgenticLens provides runtime workflow inspection and analysis. It works with workflow artifacts and traces to surface structured telemetry, recommendations, reports, comparisons, and audit information.</p>
+              <ul class="faq-tags" aria-label="Related capabilities"><li>AgenticLens</li><li>Observability</li></ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <h3 class="faq-heading">
+            <button class="faq-trigger" id="faq-trigger-03" type="button" aria-expanded="false" aria-controls="faq-answer-03">
+            <span class="faq-number" aria-hidden="true">03</span>
+            <span class="faq-question">How can you know whether an AI agent made the right decision?</span>
+            <span class="faq-indicator" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-answer-03" role="region" aria-labelledby="faq-trigger-03" aria-hidden="true">
+            <div class="faq-answer-inner">
+              <p>Agentic evaluation goes beyond checking the final response. Evaluations can score agent behavior, inspect trajectories, benchmark runs, apply LLM-as-Judge methods, run regression tests, and support release-quality decisions.</p>
+              <ul class="faq-tags" aria-label="Related capabilities"><li>Agentic Evals</li><li>Trajectory Evaluation</li><li>Release Gates</li></ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <h3 class="faq-heading">
+            <button class="faq-trigger" id="faq-trigger-04" type="button" aria-expanded="false" aria-controls="faq-answer-04">
+              <span class="faq-number" aria-hidden="true">04</span>
+              <span class="faq-question">How can teams govern an AI agent's actions?</span>
+              <span class="faq-indicator" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-answer-04" role="region" aria-labelledby="faq-trigger-04" aria-hidden="true">
+            <div class="faq-answer-inner">
+              <p>Agentic Sidecar checks proposed actions against declared intent and policies, then allows, warns, or blocks them. This adds a decision-time governance layer without tying the agent to a single framework.</p>
+              <ul class="faq-tags" aria-label="Related capabilities"><li>Agentic Sidecar</li><li>Governance</li><li>Intent alignment</li></ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <h3 class="faq-heading">
+            <button class="faq-trigger" id="faq-trigger-05" type="button" aria-expanded="false" aria-controls="faq-answer-05">
+              <span class="faq-number" aria-hidden="true">05</span>
+              <span class="faq-question">How can teams test an agent before it reaches production?</span>
+              <span class="faq-indicator" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-answer-05" role="region" aria-labelledby="faq-trigger-05" aria-hidden="true">
+            <div class="faq-answer-inner">
+              <p>Agentic Chaos injects controlled faults such as timeouts, rate limits, and tool failures so teams can inspect how workflows respond. Agentic Evals adds repeatable scoring and release gates to help catch regressions before deployment.</p>
+              <ul class="faq-tags" aria-label="Related capabilities"><li>Agentic Chaos</li><li>Agentic Evals</li><li>Resilience testing</li></ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <h3 class="faq-heading">
+            <button class="faq-trigger" id="faq-trigger-06" type="button" aria-expanded="false" aria-controls="faq-answer-06">
+            <span class="faq-number" aria-hidden="true">06</span>
+            <span class="faq-question">How do the DeepAgentLabs components work together?</span>
+            <span class="faq-indicator" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-answer-06" role="region" aria-labelledby="faq-trigger-06" aria-hidden="true">
+            <div class="faq-answer-inner">
+              <p>The ecosystem is designed as modular layers rather than one monolithic runtime. AgenticLens provides observation and analysis, Evals provides behavioral assessment, Sidecar provides supervision and governance, Chaos provides resilience testing, and the MCP server provides a unified interface to these capabilities.</p>
+              <ul class="faq-tags" aria-label="Related capabilities"><li>Lens &rarr; Evals &rarr; Sidecar &rarr; Chaos &rarr; MCP</li></ul>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
     <section class="differentiator section-shell" id="why">
       <div class="section-heading">
-        
+        <div><p class="section-label">Why DeepAgentLabs</p><h2>One contract beats<br><span class="hl">separate tools.</span></h2></div>
+        <p>Most tools cover a single slice and speak their own format. Here, every stage shares one specification.</p>
       </div>
       <div class="diff-grid">
         <div class="diff-card">
@@ -280,25 +624,11 @@
       </div>
     </section>
 
-    <section class="roadmap section-shell" id="roadmap">
-      <div class="section-heading compact">
-        <a class="text-link" href="https://github.com/DeepAgentLabs/ai-operations-spec/blob/main/ROADMAP.md">Full roadmap <span aria-hidden="true">↗</span></a>
-      </div>
-      <div class="roadmap-track">
-        <article class="phase active"><span>v0.1</span><strong>Core concepts</strong><small>Now</small></article>
-        <article class="phase"><span>v0.2</span><strong>Relationships</strong><small>Next</small></article>
-        <article class="phase"><span>v0.3</span><strong>Semantics</strong><small>Planned</small></article>
-        <article class="phase"><span>v0.4</span><strong>JSON Schemas</strong><small>Planned</small></article>
-        <article class="phase"><span>v0.5</span><strong>Versioning</strong><small>Planned</small></article>
-        <article class="phase"><span>v1.0</span><strong>Stable standard</strong><small>North star</small></article>
-      </div>
-    </section>
-
     <section class="newsletter section-shell" id="newsletter">
       <div class="newsletter-inner">
         <div class="newsletter-copy">
           <p class="section-label">DeepAgent Labs Newsletter</p>
-          <h2>Get DeepAgentLabs<br>updates in your inbox.</h2>
+          <h2>Get DeepAgentLabs<br><span class="hl">updates in your inbox.</span></h2>
           <p>Release notes, profiling techniques, and early access to new DeepAgentLabs features. No spam, unsubscribe anytime.</p>
         </div>
         <form action="https://buttondown.com/api/emails/embed-subscribe/deepagentlabs" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/deepagentlabs', 'popupwindow')" class="newsletter-form">
