@@ -48,7 +48,7 @@ Rules of thumb:
 
 | # | Section (id)        | What it shows                                              | Main files |
 |---|---------------------|------------------------------------------------------------|------------|
-| – | Header / nav        | Logo, mega-menus (Products, Docs, Platform), links, GitHub | `nav.css`, `nav.js`, `site.js` |
+| – | Header / nav        | Logo, mega-menus (Platform, Products, Docs, Use cases), links, GitHub | `nav.css`, `nav.js`, `usecases-data.js`, `usecases.js`, `site.js` |
 | 1 | `#top` hero         | Headline, intro, buttons, ecosystem diagram card           | `styles.css`, `theme.css`, `enhance.*` |
 | – | Package ticker      | Scrolling lime strip of package names (built by script)    | `enhance.*`, `theme.css` |
 | 2 | `#loop`             | "One loop, five stages" – the operating loop               | `styles.css`, `theme.css`, `enhance.js` |
@@ -61,11 +61,58 @@ Rules of thumb:
 | 9 | `#newsletter`       | Buttondown sign-up form                                    | `styles.css` |
 | – | `#community` CTA + footer | "Build with us" lime band with the community links (Discord, LinkedIn, Instagram, GitHub rows); dark footer with Products / Explore / Community columns, a short company statement with principles as the first column, big centred wordmark and a status bar | `styles.css`, `theme.css`, `footer.css` |
 
+### Updating the Use cases menu
+
+**Edit only `assets/js/usecases-data.js`.** It holds the six packages (fixed categories) and
+their use cases (placeholders for now). `assets/js/usecases.js` builds the dropdown from it on
+every page, in the same layout as Products and Docs (one item per package: icon,
+"<name> use cases", summary line), and fills the "Most asked" chips in the dark card.
+`404.html` reads the same file to show the right name on "coming soon" pages. Styling
+comes from the shared mega-menu styles in `nav.css`; opening/closing from `nav.js`.
+
+```js
+{
+  id: "agenticlens",               // matches the product URL; don't change
+  name: "AgenticLens",             // shown as "AgenticLens use cases"
+  summary: "Trace runs, track cost, gate releases.",   // grey line under the name
+  // href: "...",                  // optional; default /agenticlens/usecases/
+  useCases: [
+    { title: "Track cost and tokens", slug: "cost-tracking", mostAsked: "Cost tracking" },
+    //  page: /agenticlens/usecases/cost-tracking/ ; set  href: "..."  to point anywhere
+    //  mostAsked (optional) shows it as a chip in the dark card
+  ]
+}
+```
+
+- Rename, add or remove use cases by editing `useCases`; keep about five `mostAsked` chips.
+- Package icons match the Products menu and live in `usecases.js`.
+- Don't add packages or top-level menu items for single use cases.
+- In the HTML, the menu has two empty slots, `[data-uc-list]` and `[data-uc-most-asked]`,
+  between the `<!-- USE CASES MENU -->` comments. Leave them as they are.
+
+### Product pages (`/control-tower/`)
+
+`control-tower/index.html` is the first real product page (served at `/control-tower/`, which the
+Products menu links to). It reuses the site header, menus and footer (absolute `/assets/...`
+paths because it lives in a folder). Content comes from the Control Tower console prototype.
+
+Sections: hero (pitch, **Open Control Tower ↗** to `https://controltower.deepagentlabs.io`, GitHub,
+`pip install`, key facts, simulated live fleet card) · Why it exists · **What it does** (sideways
+feature carousel with console close-ups `img/feat-*.webp`) · Two ways to run it (self-hosted / hosted) ·
+**Inside the console** (auto-cycling screenshots `img/console-*.webp`) · How it works (real commands) ·
+Health states · Part of the ecosystem (loop + catalog versions table) · Status · FAQ · lime CTA band.
+
+- Screenshots: `control-tower/img/*.webp` (cropped from the console, ~40-50 KB each). To update
+  one, replace the file with the same name and size ratio.
+- Versions in the catalog table and the Status lists are plain HTML: update them with each release.
+- Styles: `assets/css/product.css`. Script: `assets/js/product.js` (use cases from
+  `usecases-data.js`, scroll reveals, live fleet card, console tabs).
+
 ### `404.html` — not found
 
 GitHub Pages serves this for any missing URL. It uses absolute paths (`/assets/...`)
 because it can be served from any depth. If the URL starts with a product slug from the
-menu (`/agenticlens`, `/mcp/docs`, …) it says the page is coming soon and links to that
+menu (`/agenticlens`, `/mcp/docs`, `/agentic-evals/usecases`, …) it says the page is coming soon and links to that
 product's GitHub README and PyPI package; otherwise it shows a plain not-found message.
 The product list lives in the small script at the bottom of the file.
 
@@ -96,7 +143,7 @@ order matters.
 | 3 | `enhance.css`             | both | Scroll progress bar, reveal-on-scroll, ticker, background grid, hover effects |
 | 4 | `adoption.css`            | home | Adoption section heading and layout |
 | 5 | `roadmap.css`             | both | Homepage roadmap cards **and** the whole `roadmap.html` page |
-| 6 | `nav.css`                 | both | Mega-menu dropdowns, sliding lime pill, mobile menu accordion |
+| 6 | `nav.css`                 | both | Mega-menu dropdowns (Products, Docs, Use cases, Platform), Use cases package groups (`.uc-*`), sliding lime pill, mobile menu accordion |
 | 7 | `theme.css`               | both | Site-wide look: fonts (Bricolage Grotesque / Inter / Instrument Serif), lime highlight on key words, section labels, dark loop band, "Why us" tiles, ticker colours |
 | 8 | `background.css`          | both | Positions the animated background canvas behind content |
 | 9 | `copy.css`                | both | Copy-to-clipboard button on install commands |
@@ -140,6 +187,11 @@ on both pages.
 | `tools.js`                | home | Framework showcase: tabs on desktop (hover / click / arrow keys, auto-advance); on phones (≤ 680px) it moves each card under its name and works as an accordion |
 | `roadmap.js`              | both | Progress bars on both pages; reveal animations on `roadmap.html` |
 | `nav.js`                  | both | Mega-menus (hover on desktop, tap on mobile, Esc / outside click), sliding lime pill |
+| `usecases-data.js`        | both + 404 | Use cases menu content: packages, use cases, links, "Most asked" chips. Edit this one |
+| `usecases.js`             | both | Builds the Use cases dropdown from `usecases-data.js` |
+| `product.js`              | product pages | Use cases from `usecases-data.js`, scroll reveals, live example fleet card, console screenshot tabs |
+
+Dropdown arrows (desktop, pure CSS at the end of `nav.css`): Platform, Products, Docs and Use cases show a small chevron after the name so visitors can see they open a menu; it flips while that menu is open. Phones use the +/- boxes instead. Menu order: Platform, Products, Docs, Use cases, then the plain links.
 | `background.js`           | both | Slow animated "signals" on the background grid (canvas, paused when tab hidden) |
 | `beam.js`                 | all  | Adds the border beam to a short list of elements (hero card, framework showcase, downloads card, milestone in review, menu spec card, 404 card; primary buttons on hover; newsletter form on focus). Ambient beams only run while on screen |
 | `copy.js`                 | both | Adds a copy button to every `pip install …` command |
