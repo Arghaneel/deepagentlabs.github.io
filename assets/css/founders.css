@@ -17,7 +17,7 @@
 .founder-card:hover .founder-photo img{transform:scale(1.025)}
 .founder-details{padding:20px 0 18px;border-bottom:1px solid var(--line)}
 .founder-details h3{font-size:26px;line-height:1.2;margin:0 0 8px}
-.founder-details p{font:500 11px 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0}
+.founder-details p{font:500 16px 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0}
 .founders-mission{display:grid;grid-template-columns:1fr 1fr;gap:80px;padding-top:56px;padding-bottom:80px;border-top:1px solid var(--line)}
 .founders-mission h2{font-size:clamp(34px,4vw,52px);line-height:1.12;margin:20px 0}
 .founders-mission-copy>p{font-size:16px;line-height:1.8;color:var(--ink-soft)}
@@ -28,10 +28,10 @@
 @media(max-width:480px){.founders-shell{padding-left:20px;padding-right:20px}.founders-intro h1{font-size:44px}.founders-intro .eyebrow{font-size:9px}.founders-intro-bottom>p{font-size:16px}.founders-grid{grid-template-columns:1fr;gap:28px}.founders-section-head{align-items:flex-start;flex-direction:column;gap:8px}.founder-photo{aspect-ratio:4/4.5}.founders-mission{padding-top:36px;padding-bottom:50px}}
 @media(prefers-reduced-motion:reduce){.founder-photo img{transition:none}.founder-card:hover .founder-photo img{transform:none}}
 
-.founder-linkedin{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:4px}
+.founder-linkedin{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:16px;font-weight:600;text-decoration:underline;text-underline-offset:4px}
 .founder-linkedin:hover{color:#365b0b}
 
-.founder-details .founder-role{margin-top:10px;font-family:var(--font-body);font-size:14px;line-height:1.5;letter-spacing:0;text-transform:none;color:var(--ink-soft)}
+.founder-details .founder-role{margin-top:10px;font-family:var(--font-body);font-size:18px;line-height:1.5;letter-spacing:0;text-transform:none;color:var(--ink-soft)}
 
 /* A closer portrait crop for Jothsna within the existing card frame. */
 .founder-photo img[src$="jothsna.webp"]{object-position:center bottom;transform:scale(1.2);transform-origin:center bottom}
@@ -79,3 +79,5 @@
   .founder-bio-toggle{right:20px;bottom:20px}
   .founder-flip::before,.founder-flip::after{width:24px;height:24px}
 }
+
+.founder-flip-back h4 .bio-about{font-size:.65em}
