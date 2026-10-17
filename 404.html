@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/assets/css/background.css">
   <link rel="stylesheet" href="/assets/css/polish.css">
   <script src="/assets/js/site.js" defer></script>
+  <script src="/assets/js/usecases-data.js"></script>
   <script src="/assets/js/background.js" defer></script>
   <link rel="stylesheet" href="/assets/css/footer.css">
   <link rel="stylesheet" href="/assets/css/beam.css">
@@ -84,7 +85,7 @@
   </footer>
 
   <script>
-    // Product and docs pages that are linked from the menu but not published yet.
+    // Product, docs and use-case pages that are linked from the menu but not published yet.
     (() => {
       const products = {
         "agenticlens": ["AgenticLens", "agenticlens", "agenticlens"],
@@ -94,23 +95,38 @@
         "mcp": ["MCP Server", "mcp-server", "deep-agentic-core-mcp"],
         "control-tower": ["Control Tower", "agenticops-control-tower", "agenticops-control-tower"]
       };
+      // use-case titles come from the same data file as the Use cases menu
+      const ucTitle = (pkgId, slug) => {
+        const pkg = (window.DAL_USECASES?.packages || []).find((p) => p.id === pkgId);
+        return pkg?.useCases?.find((u) => u.slug === slug)?.title || "";
+      };
       const path = location.pathname;
       document.getElementById("nf-path").textContent = path;
       const parts = path.split("/").filter(Boolean);
       const p = products[parts[0]];
       if (!p) return;
       const [name, repo, pkg] = p;
-      const isDocs = parts[1] === "docs";
-      document.getElementById("nf-label").textContent = isDocs ? "Docs · coming soon" : "Product page · coming soon";
-      document.getElementById("nf-title").innerHTML = `${name}${isDocs ? " docs" : ""}<br><span class="hl">are on the way.</span>`;
-      if (!isDocs) document.getElementById("nf-title").innerHTML = `${name}<br><span class="hl">page is on the way.</span>`;
+      const kind = parts[1] === "docs" ? "docs" : parts[1] === "usecases" ? "usecases" : "product";
+      const label = { docs: "Docs", usecases: "Use cases", product: "Product page" }[kind];
+      const noun = { docs: "documentation", usecases: "use-case", product: "product" }[kind];
+      // /<package>/usecases/<slug>: show that use case by name
+      const slug = kind === "usecases" && parts[2] ? parts[2] : "";
+      const words = slug.replace(/[-_]+/g, " ").trim();
+      const useCase = ucTitle(parts[0], slug) || (words ? words.charAt(0).toUpperCase() + words.slice(1) : "");
+      document.getElementById("nf-label").textContent = useCase ? `${name} use case · coming soon` : `${label} · coming soon`;
+      const esc = (t) => t.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+      document.getElementById("nf-title").innerHTML = kind === "product"
+        ? `${name}<br><span class="hl">page is on the way.</span>`
+        : useCase
+          ? `${esc(useCase)}<br><span class="hl">is on the way.</span>`
+          : `${name} ${kind === "docs" ? "docs" : "use cases"}<br><span class="hl">are on the way.</span>`;
       document.getElementById("nf-lede").textContent =
-        `This ${isDocs ? "documentation" : "product"} page isn't published yet. Until it is, the README on GitHub and the package on PyPI are the up-to-date sources for ${name}.`;
+        `This ${noun} page isn't published yet. Until it is, the README on GitHub and the package on PyPI are the up-to-date sources for ${name}.`;
       document.getElementById("nf-list").innerHTML =
         `<li><a href="https://github.com/DeepAgentLabs/${repo}"><span>${name} on GitHub</span><small>README ↗</small></a></li>` +
         `<li><a href="https://pypi.org/project/${pkg}/"><span>${name} on PyPI</span><small>pip install ${pkg} ↗</small></a></li>` +
         `<li><a href="/#dashboards"><span>What ${name} does</span><small>Homepage →</small></a></li>`;
-      document.title = `${name}${isDocs ? " docs" : ""} — coming soon · DeepAgentLabs`;
+      document.title = `${name}${kind === "product" ? "" : " " + label.toLowerCase()} — coming soon · DeepAgentLabs`;
     })();
   </script>
 </body>

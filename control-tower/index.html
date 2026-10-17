@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AgenticOps Control Tower: one registry and control plane for every AI agent you run. See which agents exist, what they run on, and what needs attention.">
+  <meta name="theme-color" content="#07110e">
+  <meta property="og:title" content="Control Tower · DeepAgentLabs">
+  <meta property="og:description" content="One place to see and run every AI agent you have.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://deepagentlabs.io/control-tower/">
+  <meta property="og:image" content="https://deepagentlabs.io/assets/img/ecosystem.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://deepagentlabs.io/control-tower/">
+  <title>Control Tower — DeepAgentLabs</title>
+  <script>document.documentElement.classList.add("pp-js")</script>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/enhance.css">
+    <link rel="stylesheet" href="/assets/css/nav.css">
+  <link rel="stylesheet" href="/assets/css/theme.css">
+  <link rel="stylesheet" href="/assets/css/background.css">
+  <link rel="stylesheet" href="/assets/css/copy.css">
+  <link rel="stylesheet" href="/assets/css/polish.css">
+  <link rel="stylesheet" href="/assets/css/product.css">
+  <script src="/assets/js/site.js" defer></script>
+    <script src="/assets/js/usecases-data.js" defer></script>
+  <script src="/assets/js/usecases.js" defer></script>
+  <script src="/assets/js/nav.js" defer></script>
+  <script src="/assets/js/background.js" defer></script>
+  <script src="/assets/js/copy.js" defer></script>
+  <script src="/assets/js/product.js" defer></script>
+  <link rel="stylesheet" href="/assets/css/footer.css">
+  <link rel="stylesheet" href="/assets/css/beam.css">
+  <script src="/assets/js/beam.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/fontawesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/brands.min.css">
+</head>
+<body class="product-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="DeepAgentLabs home">
+      <span class="brand-logo" aria-hidden="true"></span>
+      <span>DeepAgentLabs</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" aria-label="Primary navigation">
+      <div class="nav-item has-mega">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="mega-platform">Platform</button>
+        <div class="mega mega-compact mega-narrow" id="mega-platform">
+          <div class="mega-main">
+            <p class="mega-label">On this site</p>
+            <ul class="mega-grid">
+              <li><a class="mega-link mega-link-plain" href="/#loop"><span class="mega-text"><strong>The operating loop <i aria-hidden="true">→</i></strong><small>Define, observe, stress, evaluate, improve.</small></span></a></li>
+              <li><a class="mega-link mega-link-plain" href="/#dashboards"><span class="mega-text"><strong>Dashboards <i aria-hidden="true">→</i></strong><small>What each product shows you.</small></span></a></li>
+              <li><a class="mega-link mega-link-plain" href="/#why"><span class="mega-text"><strong>Why DeepAgentLabs <i aria-hidden="true">→</i></strong><small>How we differ from dashboards and SDK evals.</small></span></a></li>
+            </ul>
+          </div>
+          <a class="mega-side" href="/roadmap.html">
+            <span class="mega-label">Roadmap</span>
+            <strong>Step 1 of 8: v0.1 in review.</strong>
+            <span class="mega-side-copy">See where the specification is headed, phase by phase.</span>
+            <span class="mega-side-cta">View roadmap <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </div>
+      </div>
+      <div class="nav-item has-mega">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="mega-products">Products</button>
+        <div class="mega" id="mega-products">
+          <div class="mega-main">
+            <p class="mega-label">Products</p>
+            <ul class="mega-grid">
+              <li><a class="mega-link" href="/agenticlens"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/><circle cx="11" cy="11" r="2"/></svg></span><span class="mega-text"><strong>AgenticLens <i aria-hidden="true">→</i></strong><small>Observe — OTLP traces, cost and latency on live traffic.</small></span></a></li>
+              <li><a class="mega-link" href="/agentic-chaos"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 5 13h6l-1 9 8-11h-6l1-9z"/></svg></span><span class="mega-text"><strong>Agentic Chaos <i aria-hidden="true">→</i></strong><small>Stress — fault injection and drift testing across frameworks.</small></span></a></li>
+              <li><a class="mega-link" href="/agentic-sidecar"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6l-8-3z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="mega-text"><strong>Agentic Sidecar <i aria-hidden="true">→</i></strong><small>Govern — allow, warn or block actions against intent and policy.</small></span></a></li>
+              <li><a class="mega-link" href="/agentic-evals"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg></span><span class="mega-text"><strong>Agentic Evals <i aria-hidden="true">→</i></strong><small>Evaluate — deterministic and LLM-judge scoring behind a CI gate.</small></span></a></li>
+              <li><a class="mega-link" href="/mcp"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7V3M15 7V3M7 7h10v4a5 5 0 0 1-10 0V7zM12 16v5"/></svg></span><span class="mega-text"><strong>MCP Server <i aria-hidden="true">→</i></strong><small>Connect — every tool exposed through one MCP interface.</small></span></a></li>
+              <li><a class="mega-link" href="/control-tower"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span><span class="mega-text"><strong>Control Tower <i aria-hidden="true">→</i></strong><small>Operate — registry and console for every stage.</small></span></a></li>
+            </ul>
+          </div>
+          <a class="mega-side" href="https://github.com/DeepAgentLabs/ai-operations-spec">
+            <span class="mega-label">The shared contract</span>
+            <strong>AI Operations Specification</strong>
+            <span class="mega-side-copy">One vendor-neutral spec every product implements — so runs, steps and evaluations mean the same thing everywhere.</span>
+            <span class="mega-side-cta">Read the spec <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </div>
+      </div>
+      <div class="nav-item has-mega">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="mega-docs">Docs</button>
+        <div class="mega" id="mega-docs">
+          <div class="mega-main">
+            <p class="mega-label">Documentation</p>
+            <ul class="mega-grid">
+              <li><a class="mega-link" href="/agenticlens/docs"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><span class="mega-text"><strong>AgenticLens docs <i aria-hidden="true">→</i></strong><small><code>pip install agenticlens</code></small></span></a></li>
+              <li><a class="mega-link" href="/agentic-chaos/docs"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><span class="mega-text"><strong>Agentic Chaos docs <i aria-hidden="true">→</i></strong><small><code>pip install agentic-chaos</code></small></span></a></li>
+              <li><a class="mega-link" href="/agentic-sidecar/docs"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><span class="mega-text"><strong>Agentic Sidecar docs <i aria-hidden="true">→</i></strong><small><code>pip install agentic-sidecar</code></small></span></a></li>
+              <li><a class="mega-link" href="/agentic-evals/docs"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><span class="mega-text"><strong>Agentic Evals docs <i aria-hidden="true">→</i></strong><small><code>pip install agentic-evals</code></small></span></a></li>
+              <li><a class="mega-link" href="/mcp/docs"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><span class="mega-text"><strong>MCP Server docs <i aria-hidden="true">→</i></strong><small>Tools, resources and client setup.</small></span></a></li>
+              <li><a class="mega-link" href="/control-tower/docs"><span class="mega-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><span class="mega-text"><strong>Control Tower docs <i aria-hidden="true">→</i></strong><small><code>pip install agenticops-control-tower</code></small></span></a></li>
+            </ul>
+          </div>
+          <div class="mega-side mega-side-static">
+            <span class="mega-label">Start here</span>
+            <strong>Up and running in a minute.</strong>
+            <code class="mega-code">pip install agenticlens</code>
+            <span class="mega-side-copy">Instrument one agent, see its first trace, then add evals and chaos when you're ready.</span>
+            <span class="mega-label mega-pypi-label">On PyPI</span>
+            <div class="mega-pypi"><a href="https://pypi.org/project/agenticlens/" target="_blank" rel="noopener noreferrer">AgenticLens <span aria-hidden="true">↗</span></a><a href="https://pypi.org/project/agentic-chaos/" target="_blank" rel="noopener noreferrer">Chaos <span aria-hidden="true">↗</span></a><a href="https://pypi.org/project/agentic-evals/" target="_blank" rel="noopener noreferrer">Evals <span aria-hidden="true">↗</span></a><a href="https://pypi.org/project/agentic-sidecar/" target="_blank" rel="noopener noreferrer">Sidecar <span aria-hidden="true">↗</span></a><a href="https://pypi.org/project/deep-agentic-core-mcp/" target="_blank" rel="noopener noreferrer">MCP <span aria-hidden="true">↗</span></a><a href="https://pypi.org/project/agenticops-control-tower/" target="_blank" rel="noopener noreferrer">Control Tower <span aria-hidden="true">↗</span></a></div>
+            <a class="mega-side-cta" href="/agenticlens/docs">AgenticLens quickstart <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <!-- USE CASES MENU: content comes from assets/js/usecases-data.js (edit it there, not here).
+           assets/js/usecases.js fills the [data-uc-list] and [data-uc-most-asked] slots below. -->
+      <div class="nav-item has-mega">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="mega-usecases">Use cases</button>
+        <div class="mega mega-usecases" id="mega-usecases">
+          <div class="mega-main">
+            <p class="mega-label">Use cases</p>
+            <ul class="mega-grid" data-uc-list></ul>
+          </div>
+          <div class="mega-side mega-side-static">
+            <span class="mega-label">Start here</span>
+            <strong>See it on a real agent.</strong>
+            <span class="mega-side-copy">Each use case walks through the problem, the setup and the result, step by step.</span>
+            <span class="mega-label mega-pypi-label">Most asked</span>
+            <div class="mega-pypi" data-uc-most-asked></div>
+            <a class="mega-side-cta" href="https://discord.gg/fEqPFWgcDG" target="_blank" rel="noopener noreferrer">Share your use case <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <!-- /USE CASES MENU -->
+      <a href="/#architecture">Architecture</a>
+      <a href="/#faq">FAQ</a>
+      <a href="https://github.com/DeepAgentLabs/ai-operations-spec">Specification</a>
+      <a href="/roadmap.html" aria-current="page">Roadmap</a>
+      <a href="https://mcp.deepagentlabs.io" target="_blank" rel="noopener noreferrer">Remote MCP</a>
+      <a class="nav-cta" href="https://github.com/DeepAgentLabs">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+<main id="main">
+    <!-- Control Tower product page. Portal address used in the hero and the end band: https://controltower.deepagentlabs.io
+         Screenshots live in control-tower/img/ (taken from the console prototype). -->
+    <section class="pp-hero pp-enter" id="top">
+      <div class="pp-hero-copy">
+        <p class="pp-crumbs"><a href="/">Home</a><span aria-hidden="true">/</span><span>Products</span><span aria-hidden="true">/</span><b>Control Tower</b></p>
+        <p class="section-label">AgenticOps Control Tower · Operate</p>
+        <h1>Every agent,<br><span class="hl">one place.</span></h1>
+        <p class="pp-lede">One place to find, install and operate the DeepAgentLabs agent-operations stack. See which agents you run, how healthy they are and which tools each one has, then find the right tool for the next problem.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://controltower.deepagentlabs.io" target="_blank" rel="noopener noreferrer">Open Control Tower <span aria-hidden="true">↗</span></a>
+          <a class="button button-secondary" href="https://github.com/DeepAgentLabs/agenticops-control-tower" target="_blank" rel="noopener noreferrer">View on GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+        <code class="tl-pip pp-pip">pip install agenticops-control-tower</code>
+        <ul class="pp-facts" aria-label="Key facts">
+          <li>Free and open source</li><li>Self-hosted: data stays on your machine</li><li>v0.2.0 on PyPI · pre-alpha</li><li>Built on the AI Operations Spec</li>
+        </ul>
+      </div>
+
+      <div class="pp-fleet" aria-label="Example fleet view" data-fleet>
+        <div class="pp-fleet-top"><span>FLEET OVERVIEW · EXAMPLE</span><span class="pulse"><i class="live-dot" aria-hidden="true"></i>Live</span></div>
+        <div class="pp-fleet-total"><strong>48</strong><span>registered agents</span></div>
+        <div class="pp-fleet-bar" aria-hidden="true"><i class="ok" data-bar="ok" style="flex:41"></i><i class="warn" data-bar="warn" style="flex:5"></i><i class="bad" data-bar="bad" style="flex:2"></i></div>
+        <ul class="pp-fleet-legend">
+          <li><i class="ok"></i>Healthy <b data-count="ok">41</b></li><li><i class="warn"></i>Degraded <b data-count="warn">5</b></li><li><i class="bad"></i>Unhealthy <b data-count="bad">2</b></li><li><i class="unk"></i>Unknown <b>0</b></li>
+        </ul>
+        <ul class="pp-fleet-rows" data-fleet-rows>
+          <li data-state="ok"><span>support-triage</span><small>LangGraph</small><em>healthy</em><time>2s</time></li>
+          <li data-state="warn"><span>invoice-agent</span><small>CrewAI</small><em>degraded</em><time>9s</time></li>
+          <li data-state="ok"><span>research-bot</span><small>OpenAI Agents SDK</small><em>healthy</em><time>1s</time></li>
+          <li data-state="bad"><span>ops-runner</span><small>AutoGen</small><em>no heartbeat</em><time>4m</time></li>
+        </ul>
+        <div class="pp-feed">
+          <p class="pp-feed-title"><span>Recent activity</span><i aria-hidden="true"></i></p>
+          <ol class="pp-feed-list" data-fleet-feed aria-live="off">
+            <li><time>now</time><b class="ok">support-triage</b> sent a heartbeat</li>
+            <li><time>12s</time><b class="warn">invoice-agent</b> reported a slow tool call</li>
+            <li><time>4m</time><b class="bad">ops-runner</b> stopped checking in</li>
+          </ol>
+        </div>
+        <p class="pp-fleet-note">Example data, simulated live. Open Control Tower to see your own fleet.</p>
+      </div>
+    </section>
+
+    <section class="pp-stats section-shell" aria-label="Control Tower in numbers">
+      <ul class="pp-rv-kids">
+        <li><b data-count-to="6">6</b><span>tools in the catalog, each with version and stage</span></li>
+        <li><b data-count-to="4">4</b><span>health states: healthy, degraded, unhealthy, unknown</span></li>
+        <li><b data-count-to="1">1</b><span>command to install: <code>pip install agenticops-control-tower</code></span></li>
+        <li><b data-count-to="0">0</b><span>bytes sent to DeepAgentLabs when you self-host</span></li>
+      </ul>
+    </section>
+
+    <section class="pp-section section-shell" id="why">
+      <div class="pp-head pp-rv">
+        <p class="section-label">Why it exists</p>
+        <h2>More agents, less <em>visibility.</em></h2>
+        <p class="pp-sub">Teams start with one agent and soon run dozens, across different frameworks, machines and owners. Without one shared list, nobody can answer simple questions quickly.</p>
+      </div>
+      <div class="pp-problems pp-rv-kids">
+        <article><h3>“Which agents do we even have?”</h3><p>Agents live in different repos, notebooks and services. There is no single inventory.</p></article>
+        <article><h3>“Is anything broken right now?”</h3><p>An agent that silently stops working is often noticed only when a user complains.</p></article>
+        <article><h3>“Which tools does each one use?”</h3><p>Versions drift, and nobody knows which agent has AgenticLens, Sidecar or MCP, or which one is missing them.</p></article>
+      </div>
+      <p class="pp-answer pp-rv"><b>Control Tower answers all three</b> from one console: a fleet view of your agents, their health and the tools each one runs.</p>
+    </section>
+
+    <section class="pp-section section-shell pp-band pp-band-dark pp-fx" id="features">
+      <div class="pp-fx-head pp-rv">
+        <div>
+          <p class="section-label">What it does</p>
+          <h2>See every agent, know what <em>needs attention.</em></h2>
+        </div>
+        <p class="pp-fx-lede">Control Tower turns a scattered set of agents into one fleet you can read at a glance: who runs what, how healthy it is, and which tool to add next.</p>
+      </div>
+      <div class="pp-fx-track pp-rv-kids" data-pp-carousel tabindex="0" aria-label="Control Tower features (scroll sideways)">
+        <article class="pp-fc">
+          <div class="pp-fc-visual"><div class="pp-fc-window"><div class="pp-fc-bar"><i></i><i></i><i></i><span>Fleet · Agents</span><em>sample data</em></div><img src="/control-tower/img/feat-registry.webp" width="896" height="236" alt="Agents table with filters for status, environment and capability" loading="lazy"></div></div>
+          <h3>Fleet registry</h3>
+          <p>Every agent Control Tower knows about, with its environment, where it runs, its framework, its tools and when it was last seen. Filter by status, environment or capability.</p>
+        </article>
+        <article class="pp-fc">
+          <div class="pp-fc-visual"><div class="pp-fc-window"><div class="pp-fc-bar"><i></i><i></i><i></i><span>Fleet · Health</span><em>sample data</em></div><img src="/control-tower/img/feat-health.webp" width="896" height="104" alt="Health bar: healthy 1, degraded 1, unhealthy 0, unknown 0" loading="lazy"></div></div>
+          <h3>Health status</h3>
+          <p>One status per agent: healthy, degraded, unhealthy or unknown. A health bar across the fleet shows straight away where to look first.</p>
+        </article>
+        <article class="pp-fc">
+          <div class="pp-fc-visual"><div class="pp-fc-window"><div class="pp-fc-bar"><i></i><i></i><i></i><span>Fleet · Capability coverage</span><em>sample data</em></div><img src="/control-tower/img/feat-coverage.webp" width="896" height="200" alt="Capability coverage table: versions in use, coverage and missing agents per tool" loading="lazy"></div></div>
+          <h3>Capability coverage</h3>
+          <p>Which DeepAgentLabs tools each agent reports, the versions in use, and which agents are missing a tool, so gaps are easy to close.</p>
+        </article>
+        <article class="pp-fc">
+          <div class="pp-fc-visual"><div class="pp-fc-window"><div class="pp-fc-bar"><i></i><i></i><i></i><span>Chat · Tools</span><em>catalog</em></div><img src="/control-tower/img/feat-catalog.webp" width="334" height="405" alt="Tools in the catalog with version and stage: AgenticLens, Agentic Chaos, Agentic Sidecar, Agentic Evals, Agentic MCP, Control Tower" loading="lazy"></div></div>
+          <h3>Tool finder &amp; catalog</h3>
+          <p>Ask which tool fits a problem, or type @ to pick one. Browse tools, packages and use cases with their version, stage and install steps.</p>
+        </article>
+      </div>
+      <div class="pp-fx-nav">
+        <div class="pp-fx-progress" aria-hidden="true"><i data-pp-progress></i></div>
+        <button type="button" class="pp-fx-btn" data-pp-prev aria-label="Previous feature">←</button>
+        <button type="button" class="pp-fx-btn" data-pp-next aria-label="Next feature">→</button>
+      </div>
+    </section>
+    <section class="pp-section section-shell" id="run">
+      <div class="pp-head pp-rv">
+        <p class="section-label">Two ways to run it</p>
+        <h2>Your machine, or <em>ours.</em></h2>
+        <p class="pp-sub">Both use the same console. Pick the setup that fits you.</p>
+      </div>
+      <div class="pp-run pp-rv-kids">
+        <article class="pp-run-main">
+          <div class="pp-run-top"><h3>Self-hosted</h3><span class="pp-badge ok">Available as a Python package</span></div>
+          <p class="pp-run-sub">Run it yourself</p>
+          <p>Install Control Tower on your laptop or your own server. You sign in with an account that lives on that install, and nothing is sent to DeepAgentLabs: your agent inventory and history stay on the machine that runs it.</p>
+          <dl>
+            <div><dt>Account</dt><dd>A local account on your install. No DeepAgentLabs sign-up.</dd></div>
+            <div><dt>Where it runs</dt><dd>Your machine or your own server.</dd></div>
+            <div><dt>Where data lives</dt><dd>Local to that machine. No central database.</dd></div>
+            <div><dt>Install</dt><dd><code>pip install agenticops-control-tower</code></dd></div>
+          </dl>
+          <p class="pp-run-best"><b>Best for:</b> individual developers, and teams that need data to stay on their own infrastructure.</p>
+        </article>
+        <article class="pp-run-planned">
+          <div class="pp-run-top"><h3>Hosted</h3><span class="pp-badge warn">Planned · preview only</span></div>
+          <p class="pp-run-sub">Let DeepAgentLabs run it</p>
+          <p>DeepAgentLabs runs Control Tower in the cloud. You sign in from any browser and your workspace is stored centrally, so your whole team sees the same fleet without running servers.</p>
+          <dl>
+            <div><dt>Account</dt><dd>A DeepAgentLabs account.</dd></div>
+            <div><dt>Where it runs</dt><dd>DeepAgentLabs cloud.</dd></div>
+            <div><dt>Where data lives</dt><dd>Hosted database, per account.</dd></div>
+            <div><dt>Install</dt><dd>Nothing to install.</dd></div>
+          </dl>
+          <p class="pp-run-best"><b>Best for:</b> teams who want a shared workspace without installing or operating anything.</p>
+        </article>
+      </div>
+    </section>
+    <section class="pp-section section-shell pp-band pp-band-dark" id="console">
+      <div class="pp-head pp-rv">
+        <p class="section-label">Inside the console</p>
+        <h2>See it before you <em>install it.</em></h2>
+        <p class="pp-sub">The Control Tower console runs in your browser. These screens are from the current prototype, with sample data.</p>
+      </div>
+      <div class="pp-show pp-rv" data-pp-tabs>
+        <div class="pp-show-list" role="tablist" aria-label="Console screens">
+          <button type="button" role="tab" aria-selected="true" aria-controls="pp-shot-chat" id="pp-tab-chat">
+            <i class="pp-show-bar" aria-hidden="true"></i><b>Find the right tool</b>
+            <span>Ask which tool fits a problem, like cutting token costs, testing against failures or scoring answers. Answers come from the DeepAgentLabs catalog; no AI model is connected yet.</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="pp-shot-fleet" id="pp-tab-fleet">
+            <i class="pp-show-bar" aria-hidden="true"></i><b>See every agent's health</b>
+            <span>A health bar (healthy, degraded, unhealthy, unknown) and an agent table with status, where it runs, its tools and when it was last seen. Filter by status, environment or tool.</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="pp-shot-coverage" id="pp-tab-coverage">
+            <i class="pp-show-bar" aria-hidden="true"></i><b>Know who is missing what</b>
+            <span>Capability coverage shows which agents report each tool, the versions in use and which agents are missing it.</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="pp-shot-dark" id="pp-tab-dark">
+            <i class="pp-show-bar" aria-hidden="true"></i><b>Built for daily use</b>
+            <span>Search everything with Ctrl K, keep chat sessions, browse tools, packages and use cases, and switch between light and dark themes.</span>
+          </button>
+        </div>
+        <div class="pp-show-stage">
+          <figure role="tabpanel" id="pp-shot-chat" aria-labelledby="pp-tab-chat" class="is-on"><img src="/control-tower/img/console-chat.webp" width="816" height="510" alt="Control Tower console, Chat: 'Find the right tool for your agents' with suggested questions, and the tools in the catalog with their versions on the right" decoding="async"></figure>
+          <figure role="tabpanel" id="pp-shot-fleet" aria-labelledby="pp-tab-fleet" hidden><img src="/control-tower/img/console-fleet.webp" width="898" height="558" alt="Control Tower console, Fleet: health of 2 agents, filters, the agents table and the start of capability coverage, with sample data" decoding="async"></figure>
+          <figure role="tabpanel" id="pp-shot-coverage" aria-labelledby="pp-tab-coverage" hidden><img src="/control-tower/img/console-coverage.webp" width="898" height="558" alt="Control Tower console, capability coverage: versions in use, coverage and missing agents per tool, and the same view from the command line" decoding="async"></figure>
+          <figure role="tabpanel" id="pp-shot-dark" aria-labelledby="pp-tab-dark" hidden><img src="/control-tower/img/console-daily.webp" width="816" height="510" alt="Control Tower console in dark theme: the Ctrl K search bar and the chat start screen" decoding="async"></figure>
+          <p class="pp-show-hint">Screens change every few seconds · click one to enlarge it</p>
+          <ul class="pp-show-chips" aria-label="Console areas"><li>Chat</li><li>Fleet</li><li>Tools</li><li>Packages</li><li>Use cases</li><li>Guides</li></ul>
+        </div>
+      </div>
+    </section>
+    <section class="pp-section section-shell pp-band pp-band-white" id="how">
+      <div class="pp-head pp-rv">
+        <p class="section-label">How it works</p>
+        <h2>Up and running in <em>four steps.</em></h2>
+        <p class="pp-sub">Steps 3 and 4 use commands that are in the repository and ship in the next release (they need the <code>api</code> extra).</p>
+      </div>
+      <ol class="pp-steps pp-rv-kids">
+        <li><span>1</span><h3>Install</h3><p>Add the Python package. Today it gives you the registry, discovery and status Python API.</p><code class="pp-cmd">pip install agenticops-control-tower</code></li>
+        <li><span>2</span><h3>Describe your fleet</h3><p>Register your agents with where they run and which tools they use, or start from the example snapshot in the repository.</p><code class="pp-cmd">examples/sample_fleet_snapshot.json</code></li>
+        <li><span>3</span><h3>Start the server</h3><p>Serve the console and API from your machine, loading a fleet snapshot.</p><code class="pp-cmd">agenticops-control-tower serve --snapshot examples/sample_fleet_snapshot.json</code></li>
+        <li><span>4</span><h3>Check the fleet</h3><p>Open the Fleet page in the console, or ask for the fleet status from the command line.</p><code class="pp-cmd">agenticops-control-tower status</code></li>
+      </ol>
+    </section>
+
+
+
+
+
+    <section class="pp-section section-shell" id="health">
+      <div class="pp-split">
+        <div class="pp-head pp-rv">
+          <p class="section-label">Health at a glance</p>
+          <h2>Four states, no guesswork.</h2>
+          <p class="pp-sub">Every agent gets one simple status, so the fleet view shows straight away where to look first.</p>
+        </div>
+        <ul class="pp-states pp-rv-kids">
+          <li class="ok"><b>Healthy</b><span>Checking in and reporting no problems.</span></li>
+          <li class="warn"><b>Degraded</b><span>Still running, but reporting problems. Worth a look.</span></li>
+          <li class="bad"><b>Unhealthy</b><span>Not working as it should. Needs attention now.</span></li>
+          <li class="unk"><b>Unknown</b><span>No status reported yet.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="pp-section section-shell pp-band pp-band-dark" id="ecosystem">
+      <div class="pp-head pp-rv">
+        <p class="section-label">Part of the ecosystem</p>
+        <h2>The <em>operate</em> step of the loop.</h2>
+        <p class="pp-sub">Every DeepAgentLabs tool speaks the same AI Operations Specification. Control Tower sits at the end of the loop, knows the whole catalog and shows which agent runs what.</p>
+      </div>
+      <ol class="pp-loop pp-rv-kids">
+        <li><small>Define</small><b>AI Operations Spec</b></li>
+        <li><small>Observe</small><b>AgenticLens</b></li>
+        <li><small>Stress</small><b>Agentic Chaos</b></li>
+        <li><small>Evaluate</small><b>Agentic Evals</b></li>
+        <li class="is-here"><small>Operate</small><b>Control Tower</b></li>
+      </ol>
+      <div class="pp-stack pp-rv">
+        <p class="pp-works-title">The stack in the Control Tower catalog</p>
+        <table>
+          <thead><tr><th scope="col">Tool</th><th scope="col">What it's for</th><th scope="col">Version</th><th scope="col">Stage</th></tr></thead>
+          <tbody>
+            <tr><td><a href="/agenticlens">AgenticLens</a></td><td>Traces, cost and latency</td><td><code>v0.5.0</code></td><td><span class="pp-badge ok">Alpha</span></td></tr>
+            <tr><td><a href="/agentic-chaos">Agentic Chaos</a></td><td>Fault injection and drift testing</td><td><code>v0.4.0</code></td><td><span class="pp-badge ok">Alpha</span></td></tr>
+            <tr><td><a href="/agentic-sidecar">Agentic Sidecar</a></td><td>Allow, warn or block actions</td><td><code>v0.6.0</code></td><td><span class="pp-badge warn">Pre-alpha</span></td></tr>
+            <tr><td><a href="/agentic-evals">Agentic Evals</a></td><td>Scoring and CI gates</td><td><code>v0.7.0</code></td><td><span class="pp-badge beta">Beta</span></td></tr>
+            <tr><td><a href="/mcp">Agentic MCP</a></td><td>Every tool through one MCP interface</td><td><code>v0.3.0</code></td><td><span class="pp-badge ok">Alpha</span></td></tr>
+            <tr class="is-here"><td>Control Tower</td><td>Fleet registry and console</td><td><code>v0.2.0</code></td><td><span class="pp-badge warn">Pre-alpha</span></td></tr>
+          </tbody>
+        </table>
+        <p class="pp-stack-note">Versions as listed in the Control Tower catalog (updated 10 Oct 2026).</p>
+      </div>
+      <div class="pp-works pp-rv">
+        <p class="pp-works-title">Works with any framework</p>
+        <ul><li>LangGraph</li><li>CrewAI</li><li>OpenAI Agents SDK</li><li>AutoGen</li><li>LlamaIndex</li><li>Your own agents</li></ul>
+      </div>
+    </section>
+
+
+    <section class="pp-section section-shell pp-band pp-band-white" id="status">
+      <div class="pp-head pp-rv">
+        <p class="section-label">Status</p>
+        <h2>Where it is today.</h2>
+        <p class="pp-sub">Control Tower is pre-alpha and built in the open. Here's exactly what you can use now and what's coming.</p>
+      </div>
+      <div class="pp-status pp-status-4 pp-rv-kids">
+        <div><p class="pp-status-title"><i class="ok"></i>Available now</p><ul><li>v0.2.0 on PyPI</li><li>Registry, discovery and status Python API</li></ul></div>
+        <div><p class="pp-status-title"><i class="beta"></i>Next release</p><ul><li><code>serve</code> command</li><li><code>status</code> CLI</li><li>Both need the <code>api</code> extra</li></ul></div>
+        <div><p class="pp-status-title"><i class="warn"></i>Preview</p><ul><li>The console: Chat, Fleet, catalog and guides</li><li>Local sign-in</li></ul></div>
+        <div><p class="pp-status-title"><i class="unk"></i>Planned</p><ul><li>Hosted Control Tower</li><li>Console packaging</li><li>Fleet page connected to a running server</li><li>An AI model behind Chat</li></ul></div>
+      </div>
+    </section>
+
+    <section class="pp-section section-shell" id="faq">
+      <div class="pp-split">
+        <div class="pp-head pp-rv">
+          <p class="section-label">FAQ</p>
+          <h2>Common questions.</h2>
+          <p class="pp-sub">Quick answers about cost, data, the chat and what works today.</p>
+          <div class="pp-faq-help">
+            <b>Still have questions?</b>
+            <span>Ask the community on Discord, or open an issue on GitHub. Feature ideas are welcome too.</span>
+            <div class="pp-faq-help-actions">
+              <a class="button button-primary" href="https://discord.gg/fEqPFWgcDG" target="_blank" rel="noopener noreferrer">Ask on Discord</a>
+              <a class="button button-secondary" href="https://github.com/DeepAgentLabs/agenticops-control-tower/issues" target="_blank" rel="noopener noreferrer">Open an issue <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="pp-faq pp-rv-kids">
+          <details><summary>Is Control Tower free?</summary><p>Yes. It's open source and free to use, like every DeepAgentLabs package.</p></details>
+          <details><summary>Does my data leave my machine?</summary><p>Not when you self-host. Your agent inventory and history stay on the machine that runs Control Tower, with a local account and no central database. The hosted version, when it arrives, stores your workspace in the DeepAgentLabs cloud.</p></details>
+          <details><summary>Is the chat an AI model?</summary><p>Not yet. Answers come from the DeepAgentLabs catalog of tools. Connecting an AI model is planned.</p></details>
+          <details><summary>Can I use it today?</summary><p>Yes, as a Python package: v0.2.0 on PyPI gives you the registry, discovery and status API. The <code>serve</code> command and the CLI ship in the next release, and the console is a preview.</p></details>
+          <details><summary>Which frameworks does it support?</summary><p>Any. The sample fleet includes agents built with LangGraph and the OpenAI Agents SDK, running on AWS Lambda and Docker.</p></details>
+          <details><summary>Where do I ask questions or report bugs?</summary><p>Open an issue on <a href="https://github.com/DeepAgentLabs/agenticops-control-tower" target="_blank" rel="noopener noreferrer">GitHub</a>, request a feature from inside the console, or ask on <a href="https://discord.gg/fEqPFWgcDG" target="_blank" rel="noopener noreferrer">Discord</a>.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta section-shell pp-cta">
+      <div>
+        <p class="section-label">Try it</p>
+        <h2>Open the Control Tower console.</h2>
+        <p>Explore the console preview, or install the package and run it on your own machine.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="button button-primary" href="https://controltower.deepagentlabs.io" target="_blank" rel="noopener noreferrer">Open Control Tower <span aria-hidden="true">↗</span></a>
+        <a class="button button-secondary" href="https://pypi.org/project/agenticops-control-tower/" target="_blank" rel="noopener noreferrer">PyPI <span aria-hidden="true">↗</span></a>
+        <a class="button button-secondary" href="https://discord.gg/fEqPFWgcDG" target="_blank" rel="noopener noreferrer">Ask on Discord</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="ft-inner">
+      <div class="ft-about">
+        <p class="ft-statement">Open infrastructure for <em>observable, efficient and resilient</em> AI agents, built in the open.</p>
+        <ul class="ft-values" aria-label="Principles"><li>Spec comes first</li><li>Works with any framework</li><li>Runs on your machine</li><li>Free and open source</li></ul>
+      </div>
+      <nav class="ft-col" aria-label="Products"><p class="ft-title">Products</p><ul><li><a href="https://github.com/DeepAgentLabs/agenticlens" target="_blank" rel="noopener noreferrer">AgenticLens</a></li><li><a href="https://github.com/DeepAgentLabs/agentic-evals" target="_blank" rel="noopener noreferrer">Agentic Evals</a></li><li><a href="https://github.com/DeepAgentLabs/agentic-sidecar" target="_blank" rel="noopener noreferrer">Agentic Sidecar</a></li><li><a href="https://github.com/DeepAgentLabs/agentic-chaos" target="_blank" rel="noopener noreferrer">Agentic Chaos</a></li><li><a href="https://github.com/DeepAgentLabs/mcp-server" target="_blank" rel="noopener noreferrer">MCP Server</a></li><li><a href="https://github.com/DeepAgentLabs/agenticops-control-tower" target="_blank" rel="noopener noreferrer">Control Tower</a></li></ul></nav>
+      <nav class="ft-col" aria-label="Explore"><p class="ft-title">Explore</p><ul><li><a href="https://github.com/DeepAgentLabs/ai-operations-spec" target="_blank" rel="noopener noreferrer">Specification</a></li><li><a href="/roadmap.html">Roadmap</a></li><li><a href="/#architecture">Capability map</a></li><li><a href="/#dashboards">Frameworks</a></li><li><a href="/#faq">FAQ</a></li><li><a href="https://mcp.deepagentlabs.io" target="_blank" rel="noopener noreferrer">Remote MCP</a></li></ul></nav>
+      <nav class="ft-col" aria-label="Community"><p class="ft-title">Community</p><ul><li><a href="https://discord.gg/fEqPFWgcDG" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-discord" aria-hidden="true"></i> Discord</a></li><li><a href="https://www.linkedin.com/company/deepagentlabs" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a></li><li><a href="https://www.instagram.com/deepagentlabs.io" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a></li><li><a href="https://github.com/DeepAgentLabs" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></li></ul></nav>
+    </div>
+    <div class="ft-word" aria-hidden="true"><span class="ft-word-text"><span class="ft-w1">DeepAgent</span><span class="ft-w2">Labs</span></span></div>
+    <div class="ft-bottom">
+      <p>© <span id="year">2026</span> DeepAgentLabs</p>
+      <p class="ft-status"><i aria-hidden="true"></i>AI Operations Specification · v0.1 in review</p>
+      <a class="ft-top" href="#top">Back to top <span aria-hidden="true">↑</span></a>
+    </div>
+  </footer>
+</body>
+</html>
