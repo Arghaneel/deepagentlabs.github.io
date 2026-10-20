@@ -19,11 +19,12 @@
     .usecases-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
     .usecase{min-height:300px;padding:30px 28px;border:1px solid var(--ink);display:flex;flex-direction:column;background:#fff}
     .usecase:nth-child(2){background:var(--mint)}
-    .usecase:nth-child(3){background:var(--ink);color:#fff}
+    .usecase.usecase-dark{background:#07110e !important;color:#fff !important;border-color:#07110e !important}
     .usecase-number{font:500 11px 'DM Mono',monospace;letter-spacing:.12em;color:var(--acid)}
     .usecase h2{font-size:26px;line-height:1.05;margin:58px 0 14px}
     .usecase p{font-size:15px;line-height:1.6;color:#51605a}
-    .usecase:nth-child(3) p{color:#c7d0ca}
+    .usecase.usecase-dark p{color:#c7d0ca !important}
+    .usecase.usecase-dark .usecase-number{color:#b7f343 !important}
     .usecase a{margin-top:auto;padding-top:24px;color:inherit}
     .usecases-foot{margin-top:34px;font-size:14px;color:var(--ink-soft)}
     @media(max-width:820px){.usecases-grid{grid-template-columns:1fr}.usecase{min-height:240px}.usecases-nav{margin-bottom:60px}}
@@ -41,7 +42,7 @@
       <p>Connect one MCP client to workflow analysis, resilience testing, and release evidence across the DeepAgentLabs ecosystem.</p>
     </header>
     <section class="usecases-grid" aria-label="MCP Server use cases">
-      <article class="usecase">
+      <article class="usecase usecase-dark">
         <span class="usecase-number">01</span>
         <h2>Workflow Analysis</h2>
         <p>Inspect workflow evidence, compare runs, and surface performance, quality, and reliability findings through AgenticLens.</p>
