@@ -5,6 +5,49 @@ together, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## October 2026
 
+### Control Tower page: livelier hero
+- Entrance animation: the headline rises in and the lime highlight sweeps across, then the text, buttons and install line follow; the fleet card slides in (rises in on phones), its bar grows and the agent rows appear one by one.
+- The fleet card now has a **Recent activity** feed: new events slide in as the simulated fleet changes ("invoice-agent recovered → healthy", "ops-runner stopped checking in", heartbeats).
+- New numbers strip under the hero that counts up when it comes into view: 6 tools in the catalog · 4 health states · 1 command to install · 0 bytes sent to DeepAgentLabs when you self-host.
+- All motion is off with "reduce motion".
+
+### Control Tower page: layout polish
+- Less empty space between sections (especially under the hero).
+- Two ways to run it: Self-hosted is now a dark card with a lime shadow (the one available today), Hosted a light dashed card with an amber "planned" badge, for clearer contrast.
+- How it works: one wide row per step (number, what to do, and the command on the right) instead of four narrow columns.
+- FAQ: a short intro and a "Still have questions?" box (Discord, GitHub issues) fill the left column.
+
+### Control Tower page: features carousel
+- "What it does" is now a dark section like modern product sites: heading on the left, a short paragraph on the right, and four large feature cards (Fleet registry, Health status, Capability coverage, Tool finder & catalog) that scroll sideways. Each card shows a framed close-up from the console (`control-tower/img/feat-*.webp`) with a title and description. Arrows, a progress line, keyboard arrows, swipe and mouse-drag all work.
+- Removed the "What teams use it for" section from the Control Tower page.
+- New section order: hero, why it exists, what it does, two ways to run it, inside the console, how it works, health, ecosystem, status, FAQ.
+
+### Control Tower page
+- New page at `/control-tower/` (the Products menu's Control Tower link opens it). Content now matches the Control Tower console prototype.
+- Hero: "Every agent, one place.", **Open Control Tower ↗** (https://controltower.deepagentlabs.io) and GitHub, `pip install agenticops-control-tower`, key facts (v0.2.0 on PyPI, pre-alpha; self-hosted data stays on your machine) and a simulated live fleet card.
+- **Inside the console:** real screenshots (Chat tool finder, Fleet, capability coverage, dark theme) in `control-tower/img/`, cropped to the frame size (816×510) so they show at full sharpness. The list moves to the next screen every 5 s and loops (progress bar on the active item); clicking an item jumps there and the cycle carries on; it pauses only while a screenshot is enlarged; click a screenshot to enlarge it.
+- **Two ways to run it:** self-hosted (available as a Python package, data stays local) vs hosted (planned, preview only), with account / where it runs / where data lives / install.
+- **How it works** with the real commands (`serve --snapshot …`, `status`; ship in the next release, need the `api` extra), health states including Unknown, the catalog table (AgenticLens v0.5.0 … Control Tower v0.2.0 with stages), Status (available now / next release / preview / planned) and an updated FAQ.
+- Full-width white and dark bands, sections fade in on scroll; reduce motion turns animations off.
+
+### Spacing fixes and hero intro
+- Clear space after the logo at every desktop width (it was only 16px on most screens); menu spacing is set per width so all items still fit on one row.
+- Docs and Use cases menus: link rows back to normal spacing; the dark card is more compact instead (its one-line description hides on narrower desktops), so there is no empty band at the bottom.
+- The hero now tells first-time visitors who we are: the intro adds "We write one open standard for operating AI agents and build free tools on top of it.", and a short row under the buttons covers **Who we are** (an open-source AI research and learning community), **What we build** (one open spec and six free tools) and **Who it's for** (anyone running agents; any framework, runs locally). It replaces the Language-neutral / Framework-agnostic / Local-first checkmarks.
+
+### Dropdown arrows and menu order
+- New menu order: **Platform, Products, Docs, Use cases**, then the plain links.
+- All four dropdowns show a small arrow (chevron) after the name, so visitors can see they open a menu without hovering. It flips while the menu is open. Desktop only; phones keep the +/- boxes.
+- Removed the first-visit "New here?" tip (`assets/js/nav-hint.js` deleted).
+- Menu spacing adjusted so everything still fits on one row at every desktop width.
+
+### Use cases menu
+- New **Use cases** dropdown in the top menu (homepage and roadmap page), after Docs (last of the dropdowns). It reuses the Products / Docs markup, styling and `nav.js` behaviour (hover or click on desktop, accordion inside the phone menu).
+- Same layout as the Products and Docs menus: one item per package (AgenticLens, Agentic Chaos, Agentic Sidecar, Agentic Evals, MCP Server, Control Tower) with its icon, "<name> use cases" and a short line, linking to `/<package>/usecases/`. Individual use cases are linked from the "Most asked" chips and live at `/<package>/usecases/<slug>/`.
+- The menu content lives in one data file, `assets/js/usecases-data.js`, and is built by `assets/js/usecases.js`, so use cases can be renamed or relinked without touching the HTML. The use cases listed now are placeholders. Packages link to `/<package>/usecases/`, use cases to `/<package>/usecases/<slug>/` (or any `href` set in the data file).
+- A dark "Start here" card on the right, like the Docs menu, links to the most asked use cases and invites people to share theirs on Discord.
+- Until the pages exist, `404.html` shows a "Use cases · coming soon" page naming the use case, with the framework's GitHub and PyPI links.
+
 ### Synced with the live site
 - The **Build with us** band now comes before the newsletter, so the newsletter sign-up sits just above the footer.
 - Added the **Remote MCP** link (`https://mcp.deepagentlabs.io`) from the live site to the top menu on every page and to the footer's Explore column.

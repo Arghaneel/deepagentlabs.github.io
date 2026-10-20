@@ -125,3 +125,14 @@ html{scroll-padding-top:calc(var(--header-h) + 12px)}
 .mcp-use-case-card-dark:hover{box-shadow:8px 8px 0 var(--acid)}
 @media(max-width:900px){.mcp-use-case-grid{grid-template-columns:1fr 1fr}.mcp-use-case-card:last-child{grid-column:1/-1}}
 @media(max-width:620px){.mcp-use-case-grid{grid-template-columns:1fr}.mcp-use-case-card:last-child{grid-column:auto}}
+
+/* hero: short "about us" row under the buttons (who we are / what we build / who it's for) */
+.hero-about{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:34px 0 0;max-width:660px;font-size:inherit;color:inherit}
+.hero-about>div{padding:0 18px;border-left:1px solid var(--line)}
+.hero-about>div:first-child{padding-left:0;border-left:0}
+.hero-about dt{font:500 10.5px 'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#4c7b13}
+.hero-about dd{margin:5px 0 0;font-size:13px;line-height:1.45;color:#46504b}
+@media(max-width:680px){
+  .hero-about{grid-template-columns:1fr;gap:12px;margin-top:28px}
+  .hero-about>div,.hero-about>div:first-child{padding:0 0 0 12px;border-left:2px solid var(--acid)}
+}

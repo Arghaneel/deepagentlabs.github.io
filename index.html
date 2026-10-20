@@ -33,6 +33,8 @@
   <script src="assets/js/enhance.js" defer></script>
   <script src="assets/js/adoption.js" defer></script>
   <script src="assets/js/roadmap.js" defer></script>
+  <script src="assets/js/usecases-data.js" defer></script>
+  <script src="assets/js/usecases.js" defer></script>
   <script src="assets/js/nav.js" defer></script>
   <script src="assets/js/background.js" defer></script>
   <script src="assets/js/copy.js" defer></script>
@@ -54,6 +56,26 @@
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" aria-label="Primary navigation">
+      <div class="nav-item has-mega">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="mega-platform">Platform</button>
+        <div class="mega mega-compact mega-narrow" id="mega-platform">
+          <div class="mega-main">
+            <p class="mega-label">On this site</p>
+            <ul class="mega-grid">
+              <li><a class="mega-link mega-link-plain" href="#loop"><span class="mega-text"><strong>The operating loop <i aria-hidden="true">→</i></strong><small>Define, observe, stress, evaluate, improve.</small></span></a></li>
+              <li><a class="mega-link mega-link-plain" href="#dashboards"><span class="mega-text"><strong>Dashboards <i aria-hidden="true">→</i></strong><small>What each product shows you.</small></span></a></li>
+              <li><a class="mega-link mega-link-plain" href="#why"><span class="mega-text"><strong>Why DeepAgentLabs <i aria-hidden="true">→</i></strong><small>How we differ from dashboards and SDK evals.</small></span></a></li>
+              <li><a class="mega-link mega-link-plain" href="#community"><span class="mega-text"><strong>Community <i aria-hidden="true">→</i></strong><small>Discord, LinkedIn, Instagram and GitHub.</small></span></a></li>
+            </ul>
+          </div>
+          <a class="mega-side" href="roadmap.html">
+            <span class="mega-label">Roadmap</span>
+            <strong>Step 1 of 8: v0.1 in review.</strong>
+            <span class="mega-side-copy">See where the specification is headed, phase by phase.</span>
+            <span class="mega-side-cta">View roadmap <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </div>
+      </div>
       <div class="nav-item has-mega">
         <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="mega-products">Products</button>
         <div class="mega" id="mega-products">
@@ -101,26 +123,26 @@
           </div>
         </div>
       </div>
+      <!-- USE CASES MENU: content comes from assets/js/usecases-data.js (edit it there, not here).
+           assets/js/usecases.js fills the [data-uc-list] and [data-uc-most-asked] slots below. -->
       <div class="nav-item has-mega">
-        <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="mega-platform">Platform</button>
-        <div class="mega mega-compact mega-narrow" id="mega-platform">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="mega-usecases">Use cases</button>
+        <div class="mega mega-usecases" id="mega-usecases">
           <div class="mega-main">
-            <p class="mega-label">On this site</p>
-            <ul class="mega-grid">
-              <li><a class="mega-link mega-link-plain" href="#loop"><span class="mega-text"><strong>The operating loop <i aria-hidden="true">→</i></strong><small>Define, observe, stress, evaluate, improve.</small></span></a></li>
-              <li><a class="mega-link mega-link-plain" href="#dashboards"><span class="mega-text"><strong>Dashboards <i aria-hidden="true">→</i></strong><small>What each product shows you.</small></span></a></li>
-              <li><a class="mega-link mega-link-plain" href="#why"><span class="mega-text"><strong>Why DeepAgentLabs <i aria-hidden="true">→</i></strong><small>How we differ from dashboards and SDK evals.</small></span></a></li>
-              <li><a class="mega-link mega-link-plain" href="#community"><span class="mega-text"><strong>Community <i aria-hidden="true">→</i></strong><small>Discord, LinkedIn, Instagram and GitHub.</small></span></a></li>
-            </ul>
+            <p class="mega-label">Use cases</p>
+            <ul class="mega-grid" data-uc-list></ul>
           </div>
-          <a class="mega-side" href="roadmap.html">
-            <span class="mega-label">Roadmap</span>
-            <strong>Step 1 of 8: v0.1 in review.</strong>
-            <span class="mega-side-copy">See where the specification is headed, phase by phase.</span>
-            <span class="mega-side-cta">View roadmap <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </a>
+          <div class="mega-side mega-side-static">
+            <span class="mega-label">Start here</span>
+            <strong>See it on a real agent.</strong>
+            <span class="mega-side-copy">Each use case walks through the problem, the setup and the result, step by step.</span>
+            <span class="mega-label mega-pypi-label">Most asked</span>
+            <div class="mega-pypi" data-uc-most-asked></div>
+            <a class="mega-side-cta" href="https://discord.gg/fEqPFWgcDG" target="_blank" rel="noopener noreferrer">Share your use case <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
         </div>
       </div>
+      <!-- /USE CASES MENU -->
       <a href="#architecture">Architecture</a>
       <a href="#faq">FAQ</a>
       <a href="https://github.com/DeepAgentLabs/ai-operations-spec">Specification</a>
@@ -135,14 +157,16 @@
       <div class="hero-copy">
         <p class="eyebrow"><span class="status-dot"></span> Building in the open</p>
         <h1>AI operations need a <em>shared language.</em></h1>
-        <p class="hero-lede">DeepAgentLabs is a specification-first ecosystem for understanding how AI systems run, what they cost, and how they fail.</p>
+        <p class="hero-lede">DeepAgentLabs is a specification-first ecosystem for understanding how AI systems run, what they cost, and how they fail. We write one open standard for operating AI agents and build free tools on top of it.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="https://github.com/DeepAgentLabs/ai-operations-spec">Explore the specification</a>
           <a class="button button-secondary" href="#dashboards">See the ecosystem</a>
         </div>
-        <div class="hero-proof" aria-label="Project principles">
-          <span>Language-neutral</span><span>Framework-agnostic</span><span>Local-first</span>
-        </div>
+        <dl class="hero-proof hero-about" aria-label="About DeepAgentLabs">
+          <div><dt>Who we are</dt><dd>An open-source AI research and learning community.</dd></div>
+          <div><dt>What we build</dt><dd>One open spec and six free tools for AI agents.</dd></div>
+          <div><dt>Who it's for</dt><dd>Anyone running agents. Any framework, runs locally.</dd></div>
+        </dl>
       </div>
 
       <div class="system-card" aria-label="DeepAgentLabs ecosystem model">
