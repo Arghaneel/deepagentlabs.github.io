@@ -99,7 +99,7 @@
   new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(card);
   let tick = 0;
   setInterval(() => {
-    if (!visible || document.hidden) return;
+    if (!visible || document.hidden || card.dataset.manual === "true") return;
     tick += 1;
     rows.forEach((r, i) => {
       const st = r.dataset.state;

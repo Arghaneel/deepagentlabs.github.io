@@ -271,3 +271,71 @@ Packages: agenticlens, agentic-chaos, agentic-evals, deep-agentic-core-mcp, agen
 ## Not Changed
 
 The Architecture infographic's data, rendering logic, relationships, and Trace Request implementation were not rewritten. Existing package descriptions, footer, deployment setup, and static-site approach were retained.
+
+## Product simulations
+
+Five product pages now include a static example dashboard enhanced with automatic
+three-step playback, pause/play and next-step controls. Control Tower retains its
+existing fleet demo. Lens shows a distributed trace waterfall and per-run token
+and latency totals; Evals shows scoring and release gates; Sidecar shows policy
+and authority outcomes; Chaos shows timeout recovery; MCP shows tool activity.
+All panels explicitly label the data as simulated and make no backend requests.
+Playback pauses offscreen, in background tabs, and while a control has focus.
+Reduced-motion visitors get manual playback. Without JavaScript the first frame
+remains readable.
+
+Canonical data and HTML generation live in `scripts/sync_product_simulations.py`.
+Run `python3 scripts/sync_product_simulations.py` with the five sibling product
+repositories checked out to regenerate their landing pages. Shared styles and
+behavior are in `assets/css/simulations.css` and `assets/js/simulations.js`.
+Product HTML references these assets at `https://deepagentlabs.github.io/assets/`;
+publish the organization-site assets before or alongside the product pages.
+Existing product workflows already copy the updated HTML into their Pages builds.
+
+Validation: `python3 -m unittest discover -s scripts -p 'test_product_simulations.py'`.
+Browser checks cover controls and overflow at 390px and 1280px for all five pages.
+
+### Hands-on scenarios
+
+Each example now has product-specific controls. Lens steps expose sample latency,
+tokens, cost and findings, plus an advisory recommendation. Chaos offers timeout,
+rate-limit and corrupted-output scenarios with distinct recovery outcomes.
+Sidecar displays original intent and a proposed refund; Observe stays advisory,
+while Govern pauses for sample approval or rejection. Evals lets visitors run
+four cases, inspect latency failure evidence and change the minimum pass rate
+without changing the underlying case results. MCP exposes two simulated calls
+with structured illustrative results and explains hosted/local availability.
+Control Tower adds sample health filters, agent details, stale heartbeats and
+recovery, with fleet totals and activity updated together. Manual fleet
+interaction pauses the background simulation.
+
+Browser regression checks are in `scripts/check_product_simulations.cjs` (requires
+Playwright and the local preview at localhost:8765, or set
+`SIMULATION_PREVIEW_URL`). They exercise every action at mobile and desktop
+widths, including repeated stale-heartbeat actions and the 75% gate boundary.
+
+## Uniform product website theme
+
+Control Tower is the default visual theme for AgenticLens, Agentic Evals,
+Agentic Sidecar, Agentic Chaos and MCP. These pages now use its actual shared
+navigation and footer, typography, dotted paper background, lime highlights,
+square buttons, dark preview panels and section spacing. The common styles in
+`assets/css/product-uniform.css` also cover the retained product sections,
+examples, code tabs and original interactive tours. The old product-specific
+landing stylesheets remain in their repositories but are no longer loaded by
+these pages. Product documentation styles are unaffected.
+
+Run `python3 -B scripts/unify_product_pages.py` to regenerate the shared shell
+with sibling product checkouts present. The operation preserves content sections
+and is idempotent. Sidecar's integrations and audience information now live in
+a content section instead of inside its old footer. MCP's two use-case sections
+that previously appeared after the document closing tags now sit within main.
+The existing simulation generator also recognizes the shared `pp-hero` layout.
+Publish the shared website styles before or alongside the product-page HTML.
+
+Validation: `python3 -B -m unittest discover -s scripts -p 'test_product*.py'`
+checks shared shells, single landmarks, unique IDs, working internal anchors,
+retained content sections and simulation data. The browser regression script
+also checks theme tokens, mobile menu operation and all six interactive demos.
+Original Lens release-gate controls, Evals code tabs and Sidecar demo actions
+and code tabs were checked in the local preview.
