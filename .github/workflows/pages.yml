@@ -1,0 +1,62 @@
+name: Website and repository docs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 6 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: website-pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: DeepAgentLabs/mcp-server
+          ref: main
+          path: _sources/mcp-server
+      - uses: actions/checkout@v4
+        with:
+          repository: DeepAgentLabs/agenticops-control-tower
+          ref: main
+          path: _sources/agenticops-control-tower
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install documentation builder
+        run: pip install -r scripts/docs-requirements.txt
+      - name: Stage website
+        run: |
+          mkdir -p "$RUNNER_TEMP/website"
+          rsync -a --exclude='.git' --exclude='.github' --exclude='_sources' ./ "$RUNNER_TEMP/website/"
+      - name: Build repository documentation at website aliases
+        run: python scripts/build_docs.py --sources _sources --output "$RUNNER_TEMP/website"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/website
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/deploy-pages@v4
+        id: deployment

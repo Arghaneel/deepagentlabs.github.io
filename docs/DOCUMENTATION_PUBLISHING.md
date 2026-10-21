@@ -1,0 +1,45 @@
+# Documentation publishing
+
+The homepage's Docs menu links to repository-owned documentation. Keep the
+source in the product repositories; do not maintain a second copy here.
+
+| URL | Source | Publisher |
+|---|---|---|
+| `/agenticlens/docs/` | `agenticlens/docs` | AgenticLens Pages workflow |
+| `/agentic-sidecar/docs/` | `agentic-sidecar/website/docs` | Sidecar Pages workflow |
+| `/agentic-chaos/docs/` | `agentic-chaos/docs` | Chaos Pages workflow |
+| `/agentic-evals/docs/` | `agentic-evals/docs/docs/index.html` | Evals Pages branch deployment |
+| `/mcp/docs/` | `mcp-server/docs` and its MkDocs config | This website's Pages workflow |
+| `/control-tower/docs/` | `agenticops-control-tower/docs`, README and examples | This website's Pages workflow |
+
+The MCP and Tower paths differ from their repository names, so this website
+builds them into its deployment artifact. Product pages and other website
+assets are preserved. The workflow fetches both repositories' `main` branches
+on website pushes, daily, or when manually dispatched. Pull requests build an
+artifact without deploying. Documentation source is never executed as Python;
+only the MkDocs configuration is loaded. Source repositories are trusted inputs.
+
+Local preview (run from this repository, with sibling repositories available):
+
+```sh
+uv run --no-project --with-requirements scripts/docs-requirements.txt \
+  python scripts/build_docs.py --sources .. --output /tmp/dal-docs/site
+python3 -m http.server 8000 --directory /tmp/dal-docs/site
+```
+
+Open `/mcp/docs/` and `/control-tower/docs/`. The script writes generated output
+and Tower staging files outside the source repositories.
+
+For the first website deployment, select **GitHub Actions** under the website
+repository's Settings → Pages → Build and deployment → Source. Merge the
+workflow and builder, then run **Website and repository docs**. This replaces
+the website's branch-only deployment with one artifact containing the website
+and both generated documentation trees.
+
+Sidecar and Chaos also require **GitHub Actions** as their Pages source;
+serving their Markdown source folders directly does not expose the workflows'
+`site/docs` output. Their Pages settings were corrected and docs workflows
+redispatched during the 2026-10-21 audit.
+
+Evals currently serves a handwritten HTML guide. Its additional Markdown files
+are not automatically converted into pages by that branch deployment.

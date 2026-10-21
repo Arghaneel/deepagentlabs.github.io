@@ -137,7 +137,8 @@ agent frameworks, AI tooling or reliability practices, now is the time to shape 
 <br>
 
 This repo is the source for [deepagentlabs.io](https://deepagentlabs.io), served by GitHub Pages.
-Plain HTML, CSS and JavaScript: no framework, no build step.
+Plain HTML, CSS and JavaScript. The Pages workflow also builds MCP and Control Tower
+documentation from their source repositories; see [documentation publishing](docs/DOCUMENTATION_PUBLISHING.md).
 
 ```
 index.html      Homepage
