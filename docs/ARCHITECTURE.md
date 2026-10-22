@@ -65,32 +65,17 @@ Rules of thumb:
 
 ### Updating the Use cases menu
 
-**Edit only `assets/js/usecases-data.js`.** It holds the six packages (fixed categories) and
-their use cases (placeholders for now). `assets/js/usecases.js` builds the dropdown from it on
-every page, in the same layout as Products and Docs (one item per package: icon,
-"<name> use cases", summary line), and fills the "Most asked" chips in the dark card.
-`404.html` reads the same file to show the right name on "coming soon" pages. Styling
-comes from the shared mega-menu styles in `nav.css`; opening/closing from `nav.js`.
+The Use cases dropdown is a single dark “Start here” card, with links to the six
+actual demos and `/usecases/`. The old package-category grid and placeholder
+“Most asked” links have been removed. `assets/js/usecases-data.js` owns the demo
+titles, descriptions and destinations; `assets/js/usecases.js` builds the six
+compact links in `[data-uc-most-asked]`. The legacy attribute name remains only
+as the shared rendering hook. `packages` maps those actual demo links for
+product-page use-case lists and the not-found page. It contains no placeholders.
 
-```js
-{
-  id: "agenticlens",               // matches the product URL; don't change
-  name: "AgenticLens",             // shown as "AgenticLens use cases"
-  summary: "Trace runs, track cost, gate releases.",   // grey line under the name
-  // href: "...",                  // optional; default /agenticlens/usecases/
-  useCases: [
-    { title: "Track cost and tokens", slug: "cost-tracking", mostAsked: "Cost tracking" },
-    //  page: /agenticlens/usecases/cost-tracking/ ; set  href: "..."  to point anywhere
-    //  mostAsked (optional) shows it as a chip in the dark card
-  ]
-}
-```
-
-- Rename, add or remove use cases by editing `useCases`; keep about five `mostAsked` chips.
-- Package icons match the Products menu and live in `usecases.js`.
-- Don't add packages or top-level menu items for single use cases.
-- In the HTML, the menu has two empty slots, `[data-uc-list]` and `[data-uc-most-asked]`,
-  between the `<!-- USE CASES MENU -->` comments. Leave them as they are.
+The card is present across the shared HTML headers, including on mobile.
+Styles are scoped to `#mega-usecases` in `assets/css/nav.css`. The Docs menu
+retains its own separate links and quickstart card.
 
 ### Product pages (`/control-tower/`)
 
@@ -237,3 +222,160 @@ If Pepy cannot be reached, the stat card falls back to the numbers in `adoption.
 - **Honest content:** sample output is labelled illustrative; download numbers come from Pepy and say when a snapshot is shown.
 
 ---
+
+## Interactive ecosystem use cases
+
+The generic index at `/usecases/` links to `/usecases/1/`
+(MCP operations), `/usecases/2/` (replay and optimization), and `/usecases/3/`
+(recorded-run evaluation and candidate comparison), plus `/usecases/4/`
+(AgenticLens distributed tracing and observability). Directory `index.html` files
+support these requested URLs on GitHub Pages, including redirects from paths
+without a trailing slash. The pages reuse the site header, footer and brand styles.
+
+- `assets/css/usecase-demos.css`: responsive index cards and walkthrough workspace.
+- `assets/js/usecase-demos.js`: local scripted interactions, sample JSON download,
+  fault selection, candidate configuration, comparisons, prerequisite checks and reset.
+- `assets/js/usecases-data.js`: real featured demo links in the shared Use cases menu.
+
+All content and metrics are fictional; package activity is conceptual. The sample
+JSON is explicitly simplified and is not a validated AI Operations Specification
+payload. Evaluation of stored evidence and replay of a new candidate execution
+are separate operations. Nothing sends API requests or modifies production.
+
+Browser verification: serve the repository with `python3 -m http.server 8793`,
+then run `node scripts/check_usecase_demos.cjs` with Playwright installed.
+The script checks all routes and interactions at 360, 768 and 1440 pixels.
+
+### AgenticLens observability concept dashboard
+
+`usecases/4/index.html` reuses the website shell and loads scoped
+`assets/css/lens-demo.css` and `assets/js/lens-demo.js`. The index includes its
+fourth card; the AgenticLens menu links directly to this dashboard.
+
+The browser-local dataset has six traces across two fictional versions. All
+filter-dependent metric cards derive from that dataset, including nearest-rank
+p95 and the proportion of traces containing an error span. Recovered traces keep
+their original error spans. Run comparisons use a separately labeled fixed cohort
+of all six traces. No statistical significance is claimed for scripted samples.
+
+Only model-call leaves own tokens and estimated cost. Parent subtree metrics
+include descendants without adding them again to run totals. Cost uses explicitly
+fictional per-model input/output rates. Tools have no LLM token usage in this
+sample. A selected trace exports as simplified demo JSON, not validated OTLP or
+AI Operations Specification output. Captured content is fictional and redacted.
+
+The distributed call graph, span inspector, topology, token attribution, diagnostics and
+comparison illustrate capabilities checked against the local AgenticLens README.
+No external observability service, live collector or backend is connected.
+
+Run `node scripts/check_lens_demo.cjs` with Playwright and the preview server.
+`USECASE_PREVIEW_URL` overrides the default `http://127.0.0.1:8793`.
+Checks cover span drilldown, token aggregation, filters, empty states, diagnostic
+evidence, candidate comparisons, JSON downloads, keyboard tabs and mobile widths.
+
+The distributed trace view now renders a semantic nested call graph instead of
+horizontal timing bars. Edges follow each span's `parent` field. Agent 1 branches
+to MCP (with a child tool call), an external CRM API, a vector database, a triage
+subagent (web search, model and memory) and an order subagent. The order subagent
+itself delegates to a resolution subagent with retrieval, model and memory spans.
+Selecting any node updates the inspector; tabbing and keyboard activation work.
+The graph scrolls within its panel on small screens. Parent durations contain
+child spans, and token totals continue to count model leaves once.
+
+### AgenticOps loop diagram (use case 03)
+
+Below the evaluation walkthrough, `ops-loop.css` and `ops-loop.js` render the
+supplied loop as HTML stage buttons with inline SVG connectors, not a raster
+image. It includes capture, standardization, recording, replay, separate Chaos
+and Evals branches into analysis, optimization, validation, deployment and the
+return path to production. Selecting a stage updates its live explanation.
+Below 1000px, the semantic ordered stages become a readable vertical flow; a plus
+sign groups Chaos and Evals as the two checks feeding analysis. No-JavaScript
+viewers retain the full diagram and labels. Run `check_ops_loop.cjs` with
+Playwright and a preview server to verify stage activation and responsive layout.
+
+The loop presentation adds inline stage icons, gradient cards, a dotted canvas,
+a central progress ring, animated connector packets and Play/Pause, Next stage
+and Restart controls. Ten playback phases group Chaos and Evals as parallel
+checks. Clicking either branch pauses playback and shows its individual detail.
+Playback begins only while the diagram is visible, pauses its timer and animation
+when out of view or the document is hidden, and defaults off for reduced motion.
+Autoplay updates do not trigger live-region announcements or move keyboard focus.
+Tests also cover timed advancement, pausing and reduced-motion behavior.
+
+### Passive Sidecar supervision loop (use case 05)
+
+`usecases/5/index.html` loads `sidecar-loop.css` and `sidecar-loop.js` for an
+automatically animated concept diagram based on the supplied guardrails/context
+reference. This replaces the removed interactive incident concept; no visitor
+action controls or human decision buttons are present.
+
+Four fictional proposals cycle through external CRM, MCP, vector retrieval and
+a critical refund tool. Critical actions repeat eight one-second phases: propose, guardrails,
+intent/context, self-critique, scripted human review, execute, result and context
+re-injection. Read-only API, MCP and vector queries skip the human-approval phase and show
+“not required”; they execute after automated guardrails, context and critique.
+The critical $25 refund additionally requires scripted human approval before
+its dependency can highlight as executing. Actual policy can differ. Nothing executes outside
+the browser. Timers pause offscreen and in hidden documents. Reduced motion uses
+a static overview and disables automatic stage changes and animation.
+
+`check_sidecar_loop.cjs` checks passive markup and mobile/tablet/desktop layout,
+then advances a controlled browser clock through all four call cycles to verify
+the gate sequence, context reset and reduced-motion pause.
+
+The Sidecar simulation places the four compact supervision cards and execution
+gate inside an enlarged Support agent boundary. Outbound dependencies remain
+outside that boundary; the existing animation order and approvals are unchanged.
+
+The Sidecar loop now uses the AgentHealth reference's dotted SVG probe wires:
+measured curves connect the agent to internal checks and the gate to outbound
+dependencies. A pulse travels out and back during a check, a spinner marks the
+pending response, and a tick appears on completion. Skipped approval stays dashed
+with a dash rather than a tick. ResizeObserver redraws connections after layout
+changes, including mobile. Existing critical-action gating remains unchanged.
+
+### Control Tower fleet operations (use case 06)
+
+`usecases/6/index.html` loads scoped `tower-demo.css` and `tower-demo.js`. Eight
+fictional deployments represent Incident Response, Deployment, Security Triage
+and Cost Optimization agents across production, staging and development.
+Environment/team/search filters update both the table and its metric cards.
+Selected-agent profiles expose version, owner, capabilities, reported health,
+evidence freshness and native Lens/Evals/Sidecar outcomes as separate signals.
+
+The conceptual action-review flow supports approve, reject, request changes,
+revision and a separate simulated execution. Revisions require new approval;
+approval never automatically executes a command. A scoped emergency confirmation
+pauses either all new work for the selected agent or only its production actions.
+Production-only hold retains read-only investigation. Nonproduction agents do not
+show the production-only choice. Holds prevent approvals/execution; resuming
+clears only that hold without changing native evidence or declaring recovery.
+Operator decisions are recorded per agent and reset with the demo/page reload.
+
+These controls are explicitly conceptual, not live features of the current
+read-only Control Tower console or proof of production runtime adapters.
+`check_tower_demo.cjs` verifies filtering, evidence, approval decisions/revisions,
+agent-vs-production holds, scope isolation, resume, keyboard tabs and layouts.
+
+The expanded Control Tower use case presents OPERATE as discovery, monitoring,
+configuration visibility and unified cross-environment operations. Two scenario
+entry points lead to the incident profile. MCP + Copilot correlates a fictional
+Lens trace, a 5000→300 ms timeout configuration diff, a repeated-retry prompt and
+1200 ms dependency p95 to explain the predefined failure. Evidence references
+remain visible; the diagnosis is fixture-specific, not an arbitrary live RCA.
+
+Diagnosis enables a recommended RB-017 rollback runbook. The operator reviews
+and approves the exact revision before remediation can execute. Verification is
+separate and offers successful or failed service-probe outcomes alongside a fresh
+simulated Lens run and same-run Evals gate. Only all-passing recovery evidence
+resolves the incident; historical failures stay in the evidence view.
+
+Emergency containment separately exposes runtime stop, new tool-call blocking
+and optional scoped credential revocation. The call-gate probe never executes a
+tool. Resume does not restore revoked credentials; explicit access restoration
+does not clear a runtime hold or approve a change. Revoking access invalidates
+unexecuted approvals. Emergency scope affects only the selected agent, and the
+UI states that in-flight remote calls are not guaranteed cancelled. Duplicate
+execution of an approved revision is blocked. All adapters, telemetry, AI and
+credential effects remain browser-local simulations.

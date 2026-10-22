@@ -5,6 +5,88 @@ together, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## October 2026
 
+### Control Tower command-center scenarios (October 21)
+
+Expanded use case 06 beyond fleet review with two operations scenarios. Added
+scripted MCP + Copilot evidence correlation and cited root cause, a recommended
+runbook requiring human approval, separate remediation and recovery verification,
+including a failed probe that keeps the incident open. Added emergency stop,
+new-call blocking, scoped access revocation, a call-gate probe and separate access
+restoration. Kept resume, approval, evidence and recovery states independent.
+Updated the hero and index to reflect Control Tower's broader OPERATE role.
+
+### Control Tower fleet use case (October 21)
+
+Added `/usecases/6/` from the supplied fleet operations use-case document.
+Includes eight fictional agent deployments, environment/team/search filters,
+producer-attributed evidence, proposal approval/rejection/change requests,
+scoped emergency-brake confirmation, resume and per-agent decision records.
+Approval is separate from execution, and operator state remains separate from
+reported health and native evidence. Added the sixth index card and navigation
+link. Controls are clearly labeled conceptual with no infrastructure connection.
+
+### Risk-based Sidecar approval (October 21)
+
+Read-only external API, MCP and vector queries now skip human review after their
+automated checks. A critical $25 refund action demonstrates the approval hold.
+The approval card stays inactive and says “not required” for read-only calls.
+Verified both execution paths with a controlled browser clock.
+
+### Automatic Sidecar supervision simulation (October 21)
+
+Added a new passive use case 05: an agent proposes external API, MCP, vector
+and action-tool calls, with guardrails, context, self-critique and scripted human
+approval before every execution. Colored stages brighten automatically at
+one-second intervals. Results feed the next context re-injection. Added the fifth
+index card and Sidecar navigation link. Includes visibility-aware playback,
+reduced-motion support and fictional approval/execution disclosures.
+
+
+### Animated AgenticOps walkthrough (October 21)
+
+Polished the loop with gradient cards, icons, a dotted canvas, active-stage
+highlights and a central progress ring. Added animated connector packets and
+Play/Pause, Next and Restart controls. The walkthrough groups Chaos and Evals
+as parallel checks, pauses outside the viewport, and respects reduced motion.
+Verified playback, pause, stage inspection and responsive layouts.
+
+### Code-rendered AgenticOps loop (October 21)
+
+Added the supplied production-to-redeployment loop below use case 03 as native
+HTML/CSS with inline SVG arrows. Eleven keyboard-accessible stages explain their
+role on selection. The diagram preserves the Chaos and Evals branches and the
+feedback path, with a vertical layout on smaller screens. Verified selection,
+keyboard activation and stage layout at phone, tablet and desktop widths.
+
+### AgenticLens nested call graph (October 21)
+
+Replaced the use case 04 waterfall with an interactive call graph showing a root
+agent calling MCP, an external API, a vector database and subagents. Nested
+subagent branches expose web, tools, models, retrieval and memory calls; a subagent
+also delegates to another subagent. Each node opens captured span details.
+Retained token attribution, diagnostics, comparison and export with consistent
+parent-child data. Verified node drilldown and responsive layouts in the browser.
+
+### AgenticLens observability use case (October 21)
+
+Added `/usecases/4/`, a dark observability dashboard with nested agent, model,
+tool, retrieval, retry and memory spans. Includes a clickable waterfall and
+inspector, agent topology, overall/per-agent input and output tokens, fictional
+cost attribution, trace search/status/time filters, evidence-backed diagnostics,
+a fixed-cohort comparison and simplified JSON export. Added the fourth index
+card and linked it from the AgenticLens menu. All telemetry is labeled simulated.
+Browser checks cover workflows and layouts at 360, 768 and 1440 pixels.
+
+### Interactive ecosystem use cases (October 21)
+
+Added a generic index at `/usecases/` and three linked concept demos
+at `/usecases/1/`, `/usecases/2/`, `/usecases/3/`, following the supplied PDF numbering.
+Includes scripted MCP conversations, fault-injection replay, optimization evidence,
+recording import/export, baseline evaluation and candidate release comparisons.
+All data is labeled illustrative. Preserves the site's shared branding and navigation.
+Verified the workflows, reset behavior and responsive widths with Playwright.
+
+
 ### Shared product documentation (October 21)
 
 - Standardized all six products on a shared MkDocs Material theme with product navigation, grouped sidebars, search, theme switching and page contents.
