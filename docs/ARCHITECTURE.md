@@ -397,3 +397,10 @@ shows an unavailable dash rather than a fabricated count. A snapshot is also
 included for local previews. Update PATHS in the snapshot script and paths in
 the browser script together when adding use cases. Counters are public and
 require no API credentials. Service source: https://github.com/silentsoft/hits.
+
+The index also reads current totals through the Shields dynamic JSON endpoint
+(`$.total` from the Hits statistics API), which permits cross-origin browser
+reads. Its response is cached for about five minutes. Only its numeric SVG
+aria-label is parsed; external SVG markup is never inserted into the page. The
+hourly same-origin snapshot remains the fallback if this read fails. Neither
+read increments counters. Reference: https://shields.io/badges/dynamic-json-badge.

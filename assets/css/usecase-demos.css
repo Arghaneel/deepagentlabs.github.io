@@ -8,3 +8,8 @@
 @media(prefers-reduced-motion:reduce){.uc-resource-grid>a{transition:none}.uc-resource-grid>a:hover,.uc-resource-grid>a:focus-visible{transform:none}}
 
 .uc-view-count{display:block;margin-top:16px;font:500 11px var(--font-mono,monospace);color:#b7d29a;letter-spacing:.03em}.uc-views-note{font-size:12px;color:#637369}.uc-views-note a{text-decoration:underline}
+
+/* Full-card highlight, with readable dark text across every child. */
+.uc-resource-grid>a:hover,.uc-resource-grid>a:focus-visible{background:#c4f65a;color:#102010;filter:none;border-color:#85b82b;box-shadow:0 0 28px #a6da4538,0 12px 28px #14261926}
+.uc-resource-grid>a:hover>span,.uc-resource-grid>a:focus-visible>span,.uc-resource-grid>a:hover small,.uc-resource-grid>a:focus-visible small{color:#344b20;border-color:#86a946}
+.uc-card>.uc-view-count{color:#47632c}
