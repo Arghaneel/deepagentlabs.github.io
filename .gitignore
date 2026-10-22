@@ -1,2 +1,6 @@
 Claude outputs/
 node_modules/
+
+# Generated Python cache files
+__pycache__/
+*.py[cod]
