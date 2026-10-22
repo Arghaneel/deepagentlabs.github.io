@@ -6,7 +6,7 @@ on:
   pull_request:
   workflow_dispatch:
   schedule:
-    - cron: '17 6 * * *'
+    - cron: '17 * * * *'
 
 permissions:
   contents: read
@@ -41,6 +41,8 @@ jobs:
           rsync -a --exclude='.git' --exclude='.github' --exclude='_sources' ./ "$RUNNER_TEMP/website/"
       - name: Build repository documentation at website aliases
         run: python scripts/build_docs.py --sources _sources --output "$RUNNER_TEMP/website"
+      - name: Refresh use case page-view totals
+        run: python scripts/update_usecase_views.py --output "$RUNNER_TEMP/website/assets/data/usecase-views.json"
       - name: Check rendered documentation
         run: python scripts/check_docs_site.py "$RUNNER_TEMP/website"
       - uses: actions/upload-pages-artifact@v3

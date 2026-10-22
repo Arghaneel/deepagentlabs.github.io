@@ -1,0 +1,14 @@
+{
+  "updatedAt": "2026-10-22T01:43:53.701592+00:00",
+  "views": {
+    "/usecases/1/": 0,
+    "/usecases/2/": 0,
+    "/usecases/3/": 0,
+    "/usecases/4/": 0,
+    "/usecases/5/": 0,
+    "/usecases/6/": 0,
+    "/agentic-sidecar/usecases/prevent-unauthorized-refunds/": 0,
+    "/agentic-sidecar/usecases/governed-customer-support-agent/": 0,
+    "/agentic-sidecar/usecases/govern-langgraph-agent-workflows/": 0
+  }
+}

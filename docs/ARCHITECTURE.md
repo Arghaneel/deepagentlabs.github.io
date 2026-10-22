@@ -379,3 +379,21 @@ unexecuted approvals. Emergency scope affects only the selected agent, and the
 UI states that in-flight remote calls are not guaranteed cancelled. Duplicate
 execution of an approved revision is blocked. All adapters, telemetry, AI and
 credential effects remain browser-local simulations.
+
+### Use-case view totals
+
+`assets/js/usecase-views.js` records one Hits badge request on each production
+use-case page load (six demos and three Sidecar examples). It does not record
+index impressions or local previews. The Sidecar MkDocs use-case configuration
+loads this shared script from deepagentlabs.io. No query strings, user IDs, or
+referrers are sent by the integration. Public page-load counts are approximate,
+not unique visitors, and begin at deployment; ad blockers may prevent recording.
+
+`scripts/update_usecase_views.py` reads the Hits JSON statistics API without
+incrementing counters and writes `assets/data/usecase-views.json`. The Pages
+workflow refreshes this same-origin snapshot hourly (GitHub scheduling may delay
+updates). Missing counters return zero; failed requests produce null and the UI
+shows an unavailable dash rather than a fabricated count. A snapshot is also
+included for local previews. Update PATHS in the snapshot script and paths in
+the browser script together when adding use cases. Counters are public and
+require no API credentials. Service source: https://github.com/silentsoft/hits.
